@@ -1,4 +1,6 @@
 from open_list import *
+import time
+import csv
 
 
 class User():
@@ -37,6 +39,23 @@ class Student(User):
 
     def __str__(self):
         return "{} {} {} {} {}\n".format(self.name, self.surname, self.login, self.password, self.state)
+
+    def show_grades_list(self):
+        from_grades = Open().open_users("CSV/sub_assignments.csv")
+        grades = []
+        for grade in from_grades:
+            if self.name.lower() + self.surname.lower() == grade[0]:
+                grades.append(grade)
+        return grades
+
+    def submit_assigment(self, assigment):
+        submitted = []
+        submitted.append(str(self.name.lower() + self.surname.lower()))
+        submitted.append(assigment)
+        submitted.append("0")
+        current_time = "{}.{}.{}".format(time.localtime()[2], time.localtime()[1], time.localtime()[0])
+        submitted.append(current_time)
+        return submitted
 
 
 
@@ -177,42 +196,3 @@ class Manager(Employee):
 
     def __str__(self):
         return "{} {} {} {} {}\n".format(self.name, self.surname, self.login, self.password)
-
-
-<<<<<<< HEAD
-'''TEST TEST TEST'''
-
-=======
-
-
-'''TEST TEST TEST'''
-
-# print(MentorList().get_mentors_list())
-# StudentList().get_students_list()
-
-# print(a)
-#
-# for item in a:
-#     print (item)
->>>>>>> d78ea0c1545a86aa470446fbaeb4665fb4ac6131
-# user1 = Student("Jan", "Kowalski")
-# user2 = Student("Tomasz", "Nowak")
-# user3 = Student("Adolf", "Dupa")
-#
-# students_list = StudentList()
-#
-# students_list.add_student(user1)
-# students_list.add_student(user2)
-# students_list.add_student(user3)
-# print(students_list)
-#
-# lol = (students_list.display_sl(students_list))
-# print(lol)
-#
-# loo = (students_list.display_ol(lol))
-# print(loo)
-<<<<<<< HEAD
-# # print(loo[0].name)
-=======
-# print(loo[0].name)
->>>>>>> d78ea0c1545a86aa470446fbaeb4665fb4ac6131
