@@ -31,7 +31,7 @@ class Ui:
     MENTOR_INTRO = ("""
     Logged as a Mentor.
         Mentor Menu.
-            Witch option you want to select?
+            Which option you want to select?
             #1. Check attendance.
             #2. Add student.
             #3. Remove student.
@@ -45,7 +45,7 @@ class Ui:
     STUDENT_INTRO = ("""
     Logged as a Student.
         Student Menu.
-            Witch option you want to select?
+            Which option you want to select?
             #1. Show grades list.
             #2. Add assignment.
             #0. Exit program
@@ -54,7 +54,7 @@ class Ui:
     EMPLOYEE_INTRO = ("""
     Logged as a Employee.
         Employee Menu.
-            Witch option you want to select?
+            Which option you want to select?
             #1. Show students list.
             #2. Show Mentors list.
             #3. Show grades list.
