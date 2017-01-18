@@ -1,10 +1,11 @@
-from open import *
+from open_list import *
 
 
-class Start:
+
+
+class Login:
+
     def login_check(self):
-
-
 
         valid = ""
         valid_pass = ""
@@ -32,5 +33,3 @@ class Start:
                     if password == valid_pass:
                         print("employee")
             print("Your login or password is incorrect.")
-
-Start().login_check()
