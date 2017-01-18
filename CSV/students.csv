@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 Łukasz,Bielenin,lukasbielenin,lukas123,1
 Krzysztof,Jarośka,krzysztofjaroska,krzysztof123,1
 Tomasz,Krystyan,tomaszkrystyan,tomek123,0
@@ -6,3 +7,14 @@ Denis,Łaskawiec,denislaskawiec,denis123,1
 Zbigniew,Tokarski,zbigniewtokarski,zbigniew123,1
 Michał,Wilk,michalwilk,michal123,1
 Sebastian,Znaj,sebastianznaj,sebastian123,0
+=======
+Łukasz,Bielenin,lukasbielenin,lukas123,True
+Krzysztof,Jarośka,krzysztofjaroska,krzysztof123,True
+Tomasz,Krystyan,tomaszkrystyan,tomek123,True
+Jakub,Krzciuk,jakubkrzciuk,jakub123,True
+Denis,Łaskawiec,denislaskawiec,denis123,True
+Zbigniew,Tokarski,zbigniewtokarski,zbigniew123,True
+Michał,Wilk,michalwilk,michal123,True
+Sebastian,Znaj,sebastianznaj,sebastian123,True
+Jak,Kowalski,kukuś,kopytko,True
+>>>>>>> d78ea0c1545a86aa470446fbaeb4665fb4ac6131

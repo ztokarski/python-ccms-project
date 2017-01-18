@@ -1,3 +1,6 @@
+from open_list import *
+
+
 class User():
     '''
     Class for user.
@@ -61,7 +64,7 @@ class StudentList():
 
     def display_ol(self, lol):
         '''
-        Making list of objects from list of lists
+        Making list of objects (loo) from list of lists
         '''
         self.lol = lol
         self.loo = []
@@ -78,6 +81,17 @@ class StudentList():
         if isinstance (student, Student):
             self.students_list.append(student)
 
+    def get_students_list(self):
+        '''
+        get students list from csv.file and return list of objects
+        '''
+        students_list = Open().open_users("CSV/students.csv")
+        students_object_list = StudentList().display_ol(students_list)
+        # for num, item in enumerate(students_object_list):
+        #     print("{} {} {} {}".format(num+1, item.name, item.surname, item.state))
+        return students_object_list
+        # return students_list
+
 
 class Employee(User):
     '''
@@ -88,6 +102,70 @@ class Employee(User):
 
     def __str__(self):
         return "{} {} {} {} {}\n".format(self.name, self.surname, self.login, self.password, self.state)
+
+
+class Mentor(Employee):
+    '''
+    Class for Mentor.
+    '''
+    def __init__(self, name, surname):
+        super().__init__(name, surname)
+
+    def __str__(self):
+        return "{} {} {} {} {}\n".format(self.name, self.surname, self.login, self.password, self.state)
+
+
+class MentorList():
+    '''
+    Class for list of mentors.
+    '''
+    def __init__(self):
+        self.mentors_list = []
+
+    def __str__(self):
+        all_mentors = ""
+        for item in self.mentors_list:
+            if item.state == True: # only Activ Mentors
+                all_students += str(item)
+        return all_students
+
+    def display_sl(self, string):
+        '''
+        Making list of lists (lol) from string
+        '''
+        self.string = str(string)
+        lol = [x.split(" ") for x in self.string.split("\n")]
+        return lol[:-1]
+
+    def display_ol(self, lol):
+        '''
+        Making list of objects (loo) from list of lists
+        '''
+        self.lol = lol
+        self.loo = []
+        for item in self.lol:
+            obj = Mentor(item[0], item[1])
+            obj.login = item[2]
+            obj.password = item[3]
+            obj.state = item[4]
+            self.loo.append(obj)
+        return self.loo
+
+
+    def add_mentor(self, student):
+        if isinstance (student, Student):
+            self.students_list.append(student)
+
+    def get_mentors_list(self):
+        '''
+        get mentors list from csv.file and return list of objects
+        '''
+        mentors_list = Open().open_users("CSV/mentors.csv")
+        mentors_object_list = MentorList().display_ol(mentors_list)
+        # for num, item in enumerate(mentors_object_list):
+        #     print("{} {} {} {}".format(num+1, item.name, item.surname, item.state))
+        return mentors_object_list
+        # return students_list
 
 
 class Manager(Employee):
@@ -101,8 +179,22 @@ class Manager(Employee):
         return "{} {} {} {} {}\n".format(self.name, self.surname, self.login, self.password)
 
 
+<<<<<<< HEAD
 '''TEST TEST TEST'''
 
+=======
+
+
+'''TEST TEST TEST'''
+
+# print(MentorList().get_mentors_list())
+# StudentList().get_students_list()
+
+# print(a)
+#
+# for item in a:
+#     print (item)
+>>>>>>> d78ea0c1545a86aa470446fbaeb4665fb4ac6131
 # user1 = Student("Jan", "Kowalski")
 # user2 = Student("Tomasz", "Nowak")
 # user3 = Student("Adolf", "Dupa")
@@ -119,4 +211,8 @@ class Manager(Employee):
 #
 # loo = (students_list.display_ol(lol))
 # print(loo)
+<<<<<<< HEAD
 # # print(loo[0].name)
+=======
+# print(loo[0].name)
+>>>>>>> d78ea0c1545a86aa470446fbaeb4665fb4ac6131
