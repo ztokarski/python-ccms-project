@@ -1,3 +1,6 @@
+from open_list import *
+
+
 class User():
     '''
     Class for user.
@@ -78,6 +81,16 @@ class StudentList():
         if isinstance (student, Student):
             self.students_list.append(student)
 
+    def get_students_list(self):
+        '''
+        get students list from csv.file and return list of objects
+        '''
+        students_list = Open().open_users("CSV/students.csv")
+        students_object_list = StudentList().display_ol(students_list)
+        print(students_object_list[0].login)
+        return students_object_list
+        # return students_list
+
 
 class Employee(User):
     '''
@@ -103,6 +116,9 @@ class Manager(Employee):
 
 '''TEST TEST TEST'''
 
+print(StudentList().get_students_list())
+
+
 user1 = Student("Jan", "Kowalski")
 user2 = Student("Tomasz", "Nowak")
 user3 = Student("Adolf", "Dupa")
@@ -113,10 +129,10 @@ students_list.add_student(user1)
 students_list.add_student(user2)
 students_list.add_student(user3)
 print(students_list)
-
-lol = (students_list.display_sl(students_list))
-print(lol)
-
-loo = (students_list.display_ol(lol))
-print(loo)
+#
+# lol = (students_list.display_sl(students_list))
+# print(lol)
+#
+# loo = (students_list.display_ol(lol))
+# print(loo)
 # print(loo[0].name)
