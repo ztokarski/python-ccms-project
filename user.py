@@ -87,7 +87,6 @@ class StudentList():
         '''
         students_list = Open().open_users("CSV/students.csv")
         students_object_list = StudentList().display_ol(students_list)
-        print(students_object_list[0].login)
         return students_object_list
         # return students_list
 
@@ -119,16 +118,16 @@ class Manager(Employee):
 print(StudentList().get_students_list())
 
 
-user1 = Student("Jan", "Kowalski")
-user2 = Student("Tomasz", "Nowak")
-user3 = Student("Adolf", "Dupa")
-
-students_list = StudentList()
-
-students_list.add_student(user1)
-students_list.add_student(user2)
-students_list.add_student(user3)
-print(students_list)
+# user1 = Student("Jan", "Kowalski")
+# user2 = Student("Tomasz", "Nowak")
+# user3 = Student("Adolf", "Dupa")
+#
+# students_list = StudentList()
+#
+# students_list.add_student(user1)
+# students_list.add_student(user2)
+# students_list.add_student(user3)
+# print(students_list)
 #
 # lol = (students_list.display_sl(students_list))
 # print(lol)
