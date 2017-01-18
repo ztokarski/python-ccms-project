@@ -87,6 +87,8 @@ class StudentList():
         '''
         students_list = Open().open_users("CSV/students.csv")
         students_object_list = StudentList().display_ol(students_list)
+        for num, item in enumerate(students_object_list):
+            print("{} {} {}".format(num+1, item.name, item.surname))
         return students_object_list
         # return students_list
 
@@ -115,9 +117,13 @@ class Manager(Employee):
 
 '''TEST TEST TEST'''
 
-print(StudentList().get_students_list())
+StudentList().get_students_list()
 
 
+# print(a)
+#
+# for item in a:
+#     print (item)
 # user1 = Student("Jan", "Kowalski")
 # user2 = Student("Tomasz", "Nowak")
 # user3 = Student("Adolf", "Dupa")
