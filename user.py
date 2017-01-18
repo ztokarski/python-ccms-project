@@ -103,20 +103,20 @@ class Manager(Employee):
 
 '''TEST TEST TEST'''
 
-user1 = Student("Jan", "Kowalski")
-user2 = Student("Tomasz", "Nowak")
-user3 = Student("Adolf", "Dupa")
-
-students_list = StudentList()
-
-students_list.add_student(user1)
-students_list.add_student(user2)
-students_list.add_student(user3)
-print(students_list)
-
-lol = (students_list.display_sl(students_list))
-print(lol)
-
-loo = (students_list.display_ol(lol))
-print(loo)
-# print(loo[0].name)
+# user1 = Student("Jan", "Kowalski")
+# user2 = Student("Tomasz", "Nowak")
+# user3 = Student("Adolf", "Dupa")
+#
+# students_list = StudentList()
+#
+# students_list.add_student(user1)
+# students_list.add_student(user2)
+# students_list.add_student(user3)
+# print(students_list)
+#
+# lol = (students_list.display_sl(students_list))
+# print(lol)
+#
+# loo = (students_list.display_ol(lol))
+# print(loo)
+# # print(loo[0].name)
