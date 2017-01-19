@@ -88,7 +88,15 @@ class Menu:
 
 
 class StudentMenu:
-        def give_done(self, name, surname):
+        def show_done(self, name, surname):
+            undone = Open().open_users("CSV/assignments.csv")
+            done = Open().open_users("CSV/sub_assignments.csv")
+            user = User(name, surname)
+            for submit in done:
+                if submit[0] == user.name.lower() + user.surname.lower():
+                    print("{} Grade: {} Date {}.".format(submit[1].title(), submit[2], submit[3]))
+
+        def check_undone(self, name, surname):
             undone = Open().open_users("CSV/assignments.csv")
             done = Open().open_users("CSV/sub_assignments.csv")
             student_undone = undone
@@ -99,10 +107,8 @@ class StudentMenu:
                         if submit[1] == x[0]:
                             a = x
                             student_undone.remove(a)
-                    print("{} Grade: {} Date {}.".format(submit[1].title(), submit[2], submit[3]))
-                else:
-                    continue
             return student_undone
+
 
         def show_undone(self, undone):
             for num, dupa in enumerate(undone, 1):
@@ -131,8 +137,9 @@ class StudentMenu:
             if option == "2":
                 print("{} {}".format(user.name, user.surname))
                 #StudentMenu.give_done(self, name, surname)
-                show_undone_argument = StudentMenu.give_done(self, name, surname)
-                assignment = StudentMenu.show_undone(self, show_undone_argument)
+                StudentMenu.show_done(self, name, surname)
+                check_undone = StudentMenu.check_undone(self, name, surname)
+                assignment = StudentMenu.show_undone(self, check_undone)
                 student = Student(name, surname)
                 submitted_assigment = student.submit_assigment(assignment)
                 done = Open().open_users("CSV/sub_assignments.csv")
