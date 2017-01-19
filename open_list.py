@@ -1,4 +1,9 @@
 import csv
+
+from user import *
+
+=======
+
 from user import *
 
 class Open:
@@ -8,8 +13,9 @@ class Open:
         read_file = open(user_list, "r")
         for user in read_file:
             users_list.append(user.strip().split(","))
-            read_file.close()
+        read_file.close()
         return list(users_list)
+
 
 
     def save(self, updated_list, user_list):
@@ -62,3 +68,8 @@ class Open:
 
         resoult = table_top + "\n" + table_element[:-(len(middle_rib)+2)] + "\n" + table_bottom + "\n"
         return resoult
+
+    def save(self, updated_list, user_list):
+        with open(user_list, "w") as f:
+            writer = csv.writer(f)
+            writer.writerows(updated_list)
