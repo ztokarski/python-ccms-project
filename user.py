@@ -116,6 +116,8 @@ class Mentor(Employee):
     '''
     Class for Mentor.
     '''
+    title_list = ["Name", "Surname", "State"]
+
     def __init__(self, name, surname):
         super().__init__(name, surname)
 
@@ -127,6 +129,7 @@ class MentorList():
     '''
     Class for list of mentors.
     '''
+
     def __init__(self):
         self.mentors_list = []
 
@@ -195,6 +198,50 @@ class Manager(Employee):
         return "{} {} {} {} {}\n".format(self.name, self.surname, self.login, self.password)
 
 
+class Display:
+
+    def fill_with_spaces(self, element, lenght):
+        """ Fills table cell with space to desired length"""
+        element = "|   " + element
+        while len(element) < lenght:
+            element += " "
+        return element
+
+
+    def print_table(self, object_list):
+        """
+        This method returns shapes list as string formatted into table. This is sample output:
+         #---------------------------------------------------------------------------------#
+         |  Name   |       Surname  |       Login          |   Password   |   Attendance   |
+         |---------|----------------|----------------------|--------------|----------------|
+         |  Jakub  |     Krzciuk    |    jakubkrzciuk      |  jakub123    |     True       |
+         |---------|----------------|----------------------|--------------|----------------|
+         |Sebastian|     Znaj       |    sebastianznaj     | sebastian123 |     True       |
+         #---------------------------------------------------------------------------------#
+        """
+
+        # Body
+        table_element = ""
+        middle_rib = ("|" + "-" * 4) + ("|" + "-" * 19) * 2 + ("|" + "-" * 9) + "|"
+        for i, object in enumerate(object_list):
+            if i == 0:
+                Lp = "| Lp."
+            else:
+                Lp = "| " + str(i) + "."
+                while len(Lp) < 5:
+                    Lp += " "
+            element = self.fill_with_spaces(object.name, 20)
+            element1 = self.fill_with_spaces(object.surname, 20)
+            element2 = self.fill_with_spaces(object.state, 10)
+            table_element += Lp + element + element1 + element2 + "|" + "\n" + middle_rib + "\n"
+
+        # Frames
+        table_lenght = "-" * (len(middle_rib) - 2)
+        table_bottom = "#" + table_lenght + "#"
+        table_top = "#" + table_lenght + "#"
+
+        resoult = table_top + "\n" + table_element[:-(len(middle_rib)+2)] + "\n" + table_bottom + "\n"
+        return resoult
 
 
 '''TEST TEST TEST'''

@@ -1,7 +1,5 @@
-from open import *
+from open_list import *
 
-
-from open import *
 
 
 class Login:
