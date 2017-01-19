@@ -1,4 +1,3 @@
-from open_list import *
 import time
 import csv
 
@@ -227,7 +226,7 @@ class Manager(Employee):
         Employee.__init__(self, name, surname)
 
     def __str__(self):
-        return "{} {} {} {}\n".format(self.name, self.surname, self.login, self.password)
+        return "{} {} {} {} {}\n".format(self.name, self.surname, self.login, self.password)
 
 
 class Display:
@@ -350,4 +349,4 @@ class AssignmentList():
 
 
 
-# StudentList().get_students_list()
+StudentList().get_students_list()

@@ -4,13 +4,19 @@ from user import *
 
 class Open:
 
+    # def open_users(self, user_list):
+    #     users_list = []
+    #     read_file = open(user_list, "r")
+    #     for user in read_file:
+    #         users_list.append(user.strip().split(","))
+    #     read_file.close()
+    #     return list(users_list)
+
     def open_users(self, user_list):
-        users_list = []
-        read_file = open(user_list, "r")
-        for user in read_file:
-            users_list.append(user.strip().split(","))
-        read_file.close()
-        return list(users_list)
+        with open(user_list, "r") as file:
+            lines = file.readlines()
+        table = [element.replace("\n", "").split(";") for element in lines]
+        return table
 
 
     def save(self, updated_list, user_list):
