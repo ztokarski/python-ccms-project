@@ -16,12 +16,20 @@ class Ui:
     | |   / _ \ / _` |/ _ \  / __/ _ \ / _ \| |
     | |__| (_) | (_| |  __/ | (_| (_) | (_) | |
      \____\___/ \__,_|\___|  \___\___/ \___/|_|
-      __  __           _             __  __
-     |  \/  |         (_)           |  \/  |
-     | \  / |   __ _   _   _ __     | \  / |   ___   _ __    _   _
-     | |\/| |  / _` | | | | '_ \    | |\/| |  / _ \ | '_ \  | | | |
-     | |  | | | (_| | | | | | | |   | |  | | |  __/ | | | | | |_| |
-     |_|  |_|  \__,_| |_| |_| |_|   |_|  |_|  \___| |_| |_|  \__,_|
+                                    ____
+      ,----..                    ,'  , `.  .--.--.
+     /   /   \                ,-+-,.' _ | /  /    '.
+    |   :     :            ,-+-. ;   , |||  :  /`. /
+    .   |  ;. /           ,--.'|'   |  ;|;  |  |--`
+    .   ; /--`    ,---.  |   |  ,', |  ':|  :  ;_
+    ;   | ;      /     \ |   | /  | |  || \  \    `.
+    |   : |     /    / ' '   | :  | :  |,  `----.   \\
+    .   | '___ .    ' /  ;   . |  ; |--'   __ \  \  |
+    '   ; : .'|'   ; :__ |   : |  | ,     /  /`--'  /
+    '   | '/  :'   | '.'||   : '  |/     '--'.     /
+    |   :    / |   :    :;   | |`-'        `--'---'
+     \   \ .'   \   \  / |   ;/
+      `---`      `----'  '---'
 
     """)
 
@@ -56,7 +64,7 @@ class Ui:
         Student Menu.
             Which option you want to select?
             #1. Show grades list.
-            #2. Add assignment.
+            #2. Submit assignment.
             #0. Exit program
     """)
 
@@ -80,13 +88,37 @@ class Menu:
         user = Login.login_check()
 
         if isinstance(user, Student):
-            print(user.name)
-            print(user.surname)
+
             StudentMenu.student_menu(self, user.name, user.surname)
-        else:
-            raise ValueError("dupa")
+
+        elif isinstance(user, Mentor):
+            MentorMenu.mentor_menu(self, user.name, user.surname)
+
+        elif isinstance(user, Employee):
+            EmployeeMenu.employee_menu(self, user.name, user.surname)
 
 
+
+
+            # raise ValueError("dupa")
+class EmployeeMenu:
+    def employee_menu(self, name, surname):
+        print("dupa")
+        user = User(name, surname)
+        print(user)
+        print("Hello, {}".format(name))
+        print("")
+        print(Ui.EMPLOYEE_INTRO)
+        option = input("Pick an option")
+class MentorMenu:
+    def mentor_menu(self, name, surname):
+        print("dupa")
+        user = User(name, surname)
+        print(user)
+        print("Hello, {}".format(name))
+        print("")
+        print(Ui.MENTOR_INTRO)
+        option = input("Pick an option")
 class StudentMenu:
         def show_done(self, name, surname):
             undone = Open().open_users("CSV/assignments.csv")
@@ -134,6 +166,7 @@ class StudentMenu:
             print(Ui.STUDENT_INTRO)
             option = input("Pick an option")
             # if option == "1":
+
             if option == "2":
                 print("{} {}".format(user.name, user.surname))
                 #StudentMenu.give_done(self, name, surname)

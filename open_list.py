@@ -1,5 +1,6 @@
 import csv
 
+from user import *
 class Open:
 
     def open_users(self, user_list):

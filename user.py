@@ -100,11 +100,21 @@ class StudentList():
         if isinstance (student, Student):
             self.students_list.append(student)
 
+
+    def open_users(self, user_list):
+        users_list = []
+        read_file = open(user_list, "r")
+        for user in read_file:
+            users_list.append(user.strip().split(","))
+        read_file.close()
+        return list(users_list)
+
+
     def get_students_list(self):
         '''
         get students list from csv.file and return list of objects
         '''
-        students_list = Open().open_users("CSV/students.csv")
+        students_list = StudentList().open_users("CSV/students.csv")
         students_object_list = StudentList().display_ol(students_list)
         # for num, item in enumerate(students_object_list):
         #     print("{} {} {} {}".format(num+1, item.name, item.surname, item.state))
@@ -127,6 +137,8 @@ class Mentor(Employee):
     '''
     Class for Mentor.
     '''
+    title_list = ["Name", "Surname", "State"]
+
     def __init__(self, name, surname):
         super().__init__(name, surname)
 
@@ -138,6 +150,7 @@ class MentorList():
     '''
     Class for list of mentors.
     '''
+
     def __init__(self):
         self.mentors_list = []
 
@@ -175,16 +188,22 @@ class MentorList():
         if isinstance (student, Student):
             self.students_list.append(student)
 
+    def open_users(self, user_list):
+        users_list = []
+        read_file = open(user_list, "r")
+        for user in read_file:
+            users_list.append(user.strip().split(","))
+        read_file.close()
+        return list(users_list)
+
     def get_mentors_list(self):
         '''
         get mentors list from csv.file and return list of objects
         '''
-        mentors_list = Open().open_users("CSV/mentors.csv")
+        mentors_list = MentorList().open_users("CSV/mentors.csv")
         mentors_object_list = MentorList().display_ol(mentors_list)
-        # for num, item in enumerate(mentors_object_list):
-        #     print("{} {} {} {}".format(num+1, item.name, item.surname, item.state))
         return mentors_object_list
-        # return students_list
+
 
 
 class Manager(Employee):
@@ -196,3 +215,146 @@ class Manager(Employee):
 
     def __str__(self):
         return "{} {} {} {} {}\n".format(self.name, self.surname, self.login, self.password)
+
+
+class Display:
+
+    def fill_with_spaces(self, element, lenght):
+        """ Fills table cell with space to desired length"""
+        element = "|   " + element
+        while len(element) < lenght:
+            element += " "
+        return element
+
+
+    def print_table(self, object_list):
+        """
+        This method returns shapes list as string formatted into table. This is sample output:
+         #---------------------------------------------------------------------------------#
+         |  Name   |       Surname  |       Login          |   Password   |   Attendance   |
+         |---------|----------------|----------------------|--------------|----------------|
+         |  Jakub  |     Krzciuk    |    jakubkrzciuk      |  jakub123    |     True       |
+         |---------|----------------|----------------------|--------------|----------------|
+         |Sebastian|     Znaj       |    sebastianznaj     | sebastian123 |     True       |
+         #---------------------------------------------------------------------------------#
+        """
+
+        # Body
+        table_element = ""
+        middle_rib = ("|" + "-" * 4) + ("|" + "-" * 19) * 2 + ("|" + "-" * 9) + "|"
+        for i, object in enumerate(object_list):
+            if i == 0:
+                Lp = "| Lp."
+            else:
+                Lp = "| " + str(i) + "."
+                while len(Lp) < 5:
+                    Lp += " "
+            element = self.fill_with_spaces(object.name, 20)
+            element1 = self.fill_with_spaces(object.surname, 20)
+            element2 = self.fill_with_spaces(object.state, 10)
+            table_element += Lp + element + element1 + element2 + "|" + "\n" + middle_rib + "\n"
+
+        # Frames
+        table_lenght = "-" * (len(middle_rib) - 2)
+        table_bottom = "#" + table_lenght + "#"
+        table_top = "#" + table_lenght + "#"
+
+        resoult = table_top + "\n" + table_element[:-(len(middle_rib)+2)] + "\n" + table_bottom + "\n"
+        return resoult
+
+
+class Assignment():
+    '''
+    Class for Assignment
+    '''
+    def __init__(self, name, date, points):
+        self.name = name
+        self.date = date
+        self.points = points
+
+    def __str__(self):
+        return "{} {} {}\n".format(self.name, self.date, self.points)
+
+
+class AssignmentList():
+    '''
+    Class for list of assignments.
+    '''
+    def __init__(self):
+        self.assignments_list = []
+
+    def __str__(self):
+        all_assignments = ""
+        for item in self.assignments_list:
+            all_assignments += str(item)
+        return all_assignments
+
+    def display_sl(self, string):
+        '''
+        Making list of lists (lol) from string
+        '''
+        self.string = str(string)
+        lol = [x.split(" ") for x in self.string.split("\n")]
+        return lol[:-1]
+
+    def display_ol(self, lol):
+        '''
+        Making list of objects (loo) from list of lists
+        '''
+        self.lol = lol
+        self.loo = []
+        for item in self.lol:
+            obj = Assignment(item[0], item[1], item[2])
+            self.loo.append(obj)
+        return self.loo
+
+
+    def add_assignment(self, student):
+        if isinstance (student, Student):
+            self.students_list.append(student)
+
+
+    def get_assignments_list(self):
+        '''
+        get assignments list from csv.file and return list of objects
+        '''
+        assignments_list = Open().open_users("CSV/assignments.csv")
+        assignments_object_list = AssignmentList().display_ol(assignments_list)
+        return assignments_object_list
+
+
+
+
+'''TEST TEST TEST'''
+
+# as1 = Assignment("ccms", "10.01.2017", 50)
+# print(as1)
+# assignments_list = AssignmentList()
+# assignments_list.add_assignment(as1)
+# print(AssignmentList().get_assignments_list())
+
+
+# print(MentorList().get_mentors_list())
+# StudentList().get_students_list()
+
+# print(a)
+#
+# for item in a:
+#     print (item)
+# user1 = Student("Jan", "Kowalski")
+# user2 = Student("Tomasz", "Nowak")
+# user3 = Student("Adolf", "Dupa")
+#
+# students_list = StudentList()
+#
+# students_list.add_student(user1)
+# students_list.add_student(user2)
+# students_list.add_student(user3)
+# print(students_list)
+#
+# lol = (students_list.display_sl(students_list))
+# print(lol)
+#
+# loo = (students_list.display_ol(lol))
+# print(loo)
+# print(loo[0].name)

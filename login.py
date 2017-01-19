@@ -1,9 +1,6 @@
 from open_list import *
 from user import *
 
-
-
-
 class Login:
     @classmethod
     def login_check(self):
@@ -21,7 +18,6 @@ class Login:
                     valid_pass = student[3]
                     if password == valid_pass:
                         login_student = Student(student[0], student[1])
-                        print(login_student)
                         return login_student
 
             for mentor in Open().open_users("CSV/mentors.csv"):
@@ -29,11 +25,14 @@ class Login:
                     valid = mentor[2]
                     valid_pass = mentor[3]
                     if password == valid_pass:
-                        return valid
+                        login_mentor = Mentor(mentor[0], mentor[1])
+                        return login_mentor
+
             for employee in Open().open_users("CSV/employees.csv"):
                 if employee[2] == login:
                     valid = employee[2]
                     valid_pass = employee[3]
                     if password == valid_pass:
-                        return valid
+                        login_employee = Employee(employee[0], employee[1])
+                        return login_employee
             print("Your login or password is incorrect.")
