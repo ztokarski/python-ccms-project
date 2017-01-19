@@ -24,20 +24,10 @@ class Open:
          \--------------------------------------------------------------------------------/
         ~~~
         """
-        # Top
-        title_list = ["Name", "Surname", "Login", "Password", "Attendence"]
-        title_row = ""
-        for title in title_list:
-            element = "|   " + title
-            while len(element) < 20:
-                element += " "
-            title_row += element
-        table_lenght = "-" * len(title_row)
-        table_top = "/" + table_lenght + "\\\n"
-        # Body
-        middle_rib = ("|" + "-" * 19) * len(title_list) + "|"
 
+        # Body
         table_element = ""
+        middle_rib = ("|" + "-" * 19) * 5 + "|"
         for object in object_list:
             element = "|   " + object.name
             while len(element) < 20:
@@ -54,11 +44,12 @@ class Open:
             element4 = "|   " + object.state
             while len(element4) < 20:
                 element4 += " "
-            table_element += middle_rib + "\n" + element + element1 + element2 + element3 + element4 + "|" + "\n"
+            table_element += element + element1 + element2 + element3 + element4 + "|" + "\n" + middle_rib + "\n"
 
+        # Frames
+        table_lenght = "-" * 99
+        table_bottom = "#" + table_lenght + "#"
+        table_top = "#" + table_lenght + "#"
 
-        # Bottom
-        table_bottom = "\\" + table_lenght + "/"
-
-        resoult = table_top + title_row + "|" + "\n" + table_element[:-1] + "\n" + table_bottom + "\n"
+        resoult = table_top + "\n" + table_element[:-(len(middle_rib)+2)] + "\n" + table_bottom + "\n"
         return resoult
