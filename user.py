@@ -39,7 +39,7 @@ class Student(User):
     def __str__(self):
         return "{} {} {} {} {}\n".format(self.name, self.surname, self.login, self.password, self.state)
 
-
+# print(StudentList().get_students_list())
 
 class StudentList():
     '''
@@ -101,7 +101,7 @@ class StudentList():
         # for num, item in enumerate(students_object_list):
         #     print("{} {} {} {}".format(num+1, item.name, item.surname, item.state))
         return students_object_list
-        # return students_list
+
 
 
 class Employee(User):
@@ -137,8 +137,8 @@ class MentorList():
         all_mentors = ""
         for item in self.mentors_list:
             if item.state == True: # only Activ Mentors
-                all_students += str(item)
-        return all_students
+                all_mentors += str(item)
+        return all_mentors
 
     def display_sl(self, string):
         '''
@@ -162,10 +162,9 @@ class MentorList():
             self.loo.append(obj)
         return self.loo
 
-
     def add_mentor(self, student):
-        if isinstance (student, Student):
-            self.students_list.append(student)
+        if isinstance (mentor, Mentor):
+            self.mentors_list.append(mentor)
 
     def open_users(self, user_list):
         users_list = []
@@ -242,19 +241,26 @@ class AssignmentList():
         return self.loo
 
 
-    def add_assignment(self, student):
-        if isinstance (student, Student):
-            self.students_list.append(student)
+    def add_assignment(self, assignment):
+        if isinstance (assignment, Assignment):
+            self.assignments_list.append(assignment)
+        return assignments_list
 
+    def open_users(self, user_list):
+        users_list = []
+        read_file = open(user_list, "r")
+        for user in read_file:
+            users_list.append(user.strip().split(","))
+        read_file.close()
+        return list(users_list)
 
     def get_assignments_list(self):
         '''
         get assignments list from csv.file and return list of objects
         '''
-        assignments_list = Open().open_users("CSV/assignments.csv")
+        assignments_list = AssignmentList().open_users("CSV/assignments.csv")
         assignments_object_list = AssignmentList().display_ol(assignments_list)
         return assignments_object_list
-
 
 
 
@@ -265,11 +271,12 @@ class AssignmentList():
 # print(as1)
 # assignments_list = AssignmentList()
 # assignments_list.add_assignment(as1)
-# print(AssignmentList().get_assignments_list())
+
+# print(StudentList().get_students_list())
+print(AssignmentList().get_assignments_list())
 
 
-# print(MentorList().get_mentors_list())
-# StudentList().get_students_list()
+
 
 # print(a)
 #

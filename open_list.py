@@ -1,10 +1,6 @@
-<<<<<<< HEAD
 import csv
-=======
 from user import *
 
-
->>>>>>> b6238d46e653644f09fb5ac01f6a60c01528b217
 class Open:
 
     def open_users(self, user_list):
@@ -15,12 +11,15 @@ class Open:
             read_file.close()
         return list(users_list)
 
-<<<<<<< HEAD
+
     def save(self, updated_list, user_list):
-            with open("csv", "w") as f:
+            with open(user_list, "w") as f:
                 writer = csv.writer(f)
                 writer.writerows(updated_list)
-=======
+
+
+
+
     def print_table(self, object_list):
         """
         This method returns shapes list as string formatted into table. This is sample output:
@@ -63,4 +62,3 @@ class Open:
 
         resoult = table_top + "\n" + table_element[:-(len(middle_rib)+2)] + "\n" + table_bottom + "\n"
         return resoult
->>>>>>> b6238d46e653644f09fb5ac01f6a60c01528b217
