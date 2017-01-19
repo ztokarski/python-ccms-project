@@ -1,4 +1,5 @@
 from open_list import *
+import csv
 
 
 class User():
@@ -81,6 +82,7 @@ class StudentList():
         if isinstance (student, Student):
             self.students_list.append(student)
 
+
     def get_students_list(self):
         '''
         get students list from csv.file and return list of objects
@@ -162,10 +164,8 @@ class MentorList():
         '''
         mentors_list = Open().open_users("CSV/mentors.csv")
         mentors_object_list = MentorList().display_ol(mentors_list)
-        # for num, item in enumerate(mentors_object_list):
-        #     print("{} {} {} {}".format(num+1, item.name, item.surname, item.state))
         return mentors_object_list
-        # return students_list
+
 
 
 class Manager(Employee):
@@ -179,9 +179,77 @@ class Manager(Employee):
         return "{} {} {} {} {}\n".format(self.name, self.surname, self.login, self.password)
 
 
+class Assignment():
+    '''
+    Class for Assignment
+    '''
+    def __init__(self, name, date, points):
+        self.name = name
+        self.date = date
+        self.points = points
+
+    def __str__(self):
+        return "{} {} {}\n".format(self.name, self.date, self.points)
+
+
+class AssignmentList():
+    '''
+    Class for list of assignments.
+    '''
+    def __init__(self):
+        self.assignments_list = []
+
+    def __str__(self):
+        all_assignments = ""
+        for item in self.assignments_list:
+            all_assignments += str(item)
+        return all_assignments
+
+    def display_sl(self, string):
+        '''
+        Making list of lists (lol) from string
+        '''
+        self.string = str(string)
+        lol = [x.split(" ") for x in self.string.split("\n")]
+        return lol[:-1]
+
+    def display_ol(self, lol):
+        '''
+        Making list of objects (loo) from list of lists
+        '''
+        self.lol = lol
+        self.loo = []
+        for item in self.lol:
+            obj = Assignment(item[0], item[1], item[2])
+            self.loo.append(obj)
+        return self.loo
+
+
+    def add_assignment(self, student):
+        if isinstance (student, Student):
+            self.students_list.append(student)
+
+
+    def get_assignments_list(self):
+        '''
+        get assignments list from csv.file and return list of objects
+        '''
+        assignments_list = Open().open_users("CSV/assignments.csv")
+        assignments_object_list = AssignmentList().display_ol(assignments_list)
+        return assignments_object_list
+
+
+
 
 
 '''TEST TEST TEST'''
+
+# as1 = Assignment("ccms", "10.01.2017", 50)
+# print(as1)
+# assignments_list = AssignmentList()
+# assignments_list.add_assignment(as1)
+# print(AssignmentList().get_assignments_list())
+
 
 # print(MentorList().get_mentors_list())
 # StudentList().get_students_list()
