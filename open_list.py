@@ -1,3 +1,5 @@
+import csv
+
 class Open:
 
     def open_users(self, user_list):
@@ -7,3 +9,8 @@ class Open:
             users_list.append(user.strip().split(","))
         read_file.close()
         return list(users_list)
+
+    def save(self, updated_list, user_list):
+        with open("csv", "w") as f:
+            writer = csv.writer(f)
+            writer.writerows(updated_list)

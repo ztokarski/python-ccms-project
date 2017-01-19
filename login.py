@@ -5,7 +5,7 @@ from user import *
 
 
 class Login:
-
+    @classmethod
     def login_check(self):
 
         valid = ""
@@ -21,6 +21,7 @@ class Login:
                     valid_pass = student[3]
                     if password == valid_pass:
                         login_student = Student(student[0], student[1])
+                        print(login_student)
                         return login_student
 
             for mentor in Open().open_users("CSV/mentors.csv"):
