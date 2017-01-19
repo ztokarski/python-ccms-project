@@ -227,7 +227,7 @@ class Manager(Employee):
         Employee.__init__(self, name, surname)
 
     def __str__(self):
-        return "{} {} {} {} {}\n".format(self.name, self.surname, self.login, self.password)
+        return "{} {} {} {}\n".format(self.name, self.surname, self.login, self.password)
 
 
 class Display:

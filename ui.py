@@ -34,21 +34,19 @@ class Ui:
     """)
 
     MANAGER_INTRO = ("""
-    Logged as a Manager.
-        Manager Menu.
-            Witch option you want to select?
+            < MANAGER MENU >
+
             #1. Show Mentors list.
             #2. Add new Mentor.
             #3. Remove Mentor.
             #4. Show students list.
             #5. Show Employees list.
             #0. Exit program
-    """)
+            """)
 
     MENTOR_INTRO = ("""
-    Logged as a Mentor.
-        Mentor Menu.
-            Which option you want to select?
+            < MENTOR MENU >
+
             #1. Check attendance.
             #2. Add student.
             #3. Remove student.
@@ -57,26 +55,24 @@ class Ui:
             #6. Update grade.
             #7. Show grades list.
             #0. Exit program
-    """)
+            """)
 
     STUDENT_INTRO = ("""
-    Logged as a Student.
-        Student Menu.
-            Which option you want to select?
+            < STUDENT MENU >
+
             #1. Show grades list.
             #2. Submit assignment.
             #0. Exit program
-    """)
+            """)
 
     EMPLOYEE_INTRO = ("""
-    Logged as a Employee.
-        Employee Menu.
-            Which option you want to select?
+            < EMPLOYEE MENU >
+
             #1. Show students list.
             #2. Show Mentors list.
             #3. Show grades list.
             #0. Exit program
-    """)
+            """)
 
 
 
@@ -88,7 +84,6 @@ class Menu:
         user = Login.login_check()
 
         if isinstance(user, Student):
-
             StudentMenu.student_menu(self, user.name, user.surname)
 
         elif isinstance(user, Mentor):
@@ -97,28 +92,37 @@ class Menu:
         elif isinstance(user, Employee):
             EmployeeMenu.employee_menu(self, user.name, user.surname)
 
-
-
+        elif isinstance(user, Manager):
+            ManagerMenu.manager_menu(self, user.name, user.surname)
 
             # raise ValueError("dupa")
 class EmployeeMenu:
     def employee_menu(self, name, surname):
-        print("dupa")
+        print("\nWELCOME TO EMPLOYEE MENU")
         user = User(name, surname)
         print(user)
         print("Hello, {}".format(name))
         print("")
         print(Ui.EMPLOYEE_INTRO)
-        option = input("Pick an option")
+        option = input("Your choose: ")
 class MentorMenu:
     def mentor_menu(self, name, surname):
-        print("dupa")
+        print("\nWELCOME TO MENTOR MENU")
         user = User(name, surname)
-        print(user)
-        print("Hello, {}".format(name))
+        print("\nHello, {}".format(name))
         print("")
         print(Ui.MENTOR_INTRO)
-        option = input("Pick an option")
+        option = input("Your choose: ")
+class ManagerMenu:
+    def manager_menu(self, name, surname):
+        print("\nWELCOME TO MANAGER MENU")
+        user = User(name, surname)
+        print(user)
+        print("Hello, {}".forma(name))
+        print("")
+        print(Ui.MANAGER_INTRO)
+        option = input("Your choose: ")
+
 class StudentMenu:
         def show_done(self, name, surname):
             undone = Open().open_users("CSV/assignments.csv")
@@ -158,13 +162,12 @@ class StudentMenu:
                     raise ValueError
 
         def student_menu(self, name, surname):
-            print("dupa")
+            print("\nWELCOME TO STUDENT MENU")
             user = User(name, surname)
-            print(user)
-            print("Hello, {}".format(name))
+            print("\nHello, {}".format(name))
             print("")
             print(Ui.STUDENT_INTRO)
-            option = input("Pick an option")
+            option = input("Your choose: ")
             # if option == "1":
 
             if option == "2":
