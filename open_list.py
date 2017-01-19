@@ -1,5 +1,6 @@
-from user import *
+import csv
 
+from user import *
 
 class Open:
 
@@ -10,5 +11,4 @@ class Open:
             users_list.append(user.strip().split(","))
             read_file.close()
         return list(users_list)
-
 
