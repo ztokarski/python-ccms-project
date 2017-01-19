@@ -11,6 +11,6 @@ class Open:
         return list(users_list)
 
     def save(self, updated_list, user_list):
-        with open("csv", "w") as f:
+        with open(user_list, "w") as f:
             writer = csv.writer(f)
             writer.writerows(updated_list)

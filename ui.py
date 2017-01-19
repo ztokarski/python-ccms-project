@@ -111,9 +111,10 @@ class StudentMenu:
             arg = ""
             which_to_submit = input("Which position on the list would You like to submit?")
 
-            for num, dupa in enumerate(student_undone, 1):
+            for num, dupa in enumerate(undone, 1):
                 if which_to_submit == str(num):
                     arg = str(dupa[0])
+
                     return arg
                 else:
                     raise ValueError
@@ -129,11 +130,16 @@ class StudentMenu:
             # if option == "1":
             if option == "2":
                 print("{} {}".format(user.name, user.surname))
-                StudentMenu.give_done(self, name, surname)
+                #StudentMenu.give_done(self, name, surname)
                 show_undone_argument = StudentMenu.give_done(self, name, surname)
-                StudentMenu.show_undone(self, show_undone_argument)
+                assignment = StudentMenu.show_undone(self, show_undone_argument)
+                student = Student(name, surname)
+                submitted_assigment = student.submit_assigment(assignment)
+                done = Open().open_users("CSV/sub_assignments.csv")
+                done.append(submitted_assigment)
+                Open().save(done, "CSV/sub_assignments.csv")
 
-
+#         submitted_assigment = student.submit_assigment(arg)
 
 
                 # print("")
