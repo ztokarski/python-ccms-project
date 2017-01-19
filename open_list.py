@@ -1,10 +1,6 @@
 import csv
-
 from user import *
 
-=======
-
-from user import *
 
 class Open:
 
@@ -17,13 +13,10 @@ class Open:
         return list(users_list)
 
 
-
     def save(self, updated_list, user_list):
             with open(user_list, "w") as f:
                 writer = csv.writer(f)
                 writer.writerows(updated_list)
-
-
 
 
     def print_table(self, object_list):
