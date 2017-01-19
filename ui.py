@@ -47,7 +47,7 @@ class Ui:
         Student Menu.
             Which option you want to select?
             #1. Show grades list.
-            #2. Add assignment.
+            #2. Submit assignment.
             #0. Exit program
     """)
 

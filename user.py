@@ -83,11 +83,20 @@ class StudentList():
             self.students_list.append(student)
 
 
+    def open_users(self, user_list):
+        users_list = []
+        read_file = open(user_list, "r")
+        for user in read_file:
+            users_list.append(user.strip().split(","))
+        read_file.close()
+        return list(users_list)
+
+
     def get_students_list(self):
         '''
         get students list from csv.file and return list of objects
         '''
-        students_list = Open().open_users("CSV/students.csv")
+        students_list = StudentList().open_users("CSV/students.csv")
         students_object_list = StudentList().display_ol(students_list)
         # for num, item in enumerate(students_object_list):
         #     print("{} {} {} {}".format(num+1, item.name, item.surname, item.state))
@@ -158,11 +167,19 @@ class MentorList():
         if isinstance (student, Student):
             self.students_list.append(student)
 
+    def open_users(self, user_list):
+        users_list = []
+        read_file = open(user_list, "r")
+        for user in read_file:
+            users_list.append(user.strip().split(","))
+        read_file.close()
+        return list(users_list)
+
     def get_mentors_list(self):
         '''
         get mentors list from csv.file and return list of objects
         '''
-        mentors_list = Open().open_users("CSV/mentors.csv")
+        mentors_list = MentorList().open_users("CSV/mentors.csv")
         mentors_object_list = MentorList().display_ol(mentors_list)
         return mentors_object_list
 
