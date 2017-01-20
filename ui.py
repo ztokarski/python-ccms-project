@@ -1,6 +1,6 @@
 import os
 from ui import *
-from open_list import *
+from open_lists import *
 from login import *
 from user import *
 import sys
@@ -85,6 +85,9 @@ class Menu:
 
     @classmethod
     def login_and_menu(self):
+        os.system("printf '\033c'")
+        print(Ui.START_MAIN)
+        print("Sign in (or press Ctrl + C to exit from program.)")
         user = Login.login_check()
 
         if isinstance(user, Student):
@@ -97,9 +100,6 @@ class Menu:
         elif isinstance(user, Employee):
             EmployeeMenu.employee_menu(self, user.name, user.surname)
 
-
-
-
             # raise ValueError("dupa")
 class EmployeeMenu:
     def employee_menu(self, name, surname):
@@ -110,6 +110,8 @@ class EmployeeMenu:
         print("")
         print(Ui.EMPLOYEE_INTRO)
         option = input("Pick an option")
+
+
 class MentorMenu:
     def mentor_menu(self, name, surname):
         print("dupa")
@@ -119,6 +121,8 @@ class MentorMenu:
         print("")
         print(Ui.MENTOR_INTRO)
         option = input("Pick an option")
+
+
 class StudentMenu:
         def show_done(self, name, surname):
             undone = Open().open_users("CSV/assignments.csv")
@@ -143,41 +147,71 @@ class StudentMenu:
 
 
         def show_undone(self, undone):
-            for num, dupa in enumerate(undone, 1):
-                print("{}. {} - {}".format(num, dupa[0].title(), dupa[1]))
+            for num, dupa in enumerate(undone):
+                if dupa[0] == "Name":
+                    continue
+                else:
+                    print("{}. {} - {}".format(num, dupa[0].title(), dupa[1]))
 
             arg = ""
-            which_to_submit = input("Which position on the list would You like to submit?")
+            which_to_submit = input("Which position on the list would You like to submit? (or type 0 to go back) ")
+            if which_to_submit == "0":
+                StudentMenu.student_menu(name, surname)
+            else:
+                for num, a in enumerate(undone):
+                    if which_to_submit == str(num):
+                        arg = str(a[0])
 
-            for num, dupa in enumerate(undone, 1):
-                if which_to_submit == str(num):
-                    arg = str(dupa[0])
+                        return arg
+                    else:
 
-                    return arg
-                else:
-                    raise ValueError
+                        raise ValueError
 
         def student_menu(self, name, surname):
-            print("dupa")
-            user = User(name, surname)
-            print(user)
-            print("Hello, {}".format(name))
-            print("")
-            print(Ui.STUDENT_INTRO)
-            option = input("Pick an option")
-            # if option == "1":
+            os.system("printf '\033c'")
+            not_exit = True
+            while not_exit == True:
+                user = User(name, surname)
+                print("Hello, {}".format(name))
+                print(Ui.STUDENT_INTRO)
+                option = input("Pick an option")
+                if option == "1":
+                    os.system("printf '\033c'")
+                    print("")
+                    user = Student(name, surname).show_grades_list()
+                    for subject in user:
+                            print("{} Points: {} Date: {}".format(subject[1].title(), subject[2], subject[3]))
+                    # Display.print_table(self, show_table)
+                    print("")
+                    back = input("Press ENTER to go back")
+                    os.system("printf '\033c'")
 
-            if option == "2":
-                print("{} {}".format(user.name, user.surname))
-                #StudentMenu.give_done(self, name, surname)
-                StudentMenu.show_done(self, name, surname)
-                check_undone = StudentMenu.check_undone(self, name, surname)
-                assignment = StudentMenu.show_undone(self, check_undone)
-                student = Student(name, surname)
-                submitted_assigment = student.submit_assigment(assignment)
-                done = Open().open_users("CSV/sub_assignments.csv")
-                done.append(submitted_assigment)
-                Open().save(done, "CSV/sub_assignments.csv")
+                elif option == "2":
+                    os.system("printf '\033c'")
+                    print("")
+                    print("{} {}".format(user.name, user.surname))
+                    #StudentMenu.give_done(self, name, surname)
+                    print("")
+                    print("Submitted assigments:")
+                    print("")
+                    StudentMenu.show_done(self, name, surname)
+                    check_undone = StudentMenu.check_undone(self, name, surname)
+                    print("")
+                    print("Assigments yet to submit:")
+                    print("")
+                    assignment = StudentMenu.show_undone(self, check_undone)
+                    student = Student(name, surname)
+                    submitted_assigment = student.submit_assigment(assignment)
+                    done = Open().open_users("CSV/sub_assignments.csv")
+                    done.append(submitted_assigment)
+                    Open().save(done, "CSV/sub_assignments.csv")
+                    print("")
+                    back = input("Press ENTER to go back")
+                elif option == "0":
+                    not_exit = False
+                else:
+                    print("Invalid option!")
+
 
 #         submitted_assigment = student.submit_assigment(arg)
 

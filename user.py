@@ -1,6 +1,10 @@
-from open_list import *
-import time
+import os
+from ui import *
+from open_lists import *
+from login import *
+import sys
 import csv
+import time
 
 
 class User():
@@ -10,7 +14,10 @@ class User():
     def __init__(self, name, surname):
         self.name = name
         self.surname = surname
-        self.login = name.lower()+surname.lower()
+        if name == "Zbigniew" and surname == "Tokarski":
+            self.login = "redlips"
+        else:
+            self.login = name.lower()+surname.lower()
         self.password = name.lower()+"123"
         self.state = True
 
@@ -42,6 +49,7 @@ class Student(User):
 
     def show_grades_list(self):
         from_grades = Open().open_users("CSV/sub_assignments.csv")
+        # object_grades = StudentList.display_ol(self, from_grades)
         grades = []
         for grade in from_grades:
             if self.name.lower() + self.surname.lower() == grade[0]:
@@ -85,6 +93,8 @@ class StudentList():
         '''
         Making list of objects (loo) from list of lists
         '''
+        # if self.lol = Student.show_grades_list():
+        #
         self.lol = lol
         self.loo = []
         for item in self.lol:

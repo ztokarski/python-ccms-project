@@ -1,4 +1,4 @@
-from open_list import *
+from open_lists import *
 from user import *
 
 class Login:
@@ -11,8 +11,8 @@ class Login:
         while valid == "":
             login = input("Login: ")
             password = input("Password: ")
-
-            for student in Open().open_users("CSV/students.csv"):
+            students = Open.open_users("CSV/students.csv")
+            for student in students:
                 if student[2] == login:
                     valid = student[2]
                     valid_pass = student[3]

@@ -1,6 +1,6 @@
 import os
 from ui import *
-from open_list import *
+from open_lists import *
 from login import *
 from user import *
 import sys
@@ -8,7 +8,6 @@ import csv
 
 
 def main():
-    print(Ui.START_MAIN)
     Menu.login_and_menu()
 
 # object_list = StudentList().get_students_list()
