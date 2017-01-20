@@ -147,7 +147,7 @@ class StudentMenu:
 
 
         def show_undone(self, undone):
-            for num, dupa in enumerate(undone):
+            for num, dupa in enumerate(undone, 1):
                 if dupa[0] == "Name":
                     continue
                 else:
@@ -158,7 +158,7 @@ class StudentMenu:
             if which_to_submit == "0":
                 StudentMenu.student_menu(name, surname)
             else:
-                for num, a in enumerate(undone):
+                for num, a in enumerate(undone, 1):
                     if which_to_submit == str(num):
                         arg = str(a[0])
 
