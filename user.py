@@ -1,9 +1,9 @@
+
 import os
 from ui import *
 from open_lists import *
 from login import *
 import sys
-import csv
 import time
 
 
@@ -47,7 +47,11 @@ class Student(User):
     def __str__(self):
         return "{} {} {} {} {}\n".format(self.name, self.surname, self.login, self.password, self.state)
 
+
     def show_grades_list(self):
+        '''
+        Method which return student's grades.
+        '''
         from_grades = Open().open_users("CSV/sub_assignments.csv")
         # object_grades = StudentList.display_ol(self, from_grades)
         grades = []
@@ -56,15 +60,17 @@ class Student(User):
                 grades.append(grade)
         return grades
 
-    def submit_assigment(self, assigment):
+    def submit_assignment(self, assigmnent):
+        '''
+        Method for submitting assignment
+        '''
         submitted = []
         submitted.append(str(self.name.lower() + self.surname.lower()))
-        submitted.append(assigment)
+        submitted.append(assignment)
         submitted.append("0")
         current_time = "{}.{}.{}".format(time.localtime()[2], time.localtime()[1], time.localtime()[0])
         submitted.append(current_time)
         return submitted
-
 
 
 class StudentList():
@@ -107,8 +113,12 @@ class StudentList():
 
 
     def add_student(self, student):
+        '''
+        Method for adding student to students_list
+        '''
         if isinstance (student, Student):
             self.students_list.append(student)
+        return students_list
 
 
     def open_users(self, user_list):
@@ -126,10 +136,10 @@ class StudentList():
         '''
         students_list = StudentList().open_users("CSV/students.csv")
         students_object_list = StudentList().display_ol(students_list)
-        # for num, item in enumerate(students_object_list):
-        #     print("{} {} {} {}".format(num+1, item.name, item.surname, item.state))
+        for num, item in enumerate(students_object_list):
+            print("{} {} {} {}".format(num+1, item.name, item.surname, item.state))
         return students_object_list
-        # return students_list
+
 
 
 class Employee(User):
@@ -168,8 +178,8 @@ class MentorList():
         all_mentors = ""
         for item in self.mentors_list:
             if item.state == True: # only Activ Mentors
-                all_students += str(item)
-        return all_students
+                all_mentors += str(item)
+        return all_mentors
 
     def display_sl(self, string):
         '''
@@ -193,10 +203,13 @@ class MentorList():
             self.loo.append(obj)
         return self.loo
 
-
     def add_mentor(self, student):
-        if isinstance (student, Student):
-            self.students_list.append(student)
+        '''
+        Method for adding mentor to mentors_list
+        '''
+        if isinstance (mentor, Mentor):
+            self.mentors_list.append(mentor)
+        return mentors_list
 
     def open_users(self, user_list):
         users_list = []
@@ -319,52 +332,32 @@ class AssignmentList():
         return self.loo
 
 
-    def add_assignment(self, student):
-        if isinstance (student, Student):
-            self.students_list.append(student)
+    def add_assignment(self, assignment):
+        '''
+        Method for adding assignment to assignments_list
+        '''
+        if isinstance (assignment, Assignment):
+            self.assignments_list.append(assignment)
+        return assignments_list
 
+    def open_users(self, user_list):
+        users_list = []
+        read_file = open(user_list, "r")
+        for user in read_file:
+            users_list.append(user.strip().split(","))
+        read_file.close()
+        return list(users_list)
 
     def get_assignments_list(self):
         '''
         get assignments list from csv.file and return list of objects
         '''
-        assignments_list = Open().open_users("CSV/assignments.csv")
+        assignments_list = AssignmentList().open_users("CSV/assignments.csv")
         assignments_object_list = AssignmentList().display_ol(assignments_list)
         return assignments_object_list
 
 
 
 
-'''TEST TEST TEST'''
 
-# as1 = Assignment("ccms", "10.01.2017", 50)
-# print(as1)
-# assignments_list = AssignmentList()
-# assignments_list.add_assignment(as1)
-# print(AssignmentList().get_assignments_list())
-
-
-# print(MentorList().get_mentors_list())
-# StudentList().get_students_list()
-
-# print(a)
-#
-# for item in a:
-#     print (item)
-# user1 = Student("Jan", "Kowalski")
-# user2 = Student("Tomasz", "Nowak")
-# user3 = Student("Adolf", "Dupa")
-#
-# students_list = StudentList()
-#
-# students_list.add_student(user1)
-# students_list.add_student(user2)
-# students_list.add_student(user3)
-# print(students_list)
-#
-# lol = (students_list.display_sl(students_list))
-# print(lol)
-#
-# loo = (students_list.display_ol(lol))
-# print(loo)
-# print(loo[0].name)
+StudentList().get_students_list()
