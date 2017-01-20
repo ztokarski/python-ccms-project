@@ -114,6 +114,7 @@ class EmployeeMenu:
             if option == "1":
                 os.system("printf '\033c'")
                 list_of_student = StudentList.print_students_list(self)
+                print("")
                 exit = input("Press ENTER to continue")
             if option == "2":
                 os.system("printf '\033c'")
@@ -124,7 +125,7 @@ class EmployeeMenu:
             elif option == "0":
                 not_exit = False
             else:
-                print("It's not a valid options!")
+                print("It's not a valid option!")
 
         Menu.login_and_menu()
                 # object_students = StudentList.display_ol(self, list_of_student)
@@ -209,7 +210,6 @@ class StudentMenu:
                     user = Student(name, surname).show_grades_list()
                     for subject in user:
                             print("{} Points: {} Date: {}".format(subject[1].title(), subject[2], subject[3]))
-                    # Display.print_table(self, show_table)
                     print("")
                     back = input("Press ENTER to go back")
                     os.system("printf '\033c'")
@@ -218,7 +218,6 @@ class StudentMenu:
                     os.system("printf '\033c'")
                     print("")
                     print("{} {}".format(user.name, user.surname))
-                    #StudentMenu.give_done(self, name, surname)
                     print("")
                     print("Submitted assigments:")
                     print("")
