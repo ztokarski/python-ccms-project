@@ -14,10 +14,7 @@ class User():
     def __init__(self, name, surname):
         self.name = name
         self.surname = surname
-        if name == "Zbigniew" and surname == "Tokarski":
-            self.login = "redlips"
-        else:
-            self.login = name.lower()+surname.lower()
+        self.login = name.lower()+surname.lower()
         self.password = name.lower()+"123"
         self.state = True
 

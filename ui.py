@@ -104,6 +104,8 @@ class EmployeeMenu:
 
         not_exit = True
         while not_exit == True:
+            object_table = StudentList.get_students_list(self)
+            mentor_table = MentorList.get_mentors_list(self)
             user = User(name, surname)
             print(user)
             print("Hello, {}".format(name))
@@ -113,14 +115,17 @@ class EmployeeMenu:
             option = input("Pick an option")
             if option == "1":
                 os.system("printf '\033c'")
-                list_of_student = StudentList.print_students_list(self)
+                print(Display().print_table(object_table))
                 print("")
-                exit = input("Press ENTER to continue")
+                exit = input("Press ENTER to exit")
+                # list_of_student = StudentList.print_students_list(self)
             if option == "2":
                 os.system("printf '\033c'")
-                list_of_mentors = MentorList.print_mentors_list(self)
+                # list_of_mentors = MentorList.print_mentors_list(self)
+                print(Display().print_table(mentor_table))
                 print("")
                 exit = input("Press ENTER to continue")
+                print("")
 
             elif option == "0":
                 not_exit = False
@@ -134,14 +139,35 @@ class EmployeeMenu:
 
 
 class MentorMenu:
+
     def mentor_menu(self, name, surname):
-        print("\nWELCOME TO MENTOR MENU")
+        """Option menu for mentor"""
+        object_attendance = StudentList().get_students_list()
         user = User(name, surname)
-        print("\nHello, {}".format(name))
-        print("")
+        print("Hello, {} \n".format(name))
         print(Ui.MENTOR_INTRO)
         option = input("Pick an option")
 
+        if option == "1":
+            # Show attendance list
+            print(Display().print_table(object_attendance))
+            exit = input("Press ENTER to exit")
+        elif option == "2":
+            pass
+        elif option == "3":
+            pass
+        elif option == "4":
+            # Show students list
+            print(Display().print_table(object_students))
+        elif option == "5":
+            pass
+        elif option == "6":
+            pass
+        elif option == "7":
+            pass
+        elif option == "0":
+            # Exit to main manu
+            Menu().login_and_menu()
 class ManagerMenu:
     def manager_menu(self, name, surname):
         print("\nWELCOME TO MANAGER MENU")
