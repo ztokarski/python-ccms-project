@@ -73,7 +73,7 @@ class Student(User):
         return submitted
 
 
-class StudentList():
+class StudentList:
     '''
     Class for list of students.
     '''
@@ -136,9 +136,18 @@ class StudentList():
         '''
         students_list = StudentList().open_users("CSV/students.csv")
         students_object_list = StudentList().display_ol(students_list)
-        for num, item in enumerate(students_object_list):
-            print("{} {} {} {}".format(num+1, item.name, item.surname, item.state))
         return students_object_list
+
+
+    def print_students_list(self):
+        '''
+        print students list
+        '''
+        print("< STUDENTS LIST >\n")
+        print_students_list = StudentList().get_students_list()
+        for num, item in enumerate(print_students_list):
+            print("{} {} {}".format(num+1, item.name, item.surname))
+
 
 
 
@@ -219,14 +228,23 @@ class MentorList():
         read_file.close()
         return list(users_list)
 
-    def get_mentors_list(self):
-        '''
-        get mentors list from csv.file and return list of objects
-        '''
-        mentors_list = MentorList().open_users("CSV/mentors.csv")
-        mentors_object_list = MentorList().display_ol(mentors_list)
-        return mentors_object_list
 
+    def get_mentors_list(self):
+            '''
+            get mentors list from csv.file and return list of objects
+            '''
+            mentors_list = MentorList().open_users("CSV/mentors.csv")
+            mentors_object_list = MentorList().display_ol(mentors_list)
+            return mentors_object_list
+
+    def print_mentors_list(self):
+        '''
+        print mentors list
+        '''
+        print("< MENTORS LIST >\n")
+        print_mentors_list = MentorList().get_mentors_list()
+        for num, item in enumerate(print_mentors_list):
+            print("{} {} {}".format(num+1, item.name, item.surname))
 
 
 class Manager(Employee):

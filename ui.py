@@ -41,7 +41,7 @@ class Ui:
             #3. Remove Mentor.
             #4. Show students list.
             #5. Show Employees list.
-            #0. Exit program
+            #0. Log out
             """)
 
     MENTOR_INTRO = ("""
@@ -54,7 +54,7 @@ class Ui:
             #5. Add grade.
             #6. Update grade.
             #7. Show grades list.
-            #0. Exit program
+            #0. Log out
             """)
 
     STUDENT_INTRO = ("""
@@ -62,7 +62,7 @@ class Ui:
 
             #1. Show grades list.
             #2. Submit assignment.
-            #0. Exit program
+            #0. Log out
             """)
 
     EMPLOYEE_INTRO = ("""
@@ -70,8 +70,7 @@ class Ui:
 
             #1. Show students list.
             #2. Show Mentors list.
-            #3. Show grades list.
-            #0. Exit program
+            #0. Log out
             """)
 
 
@@ -81,32 +80,57 @@ class Menu:
 
     @classmethod
     def login_and_menu(self):
-        os.system("printf '\033c'")
-        print(Ui.START_MAIN)
-        print("Sign in (or press Ctrl + C to exit from program.)")
-        user = Login.login_check()
+        while True:
+            os.system("printf '\033c'")
+            print(Ui.START_MAIN)
+            print("Sign in (or press Ctrl + C to exit from program.)")
+            user = Login.login_check()
 
-        if isinstance(user, Student):
-            StudentMenu.student_menu(self, user.name, user.surname)
+            if isinstance(user, Student):
+                StudentMenu.student_menu(self, user.name, user.surname)
 
-        elif isinstance(user, Mentor):
-            MentorMenu.mentor_menu(self, user.name, user.surname)
+            elif isinstance(user, Mentor):
+                MentorMenu.mentor_menu(self, user.name, user.surname)
 
-        elif isinstance(user, Employee):
-            EmployeeMenu.employee_menu(self, user.name, user.surname)
+            elif isinstance(user, Employee):
+                EmployeeMenu.employee_menu(self, user.name, user.surname)
 
-        elif isinstance(user, Manager):
-            ManagerMenu.manager_menu(self, user.name, user.surname)
+            elif isinstance(user, Manager):
+                ManagerMenu.manager_menu(self, user.name, user.surname)
+
 
 class EmployeeMenu:
     def employee_menu(self, name, surname):
-        print("\nWELCOME TO EMPLOYEE MENU")
-        user = User(name, surname)
-        print(user)
-        print("Hello, {}".format(name))
-        print("")
-        print(Ui.EMPLOYEE_INTRO)
-        option = input("Pick an option")
+
+        not_exit = True
+        while not_exit == True:
+            user = User(name, surname)
+            print(user)
+            print("Hello, {}".format(name))
+            print("")
+            os.system("printf '\033c'")
+            print(Ui.EMPLOYEE_INTRO)
+            option = input("Pick an option")
+            if option == "1":
+                os.system("printf '\033c'")
+                list_of_student = StudentList.print_students_list(self)
+                exit = input("Press ENTER to continue")
+            if option == "2":
+                os.system("printf '\033c'")
+                list_of_mentors = MentorList.print_mentors_list(self)
+                print("")
+                exit = input("Press ENTER to continue")
+
+            elif option == "0":
+                not_exit = False
+            else:
+                print("It's not a valid options!")
+
+        Menu.login_and_menu()
+                # object_students = StudentList.display_ol(self, list_of_student)
+                # tabble_students = Display.print_table(self, object_students)
+
+
 
 class MentorMenu:
     def mentor_menu(self, name, surname):
@@ -215,6 +239,7 @@ class StudentMenu:
                     not_exit = False
                 else:
                     print("Invalid option!")
+            Menu.login_and_menu()
 #
 # =======
 #             print("\nWELCOME TO STUDENT MENU")
