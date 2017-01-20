@@ -279,7 +279,7 @@ class Display:
 
         # Body
         table_element = ""
-        middle_rib = ("|" + "-" * 4) + ("|" + "-" * 19) * 2 + ("|" + "-" * 9) + "|"
+        middle_rib = ("|" + "-" * 4) + ("|" + "-" * 19) * 2  + "|"
         for i, object in enumerate(object_list):
             if i == 0:
                 Lp = "| Lp."
@@ -289,8 +289,8 @@ class Display:
                     Lp += " "
             element = self.fill_with_spaces(object.name, 20)
             element1 = self.fill_with_spaces(object.surname, 20)
-            element2 = self.fill_with_spaces(object.state, 10)
-            table_element += Lp + element + element1 + element2 + "|" + "\n" + middle_rib + "\n"
+            # element2 = self.fill_with_spaces(object.state, 10)
+            table_element += Lp + element + element1 + "|" + "\n" + middle_rib + "\n"
 
         # Frames
         table_lenght = "-" * (len(middle_rib) - 2)
