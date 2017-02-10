@@ -8,15 +8,18 @@ import time
 
 
 class User():
+    list_of_users = []
     '''
     Class for user.
     '''
     def __init__(self, name, surname):
         self.name = name
         self.surname = surname
-        self.login = name.lower()+surname.lower()
-        self.password = name.lower()+"123"
+        self.login = None
+        self.password = None
         self.state = True
+        self.list_of_users.append(self)
+
 
     def __str__(self):
         return "{} {} {} {}".format(self.name, self.surname, self.login, self.password)
@@ -35,11 +38,14 @@ class User():
 
 
 class Student(User):
+    student_list = []
     '''
     Class for student.
     '''
     def __init__(self, name, surname):
         User.__init__(self, name, surname)
+        self.student_list.append(self)
+        self.grades_list = []
 
     def __str__(self):
         return "{} {} {} {} {}\n".format(self.name, self.surname, self.login, self.password, self.state)
