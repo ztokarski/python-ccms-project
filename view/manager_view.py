@@ -1,6 +1,9 @@
-class ManagerUI():
+from view.employee_view import EmployeeUI
+
+class ManagerUI(EmployeeUI):
     def __init__(self, manager):
-        self.manager = manager
+        super().__init__(manager)
+
     def show_manager_menu(self):
         while True:
             print(

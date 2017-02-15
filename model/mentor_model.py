@@ -1,9 +1,10 @@
 import sqlite3
+import os
 
 class Mentor_model:
 
     def __init__(self):
-        self.conn = sqlite3.connect('ccms.db')
+        self.conn = sqlite3.connect(os.path.realpath('../ccms.db'))
         self.db = self.conn.cursor()
 
     def get_mentors_list(self):

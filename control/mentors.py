@@ -1,3 +1,5 @@
+from control.user import User
+
 class Mentor(User):
     list_of_mentors = []
     def __init__(self, name, surname):

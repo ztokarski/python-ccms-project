@@ -1,10 +1,10 @@
 import sqlite3
-# import control\students
+import os
 
 class Student_model:
     
     def __init__(self):
-        self.conn = sqlite3.connect('ccms.db')
+        self.conn = sqlite3.connect(os.path.realpath('../ccms.db'))
         self.db = self.conn.cursor()
 
     def get_students_list(self):

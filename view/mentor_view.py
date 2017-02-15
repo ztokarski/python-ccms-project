@@ -1,6 +1,8 @@
-class MentorUI():
+from view.employee_view import EmployeeUI
+
+class MentorUI(EmployeeUI):
     def __init__(self, mentor):
-        self.mentor = mentor
+        super().__init__(mentor)
     def show_mentor_menu(self):
         while True:
             print(
