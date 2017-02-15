@@ -6,32 +6,31 @@ from login import *
 import sys
 import time
 
-
 class User:
     list_of_users = []
     '''
     Class for user.
     '''
     def __init__(self, name, surname):
+        self.id = 0
         self.name = name
         self.surname = surname
         self.login = None
         self.password = None
-        self.state = True
+        self.status = 1
         self.list_of_users.append(self)
-
 
     def __str__(self):
         return "{} {} {} {}".format(self.name, self.surname)
 
-    def change_state(self):
+    def change_status(self):
         '''
         change user's status (Activ/Disactiv)
         '''
-        self.state = not self.state
+        self.status = not self.status
 
-    def display_state(self):
-        if self.state == True:
+    def display_status(self):
+        if self.status == True:
             return("Activ")
         else:
             return("Disactiv")
@@ -44,11 +43,13 @@ class Student(User):
     '''
     def __init__(self, name, surname):
         super().__init__(self, name, surname)
-        self.student_list.append(self)
+        self.team = None
         self.grades_list = []
+        self.student_list.append(self)
+
 
     def __str__(self):
-        return "{} {} {} {} {}\n".format(self.name, self.surname, self.login, self.password, self.state)
+        return "{} {} {} {} {}\n".format(self.name, self.surname, self.login, self.password, self.status)
 
 
     def show_grades(self):
@@ -72,6 +73,13 @@ class Student(User):
         # assigment.student = student
         assigment.date = "{}.{}.{}".format(time.localtime()[2], time.localtime()[1], time.localtime()[0])
         return assigment
+
+class Mentor(User):
+    list_of_mentors = []
+    def __init__(self, name, surname):
+        super().__init__(name, surname)
+        self.list_of_mentors(self)
+
 
 
 
@@ -110,60 +118,18 @@ class Student(User):
             print("{} {} {}".format(num+1, item.name, item.surname))
 
 
-class Manager(Employee):
+class Manager(User):
     '''
     Class for Manager.
     '''
     def __init__(self, name, surname):
-        Employee.__init__(self, name, surname)
+        super().__init__(name, surname)
 
     def __str__(self):
-        return "{} {} {} {} {}\n".format(self.name, self.surname, self.login, self.password)
+        return "{}".format("BOSKI JUREK")
 
 
-class Display:
-
-    def fill_with_spaces(self, element, lenght):
-        """ Fills table cell with space to desired length"""
-        element = "|   " + element
-        while len(element) < lenght:
-            element += " "
-        return element
-
-
-    def print_table(self, object_list):
-        """
-        This method returns shapes list as string formatted into table. This is sample output:
-         #---------------------------------------------------------------------------------#
-         |  Name   |       Surname  |       Login          |   Password   |   Attendance   |
-         |---------|----------------|----------------------|--------------|----------------|
-         |  Jakub  |     Krzciuk    |    jakubkrzciuk      |  jakub123    |     True       |
-         |---------|----------------|----------------------|--------------|----------------|
-         |Sebastian|     Znaj       |    sebastianznaj     | sebastian123 |     True       |
-         #---------------------------------------------------------------------------------#
-        """
-
-        # Body
-        table_element = ""
-        middle_rib = ("|" + "-" * 4) + ("|" + "-" * 19) * 2  + "|"
-        for i, object in enumerate(object_list):
-            if i == 0:
-                Lp = "| Lp."
-            else:
-                Lp = "| " + str(i) + "."
-                while len(Lp) < 5:
-                    Lp += " "
-            element = self.fill_with_spaces(object.name, 20)
-            element1 = self.fill_with_spaces(object.surname, 20)
-            # element2 = self.fill_with_spaces(object.state, 10)
-            table_element += Lp + element + element1 + "|" + "\n" + middle_rib + "\n"
-
-        # Frames
-        table_lenght = "-" * (len(middle_rib) - 2)
-        table_bottom = "#" + table_lenght + "#"
-        table_top = "#" + table_lenght + "#"
-
-        resoult = table_top + "\n" + table_element[:-(len(middle_rib)+2)] + "\n" + table_bottom + "\n"
-        return resoult
-
+class Employee(User):
+    def __init__(self, name, surname):
+        super().__init__(name, surname)
 

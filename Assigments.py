@@ -10,12 +10,6 @@ class Assigment:
     def __repr__(self):
         return "{} {}".format(self.name, self.due)
 
-    def write_into_database(self):
-
-
-        conn = sqlite3.connect("assigments.db")
-        dupa = c.execute("CREATE TABLE IF NOT EXISTS ASSIGMENTS(id INTEGER PRIMARY KEY AUTOINCREMENT, name VARCHAR(30), adress VARCHAR(30), salary NUMERIC)")
-
 
 class Sub_assigment(Assigment):
     sub_assigments = []
@@ -34,7 +28,3 @@ class Sub_assigment(Assigment):
 
     def __repr__(self):
         return "{} {} {}".format(self.name, self.due, self.student)
-
-zadanie = Assigment("Query", "13.01")
-zrobione = Sub_assigment("Query")
-print(Sub_assigment.sub_assigments)
