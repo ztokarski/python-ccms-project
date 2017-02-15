@@ -1,5 +1,5 @@
 import sqlite3
-import control\students
+# import control\students
 
 class Student_model:
     
@@ -7,4 +7,4 @@ class Student_model:
 
     students_db = conn.execute("SELECT * FROM users WHERE id_role = 1")
 
-    return students_db
+    # return students_db
