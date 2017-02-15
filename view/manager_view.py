@@ -1,4 +1,5 @@
 from view.employee_view import EmployeeUI
+from control.mentors import Mentor
 
 class ManagerUI(EmployeeUI):
     def __init__(self, manager):
@@ -23,9 +24,9 @@ class ManagerUI(EmployeeUI):
             if user_choose == "1":
                 self.show_mentors_list()
             elif user_choose == "2":
-                pass
+                self.add_new_mentor()
             elif user_choose == "3":
-                pass
+                self.remove_mentor()
             elif user_choose == "4":
                 self.show_students_list()
             elif user_choose == "5":
@@ -38,3 +39,16 @@ class ManagerUI(EmployeeUI):
                 break
             else:
                 print("Bad choice. Enter correct value.")
+
+    def add_new_mentor(self):
+        name = input("Type mentor name: ")
+        surname = input("Type surname")
+        login = input("Type login")
+        Mentor.add_mentor(name, surname, login)
+
+    def remove_mentor(self):
+        self.show_mentors_list()
+        mentor_id = input("Type mentor id: ")
+        Mentor.remove_mentor(mentor_id)
+
+

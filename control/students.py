@@ -49,5 +49,15 @@ class Student(User):
 
         return student_list
 
+    @staticmethod
+    def add_student(*args):
+        model =  Student_model()
+        model.add_student(args)
+
+    @staticmethod
+    def remove_student(student_id):
+        model = Student_model()
+        model.remove_student(student_id)
+
 if __name__ == '__main__':
     print(Student.get_students_list())

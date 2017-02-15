@@ -11,9 +11,14 @@ class Mentor_model:
         mentors_list = self.db.execute("SELECT * FROM users where ID_role = 2")
         return mentors_list
 
+
     def add_mentor(self, *args):
         self.conn.execute("INSERT INTO `users`(`name`,`surname`,`login`, `ID_role`) VALUES ('{}','{}','{}', 2);".format(*args))
         self.conn.commit()
+
+    def remove_mentor(self, mentor_id):
+        self.conn.execute("DELETE FROM users where ID_user = {}".format(mentor_id))
+
 
 
 if __name__ == '__main__':
@@ -23,5 +28,10 @@ if __name__ == '__main__':
 
     model.add_mentor('Rubu', 'Bubu', 'rbb')
 
+
+    for i in model.get_mentors_list():
+        print(i)
+
+    model.remove_mentor(21)
     for i in model.get_mentors_list():
         print(i)

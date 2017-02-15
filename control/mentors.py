@@ -9,14 +9,10 @@ class Mentor(User):
 
 
 
-
-    def add_mentor(self, student):
-        '''
-        Method for adding mentor to mentors_list
-        '''
-        if isinstance (mentor, Mentor):
-            self.mentors_list.append(mentor)
-        return mentors_list
+    @staticmethod
+    def add_mentor(cls, *args):
+        model =  Mentor_model()
+        model.add_mentor(args)
 
     def open_users(self, user_list):
         users_list = []
@@ -53,3 +49,8 @@ class Mentor(User):
             mentors.append([mentor[0], mentor[1], mentor[2]])
 
         return mentors
+
+    @staticmethod
+    def remove_mentor(mentor_id):
+        model = Mentor_model()
+        model.remove_mentor(mentor_id)

@@ -15,6 +15,10 @@ class Student_model:
         self.conn.execute("INSERT INTO `users`(`name`,`surname`,`login`) VALUES ('{}','{}','{}');".format(*args))
         self.conn.commit()
 
+    def remove_student(self, student_id):
+        self.conn.execute("DELETE FROM users where ID_user = {}".format(student_id))
+
+
 if __name__ == '__main__':
     model = Student_model()
     for i in model.get_students_list():
