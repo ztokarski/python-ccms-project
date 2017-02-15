@@ -50,7 +50,7 @@ INSERT INTO "roles" VALUES(4,'manager');
 CREATE TABLE `assignments` (
 	`ID_assignment`	INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT UNIQUE,
 	`assignment_name`	TEXT NOT NULL,
-	`due_date`	INTEGER NOT NULL,
+	`due_date`	TEXT NOT NULL,
 	`max_points`	INTEGER NOT NULL,
 	`ID_user`	INTEGER NOT NULL
 );
@@ -73,7 +73,7 @@ INSERT INTO "sub_assignments" VALUES(5,'2017-01-16',24,2,1);
 INSERT INTO "sub_assignments" VALUES(6,'2017-01-20','',1,3);
 CREATE TABLE `attendance` (
 	`ID_attendance`	INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT UNIQUE,
-	`date`	INTEGER NOT NULL,
+	`date`	TEXT NOT NULL,
 	`attendance_status`	INTEGER NOT NULL DEFAULT 0,
 	`ID_user`	INTEGER NOT NULL
 );
