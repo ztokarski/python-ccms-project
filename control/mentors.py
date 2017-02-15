@@ -1,4 +1,5 @@
 from control.user import User
+from model.mentor_model import Mentor_model
 
 class Mentor(User):
     list_of_mentors = []
@@ -42,3 +43,13 @@ class Mentor(User):
         print_mentors_list = MentorList().get_mentors_list()
         for num, item in enumerate(print_mentors_list):
             print("{} {} {}".format(num+1, item.name, item.surname))
+
+    @staticmethod
+    def get_mentors_list():
+        mentors = []
+        model = Mentor_model()
+
+        for mentor in model.get_mentors_list():
+            mentors.append([mentor[0], mentor[1], mentor[2]])
+
+        return mentors

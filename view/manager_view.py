@@ -21,13 +21,13 @@ class ManagerUI(EmployeeUI):
             )
             user_choose = input('Your choose: ')
             if user_choose == "1":
-                pass
+                self.show_mentors_list()
             elif user_choose == "2":
                 pass
             elif user_choose == "3":
                 pass
             elif user_choose == "4":
-                pass
+                self.show_students_list()
             elif user_choose == "5":
                 pass
             elif user_choose == "6":

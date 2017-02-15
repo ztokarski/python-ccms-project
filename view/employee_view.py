@@ -1,4 +1,5 @@
 from control.students import Student
+from control.mentors import Mentor
 
 class EmployeeUI():
     def __init__(self, employee):
@@ -15,9 +16,9 @@ class EmployeeUI():
             )
             user_choose = input('Your choose: ')
             if user_choose == "1":
-                pass
+                self.show_students_list()
             elif user_choose == "2":
-                pass
+                self.show_mentors_list()
             elif user_choose == "3":
                 pass
             elif user_choose == "4":
@@ -35,3 +36,8 @@ class EmployeeUI():
         for student in students:
             print(student)
 
+    @classmethod
+    def show_mentors_list(cls):
+        mentors = Mentor.get_mentors_list()
+        for mentor in mentors:
+            print(mentor)
