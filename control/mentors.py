@@ -40,3 +40,4 @@ class Mentor(User):
         print_mentors_list = MentorList().get_mentors_list()
         for num, item in enumerate(print_mentors_list):
             print("{} {} {}".format(num+1, item.name, item.surname))
+
