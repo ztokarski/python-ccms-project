@@ -23,15 +23,3 @@ class Student_model(User_model):
 
         return list_of_students
 
-
-    # def show_grades(self):
-    #     '''
-    #     Method which return student's grades.
-    #     '''
-    #     from_grades = Open().open_users("CSV/sub_assignments.csv")
-    #     grades = {}
-    #     for assigment in subs_assigment:
-    #         if assigment.grade != None:
-    #             grades[assigment.name] = assigment.grade
-    #
-    #     return grades

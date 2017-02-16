@@ -1,5 +1,6 @@
 from view.employee_view import *
 
+
 class MentorUI(EmployeeUI):
     def __init__(self, mentor):
         super().__init__(mentor)

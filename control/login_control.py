@@ -1,5 +1,6 @@
 from model.user_model import *
 from model.user import *
+from view.login_view import *
 
 class Login_control:
 
@@ -14,22 +15,27 @@ class Login_control:
 
     @classmethod
     def identify_user(cls, object):
-        if object.id_role == 1:
-            student = Student(object.name, object.surname)
+        try:
+            if object.id_role == 1:
+                student = Student(object.name, object.surname)
 
-            return student
-        elif object.id_role == 2:
-            mentor = Mentor(object.name, object.surname)
+                return student
+            elif object.id_role == 2:
+                mentor = Mentor(object.name, object.surname)
 
-            return mentor
+                return mentor
 
-        elif object.id_role == 3:
-            employee = Employee(object.name, object.surname)
+            elif object.id_role == 3:
+                employee = Employee(object.name, object.surname)
 
-            return employee
+                return employee
 
-        elif object.id_role == 4:
-            Jurek = Manager(object.name, object.surname)
+            elif object.id_role == 4:
+                manager = Manager(object.name, object.surname)
 
-            return Jurek
+                return manager
+        except AttributeError:
+            print("There's no such login!")
+
+
 
