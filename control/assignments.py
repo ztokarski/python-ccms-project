@@ -1,4 +1,6 @@
 import sqlite3
+from tabulate import tabulate
+from model.assignment_model import *
 
 class Assignment:
     """
@@ -18,9 +20,18 @@ class Assignment:
         """
         Method return assignments_list
         """
-        return cls.assignments_list
+        model = AssignmentModel()
+        as_list = model.get_list_of_assignments()
+        return tabulate(as_list, headers=['Name', 'Max.Points', 'Due Date', 'Created by'], tablefmt='fancy_grid',
+                   stralign='center')
 
     def add_assignment(self):
+        """
+        Method add assignments to DB
+        """
+        pass
+
+
 
 
 
@@ -28,21 +39,4 @@ class Assignment:
 # ass2 = Assignment("pasztet", "2017-02-02")
 # print(Assignment.get_assignments_list())
 
-
-# class Sub_assignment(assignment):
-#     sub_assignments = []
-#     def __init__(self, name):
-#         self.name = name
-#         self.student = ""
-#         for i in super().assignments_list:
-#             if self.name == i.name:
-#                 self.sub_assignments.append(self)
-#                 self.due = i.due
-#
-#             else:
-#
-#                 pass
-#         self.date = None
-#
-#     def __repr__(self):
-#         return "{} {} {}".format(self.name, self.due, self.student)
+print(Assignment.get_assignments_list())
