@@ -20,21 +20,25 @@ class User_model:
     def __repr__(self):
         return "ID: {} Name: {} Surname {} Status: {}".format(self.id, self.name, self.surname, self.status)
 
-    # @classmethod
-    # def get_all_users(cls):
-    #     conn = sqlite3.connect('ccms.db')
-    #     users = conn.execute("SELECT * FROM users")
-    #     for user in users:
-    #         name = user[1]
-    #         surname = user[2]
-    #         user_object = User_model(name, surname)
-    #         user_object.id = user[0]
-    #         user_object.login = user[3]
-    #         user_object.password = user[4]
-    #         user_object.status = user[5]
-    #         user_object.id_team = user[6]
-    #         user_object.id_role = user[7]
-    #         cls.list_of_users.append(user_object)
+
+    @classmethod
+    def get_all_objects(cls):
+        user_list = []
+        conn = sqlite3.connect('/home/lukasz/PycharmProjects/ccm/python-ccms-programadores/ccms.db')
+        db_list = conn.execute("SELECT * FROM users")
+        for user in db_list:
+            name = user[1]
+            surname = user[2]
+            user_object = User_model(name, surname)
+            user_object.id = user[0]
+            user_object.login = user[3]
+            user_object.password = user[4]
+            user_object.status = user[5]
+            user_object.id_team = user[6]
+            user_object.id_role = user[7]
+            user_list.append(user_object)
+
+        return user_list
 
     @classmethod
     def get_object_by_id(self, id):
@@ -65,4 +69,4 @@ class User_model:
         else:
             return ("Disactiv")
 
-print(User_model.get_object_by_id(3))
+

@@ -23,11 +23,7 @@ class Login_view:
     """)
 
     @classmethod
-    def login(cls):
-        print(cls.START_MAIN)
+    def login_password(cls):
         login = input("Login: ")
-        return login
-
-    def password(cls):
-        print(cls.START_MAIN)
         password = input("Password: ")
+
