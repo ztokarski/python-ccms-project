@@ -2,18 +2,12 @@ import datetime
 from Assigments import *
 
 class Sub_assigment(Assigment):
-    sub_assigments = []
 
-    def __init__(self, name, student):
+    def __init__(self, name):
         self.student = student
-        for i in super().assigments_list:
-            if self.name == i.name:
-                self.sub_assigments.append(self)
-                self.due = i.due
-
-            else:
-
-                pass
+        self.name == i.name:
+        self.sub_assigments.append(self)
+        self.due = i.due
         self.date = "{}".format(datetime.date.today())
 
     def __repr__(self):

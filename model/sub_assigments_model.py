@@ -1,59 +1,42 @@
 import sqlite3
-from Assigments import *
 import datetime
+from assignments_model import *
+from user_model import *
 
 class Sub_assigment_model:
 
-
-    sub_assigments = []
-
-    def __init__(self, name, student):
-        self.student = student
-        for i in super().assigments_list:
-            if self.name == i.name:
-                self.sub_assigments.append(self)
-                self.due = i.due
-
-            else:
-
-                pass
+    def __init__(self, assigment_id, student_id):
+        self.assiment_id = assigment_id
+        self.student_id = student_id
+        self.student = User_model.get_object_by_id(student_id)
+        self.task = Assigment.get_object_id(assigment_id)
+        self.due = ""
         self.date = "{}".format(datetime.date.today())
 
+
     def __repr__(self):
-        return "{} {}".format(self.name, self.student)
-    @classmethod
-    def get_all_subs(cls):
-        conn = sqlite3.connect('ccms.db')
-        assigmnets = conn.execute("SELECT * FROM sub_assignments")
-        for assigmnet in assigmnets:
-
-    submit_assigment(name)
+        return "{} {}".format(self.task, self.student)
 
     @classmethod
-    def view_submitted_assigments(cls):
+    def view_my_subs_assignments(cls, student_id):
+        conn = sqlite3.connect('/home/lukasz/PycharmProjects/ccm/python-ccms-programadores/ccms.db')
+        db_list = conn.execute("SELECT id_assignment, id_user FROM sub_assignments")
+        return_list = []
+        for ass in db_list:
+            if ass[1] == student_id:
+                pos = Sub_assigment_model(ass[0], ass[1])
+                return_list.append(pos)
 
-        return cls.sub_assigments
-
-    def submit_assigment(self, name, student):
-        submitted_assigment = Sub_assigment(name, student)
-        return submitted_assigment
-
-    conn = sqlite3.connect('ccms.db')
-    cur = conn.cursor()
-
-    @classmethod
-    def sub_assigments_list(cls):
-        sub_assigments_db = cls.cur.execute("SELECT * FROM sub_assignments")
-        for sub in sub_assigments_db:
-            print(sub)
-        return sub_assigments_db
+        return return_list
 
 
 
-CREATE TABLE `sub_assignments` (
-	`ID_sub_assignment`	INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT UNIQUE,
-	`sub_date`	INTEGER NOT NULL,
-	`grade`	INTEGER,
-	`ID_assignment`	INTEGER NOT NULL,
-	`ID_user`	INTEGER NOT NULL
-)
+
+    def submit_assigment(self):
+        conn = sqlite3.connect('/home/lukasz/PycharmProjects/ccm/python-ccms-programadores/ccms.db')
+        conn.execute("INSERT INTO sub_assignments (sub_date, grade, ID_assignment, ID_user) VALUES (%i, %i, %i, %i)" % (0, 0, self.student.id, self.task.id))
+
+
+
+
+print(Sub_assigment_model.view_my_subs_assignments(2))
