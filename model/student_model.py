@@ -1,20 +1,25 @@
+from model.user_model import *
 import sqlite3
-import os
 
-class Student_model:
-    
-    def __init__(self):
-        self.conn = sqlite3.connect(os.path.realpath('../ccms.db'))
-        self.db = self.conn.cursor()
 
-    def get_students_list(self):
-        students_list = self.db.execute("SELECT * FROM users where ID_role = 1")
-        return students_list
+class Student_model(User_model):
 
-    def add_student(self, *args):
-        self.conn.execute("INSERT INTO `users`(`name`,`surname`,`login`) VALUES ('{}','{}','{}');".format(*args))
-        self.conn.commit()
+    @classmethod
+    def get_all_students(cls):
+        list_of_students = []
+        students = cls.conn.execute("SELECT * FROM users WHERE ID_role = `1`")
 
-    def remove_student(self, student_id):
-        self.conn.execute("DELETE FROM users where ID_user = {}".format(student_id))
-        # TODO trychatch if id not valid
+        for student in students:
+            name = student[1]
+            surname = student[2]
+            student_object = Student(name, surname)
+            student_object.id = student[0]
+            student_object.login = student[3]
+            student_object.password = student[4]
+            student_object.status = student[5]
+            student_object.id_team = student[6]
+            student_object.id_role = student[7]
+            list_of_students.append(student_object)
+
+        return list_of_students
+

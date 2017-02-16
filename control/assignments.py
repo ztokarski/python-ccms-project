@@ -17,7 +17,7 @@ class Assignment:
         self.assignments_list.append(self)
 
     def __repr__(self):
-        return "{} {} {}".format(self.name, self.due, self.points, self.points)
+        return "{} {} {}".format(self.name, self.due, self.points)
 
     @classmethod
     def get_assignments_list(cls):
@@ -34,6 +34,4 @@ class Assignment:
         Method add assignments to DB
         """
         pass
-
-
 

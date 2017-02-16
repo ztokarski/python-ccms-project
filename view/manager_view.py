@@ -1,12 +1,13 @@
 from view.employee_view import EmployeeUI
-from control.mentors import Mentor
-from control.students import Student
+from model.user import Mentor
+from model.user import Student
 
 class ManagerUI(EmployeeUI):
     def __init__(self, manager):
         super().__init__(manager)
 
-    def show_manager_menu(self):
+    @classmethod
+    def show_manager_menu(cls):
         while True:
             print(
                 "\n/-----------------------------------------------------"

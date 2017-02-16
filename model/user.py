@@ -39,9 +39,6 @@ class Mentor(User):
 
     def __init__(self, name, surname):
         super().__init__(name, surname)
-        self.list_of_mentors(self)
-
-
 
 
 class Manager(User):

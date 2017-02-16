@@ -1,38 +1,17 @@
-from open_lists import *
-from user import *
+import sqlite3
 
 class Login:
     @classmethod
     def login_check(self):
+        login1 = input("Login: ")
+        password1 = input("Password: ")
 
-        valid = ""
-        valid_pass = ""
+        conn = sqlite3.connect('/home/lukasz/PycharmProjects/ccm/python-ccms-programadores/ccms.db')
+        login_password = conn.execute("SELECT * FROM users WHERE login = '{}' AND password = '{}'".format(login1, password1))
+        user = None
+        for i in login_password:
+            user = i
 
-        while valid == "":
-            login = input("Login: ")
-            password = input("Password: ")
-            students = Open.open_users("CSV/students.csv")
-            for student in students:
-                if student[2] == login:
-                    valid = student[2]
-                    valid_pass = student[3]
-                    if password == valid_pass:
-                        login_student = Student(student[0], student[1])
-                        return login_student
 
-            for mentor in Open().open_users("CSV/mentors.csv"):
-                if mentor[2] == login:
-                    valid = mentor[2]
-                    valid_pass = mentor[3]
-                    if password == valid_pass:
-                        login_mentor = Mentor(mentor[0], mentor[1])
-                        return login_mentor
+Login.login_check()
 
-            for employee in Open().open_users("CSV/employees.csv"):
-                if employee[2] == login:
-                    valid = employee[2]
-                    valid_pass = employee[3]
-                    if password == valid_pass:
-                        login_employee = Employee(employee[0], employee[1])
-                        return login_employee
-            print("Your login or password is incorrect.")
