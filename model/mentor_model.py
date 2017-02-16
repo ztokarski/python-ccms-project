@@ -1,4 +1,5 @@
 import sqlite3
+<<<<<<< HEAD
 import os
 
 class Mentor_model:
@@ -18,3 +19,14 @@ class Mentor_model:
     def remove_mentor(self, mentor_id):
         self.conn.execute("DELETE FROM users where ID_user = {}".format(mentor_id))
         # TODO trychatch if id not valid
+=======
+import control\students
+
+
+class Student_model:
+    conn = sqlite3.connect('ccms.db')
+
+    mentor_db = conn.execute("SELECT * FROM users WHERE id_role = 2")
+
+    return mentor_db_db
+>>>>>>> submitted_assigments

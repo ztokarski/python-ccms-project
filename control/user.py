@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 import os
 from ui import *
 from login import *
@@ -34,3 +35,5 @@ class User:
             return("Disactiv")
 
 
+=======
+>>>>>>> submitted_assigments

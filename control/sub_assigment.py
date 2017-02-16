@@ -1,3 +1,4 @@
+<<<<<<< HEAD:control/sub_assigment.py
 # from assignment import Assignment
 
 
@@ -18,3 +19,5 @@ class Sub_assignment(Assignment):
 
     def __repr__(self):
         return "{} {} {}".format(self.name, self.due, self.student)
+=======
+>>>>>>> submitted_assigments:control/Assigments.py
