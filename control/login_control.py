@@ -27,7 +27,7 @@ class Login_control:
             employee = Employee(object.name, object.surname)
 
         elif object.id_role == 4:
-            Jurek = Mentor(object.name, object.surname)
+            Jurek = Manager(object.name, object.surname)
 
             return Jurek
 

@@ -1,10 +1,10 @@
-from user_model import *
+from model.user import *
 
 class Mentor_model:
     @classmethod
     def get_all_mentors(cls):
         list_of_mentors = []
-        mentors = cls.conn.execute("SELECT * FROM users WHERE ID_role = `2`)
+        mentors = cls.conn.execute("SELECT * FROM users WHERE ID_role = `2`")
 
         for mentor in mentors:
             name = mentor[1]

@@ -20,7 +20,7 @@ class Assigment:
     @classmethod
     def get_assignments_list(cls):
         assignment_list = []
-        conn = sqlite3.connect('/home/lukasz/PycharmProjects/ccm/python-ccms-programadores/ccms.db')
+        conn = sqlite3.connect('ccms.db')
         assignments = cls.conn.execute("SELECT * FROM assignments")
         for assignment in assignments:
             name = assignment[1]
@@ -29,7 +29,7 @@ class Assigment:
             object.due = assignment[2]
             object.max_points = assignment[3]
             object.id = assignment[0]
-            ass_list.append(object)
+            assignment_list.append(object)
 
         return assignment_list
 

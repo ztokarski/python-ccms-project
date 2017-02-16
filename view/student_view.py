@@ -1,5 +1,6 @@
 from model.subs_assignment_model import *
 from control.sub_assigment import *
+from model.assignments_model import *
 
 class StudentUI():
     def __init__(self, student):
@@ -25,6 +26,7 @@ class StudentUI():
                 pass
 
             elif user_choose == "3":
+                Assigment.get_assignments_list()
                 pass
 
             elif user_choose == "4":
