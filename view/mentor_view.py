@@ -13,14 +13,15 @@ class MentorUI(EmployeeUI):
                 "\n| (2) Add student."
                 "\n| (3) Remove student."
                 "\n| (4) Show students list."
-                "\n| (5) Add grade."
-                "\n| (6) Update grade."
-                "\n| (7) Show grades list."
-                "\n| (8) Create student teams."
-                "\n| (9) Add student to team."
-                "\n| (10) List all students groups."
-                "\n| (11) Add specific card for student."
-                "\n| (12) See full report of students between dates."
+                "\n| (5) Show assignments list."
+                "\n| (6) Add assignment to the list."
+                "\n| (7) Update grade."
+                "\n| (8) Show grades list."
+                "\n| (9) Create student teams."
+                "\n| (10) Add student to team."
+                "\n| (11) List all students groups."
+                "\n| (12) Add specific card for student."
+                "\n| (13) See full report of students between dates."
                 "\n| (0) Exit"
                 "\n\----------------------------------------------------"
             )
@@ -65,3 +66,7 @@ class MentorUI(EmployeeUI):
         self.show_students_list()
         student_id = input("Type student ID")
         Student.remove_student(student_id)
+
+    def add_assignment(self):
+        '''do kontrolera'''
+        pass
