@@ -17,14 +17,4 @@ class Student_model:
 
     def remove_student(self, student_id):
         self.conn.execute("DELETE FROM users where ID_user = {}".format(student_id))
-
-
-if __name__ == '__main__':
-    model = Student_model()
-    for i in model.get_students_list():
-        print(i)
-
-    model.add_student('Stude', "Studencik" ,'ss')
-
-    for i in model.get_students_list():
-        print(i)
+        # TODO trychatch if id not valid
