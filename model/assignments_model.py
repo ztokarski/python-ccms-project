@@ -1,8 +1,8 @@
 import sqlite3
-from user_model import *
+from model.user import *
+
 
 import sqlite3
-from tabulate import tabulate
 import os
 
 class Assigment:
@@ -60,7 +60,7 @@ class Assigment:
         return assignment_object
 
 
-class Sub_assignment(Assignment):
+class Sub_assignment(Assigment):
 
 
     def __init__(self, name):
@@ -68,39 +68,13 @@ class Sub_assignment(Assignment):
         self.student = ""
         self.due = None
         self.date = None
+        self.grade = 0
 
 
     def __repr__(self):
         return "{} {} {}".format(self.name, self.due, self.student)
 
 
-    @classmethod
-    def get_all_subs(cls):
-        assigmnets = cls.conn.execute("SELECT * FROM sub_assignments")
-        for assigmnet in assigmnets:
 
-
-    @classmethod
-    def view_submitted_assigments(cls):
-
-        return cls.sub_assigments
-
-    def submit_assigment(self, name, student):
-        submitted_assigment = Sub_assigment(name, student)
-        return submitted_assigment
-
-    conn = sqlite3.connect('ccms.db')
-    cur = conn.cursor()
-
-
-    def submit_assigment(self, name, student):
-        submitted_assigment = Sub_assigment(name, student)
-
-        return submitted_assigment
-
-
-
-# Insert a row of data
-c.execute("INSERT INTO stocks VALUES ('2006-01-05','BUY','RHAT',100,35.14)")
 
 

@@ -1,6 +1,11 @@
+from model.subs_assignment_model import *
+from control.sub_assigment import *
+
 class StudentUI():
     def __init__(self, student):
         self.student = student
+
+    @classmethod
     def show_student_menu(self):
         while True:
             print(
@@ -18,8 +23,10 @@ class StudentUI():
                 pass
             elif user_choose == "2":
                 pass
+
             elif user_choose == "3":
                 pass
+
             elif user_choose == "4":
                 pass
             elif user_choose == "5":

@@ -1,7 +1,9 @@
-<<<<<<< HEAD:control/sub_assigment.py
-# from assignment import Assignment
+from model.assignments_model import *
+
+class Sub_assignment_model:
 
 
+    def submit_assigment(self, name, student):
+        submitted_assigment = Sub_assigment(name, student)
 
-=======
->>>>>>> submitted_assigments:control/Assigments.py
+        return submitted_assigment

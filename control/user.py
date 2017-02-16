@@ -1,12 +1,6 @@
-<<<<<<< HEAD
-import os
-from ui import *
-from login import *
-import sys
-import time
+
 
 class User:
-    list_of_users = []
     '''
     Class for user.
     '''
@@ -33,7 +27,3 @@ class User:
             return("Activ")
         else:
             return("Disactiv")
-
-
-=======
->>>>>>> submitted_assigments

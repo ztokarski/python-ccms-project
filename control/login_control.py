@@ -1,14 +1,11 @@
-from view.login_view import *
 from model.user_model import *
-from model.mentor_model import *
-from control.mentors import *
-from employee import *
+from model.user import *
 
 class Login_control:
 
     @classmethod
     def find_user(self, login, password):
-        user_list = User_model.get_all_objects()
+        user_list = User_model.get_all_users()
         for object in user_list:
             if object.login == login and object.password == password:
                 return object
@@ -18,7 +15,7 @@ class Login_control:
     @classmethod
     def identify_user(cls, object):
         if object.id_role == 1:
-            student = Student_model(object.name, object.surname)
+            student = Student(object.name, object.surname)
 
             return student
         elif object.id_role == 2:
@@ -29,5 +26,8 @@ class Login_control:
         elif object.id_role == 3:
             employee = Employee(object.name, object.surname)
 
-            return employee
+        elif object.id_role == 4:
+            Jurek = Mentor(object.name, object.surname)
+
+            return Jurek
 

@@ -1,5 +1,4 @@
-from control.students import Student
-from control.mentors import Mentor
+from model.user import *
 
 class EmployeeUI():
     def __init__(self, employee):

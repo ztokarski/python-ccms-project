@@ -1,10 +1,10 @@
-from view.employee_view import EmployeeUI
-from control.students import Student
-from control.mentors import Mentor
+from view.employee_view import *
 
 class MentorUI(EmployeeUI):
     def __init__(self, mentor):
         super().__init__(mentor)
+
+    @classmethod
     def show_mentor_menu(self):
         while True:
             print(
