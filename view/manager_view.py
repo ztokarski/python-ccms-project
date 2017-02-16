@@ -42,13 +42,20 @@ class ManagerUI(EmployeeUI):
 
     def add_new_mentor(self):
         name = input("Type mentor name: ")
+        while len(name) == 0:
+            name = input("Name must not be empty: ")
         surname = input("Type surname")
+        while len(surname) == 0:
+            surname = input("Surname must not be empty: ")
         login = input("Type login")
+        while len(login) == 0:
+            name = input("Login must not be empty: ")
         Mentor.add_mentor(name, surname, login)
 
     def remove_mentor(self):
         self.show_mentors_list()
         mentor_id = input("Type mentor id: ")
+        while not mentor_id.isdigit():
+            mentor_id = input("Student ID must be valid number: ")
+
         Mentor.remove_mentor(mentor_id)
-
-

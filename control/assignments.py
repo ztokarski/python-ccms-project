@@ -37,10 +37,3 @@ class Assignment:
 
 
 
-
-
-# ass1 = Assignment("kaszanka", '2017-02-05')
-# ass2 = Assignment("pasztet", "2017-02-02")
-# print(Assignment.get_assignments_list())
-
-print(Assignment.get_assignments_list())

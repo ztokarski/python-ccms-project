@@ -35,7 +35,6 @@ class Student(User):
         Method for submitting assignment
         '''
         assigment = Sub_assigment(name)
-        # assigment.student = student
         assigment.date = "{}.{}.{}".format(time.localtime()[2], time.localtime()[1], time.localtime()[0])
         return assigment
 
@@ -58,6 +57,3 @@ class Student(User):
     def remove_student(student_id):
         model = Student_model()
         model.remove_student(student_id)
-
-if __name__ == '__main__':
-    print(Student.get_students_list())

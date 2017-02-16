@@ -58,8 +58,14 @@ class MentorUI(EmployeeUI):
 
     def add_new_student(self):
         name = input("Type student name: ")
-        surname = input("Type surname")
-        login = input("Type login")
+        while len(name) == 0:
+            name = input("Name must not be empty: ")
+        surname = input("Type surname: ")
+        while len(surname) == 0:
+            surname = input("Surname must not be empty: ")
+        login = input("Type login: ")
+        while len(login) == 0:
+            name = input("Login must not be empty: ")
         Student.add_student(name, surname, login)
 
     def remove_student(self):
@@ -70,3 +76,7 @@ class MentorUI(EmployeeUI):
     def add_assignment(self):
         '''do kontrolera'''
         pass
+
+
+
+
