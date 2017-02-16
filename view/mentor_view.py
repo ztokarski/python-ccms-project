@@ -1,6 +1,9 @@
-class MentorUI():
+from view.employee_view import EmployeeUI
+from control.students import Student
+
+class MentorUI(EmployeeUI):
     def __init__(self, mentor):
-        self.mentor = mentor
+        super().__init__(mentor)
     def show_mentor_menu(self):
         while True:
             print(
@@ -26,11 +29,11 @@ class MentorUI():
             if user_choose == "1":
                 pass
             elif user_choose == "2":
-                pass
+                self.add_new_student()
             elif user_choose == "3":
-                pass
+                self.remove_student()
             elif user_choose == "4":
-                pass
+                self.show_students_list()
             elif user_choose == "5":
                 pass
             elif user_choose == "6":
@@ -51,3 +54,14 @@ class MentorUI():
                 break
             else:
                 print("Bad choice. Enter correct value.")
+
+    def add_new_student(self):
+        name = input("Type student name: ")
+        surname = input("Type surname")
+        login = input("Type login")
+        Student.add_student(name, surname, login)
+
+    def remove_student(self):
+        self.show_students_list()
+        student_id = input("Type student ID")
+        Student.remove_student(student_id)

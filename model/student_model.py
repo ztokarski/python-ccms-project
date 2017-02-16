@@ -1,10 +1,30 @@
 import sqlite3
-# import control\students
+import os
 
 class Student_model:
     
-    conn = sqlite3.connect('ccms.db')
+    def __init__(self):
+        self.conn = sqlite3.connect(os.path.realpath('../ccms.db'))
+        self.db = self.conn.cursor()
 
-    students_db = conn.execute("SELECT * FROM users WHERE id_role = 1")
+    def get_students_list(self):
+        students_list = self.db.execute("SELECT * FROM users where ID_role = 1")
+        return students_list
 
-    # return students_db
+    def add_student(self, *args):
+        self.conn.execute("INSERT INTO `users`(`name`,`surname`,`login`) VALUES ('{}','{}','{}');".format(*args))
+        self.conn.commit()
+
+    def remove_student(self, student_id):
+        self.conn.execute("DELETE FROM users where ID_user = {}".format(student_id))
+
+
+if __name__ == '__main__':
+    model = Student_model()
+    for i in model.get_students_list():
+        print(i)
+
+    model.add_student('Stude', "Studencik" ,'ss')
+
+    for i in model.get_students_list():
+        print(i)
