@@ -9,7 +9,6 @@ class Login_control:
     @classmethod
     def find_user(self, login, password):
         user_list = User_model.get_all_objects()
-        login_input = Login_view.login()
         for object in user_list:
             if object.login == login and object.password == password:
                 return object
@@ -17,7 +16,7 @@ class Login_control:
         return "There's no such login!"
 
     @classmethod
-    def identifie_object(cls, object):
+    def identify_user(cls, object):
         if object.id_role == 1:
             student = Student_model(object.name, object.surname)
 

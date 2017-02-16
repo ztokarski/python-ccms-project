@@ -1,14 +1,7 @@
-import os
-from ui import *
-from open_lists import *
-from login import *
-from user import *
-import sys
-import csv
-
+from view.login_view import *
 
 def main():
-    Menu.login_and_menu()
+    Login_view.login_password()
 
 if __name__ == '__main__':
     main()
