@@ -20,6 +20,7 @@ class Login_control:
                 student = Student(object.name, object.surname)
 
                 return student
+
             elif object.id_role == 2:
                 mentor = Mentor(object.name, object.surname)
 
@@ -34,6 +35,7 @@ class Login_control:
                 manager = Manager(object.name, object.surname)
 
                 return manager
+
         except AttributeError:
             print("There's no such login!")
 
