@@ -19,7 +19,7 @@ class User:
         self.list_of_users.append(self)
 
     def __str__(self):
-        return "{} {} {} {}".format(self.name, self.surname)
+        return "{} {}".format(self.name, self.surname)
 
     def change_status(self):
         '''

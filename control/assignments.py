@@ -8,11 +8,11 @@ class Assignment:
     """
     assignments_list = []
     def __init__(self, name):
-        self.id = id_assignment
         self.name = name
+        self.id = id_assignment
         self.due = due_date
         self.points = max_points
-        self.mentor = mentor id
+        self.mentor = mentor_id
 
         self.assignments_list.append(self)
 
