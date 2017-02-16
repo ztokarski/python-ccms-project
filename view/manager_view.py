@@ -1,5 +1,6 @@
 from view.employee_view import EmployeeUI
 from control.mentors import Mentor
+from control.students import Student
 
 class ManagerUI(EmployeeUI):
     def __init__(self, manager):
@@ -22,13 +23,13 @@ class ManagerUI(EmployeeUI):
             )
             user_choose = input('Your choose: ')
             if user_choose == "1":
-                self.show_mentors_list()
+                print(Mentor.show_mentors_list())
             elif user_choose == "2":
                 self.add_new_mentor()
             elif user_choose == "3":
                 self.remove_mentor()
             elif user_choose == "4":
-                self.show_students_list()
+                print(Student.show_students_list())
             elif user_choose == "5":
                 pass
             elif user_choose == "6":
@@ -53,7 +54,7 @@ class ManagerUI(EmployeeUI):
         Mentor.add_mentor(name, surname, login)
 
     def remove_mentor(self):
-        self.show_mentors_list()
+        print(Mentor.show_mentors_list())
         mentor_id = input("Type mentor id: ")
         while not mentor_id.isdigit():
             mentor_id = input("Student ID must be valid number: ")

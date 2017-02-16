@@ -16,9 +16,9 @@ class EmployeeUI():
             )
             user_choose = input('Your choose: ')
             if user_choose == "1":
-                self.show_students_list()
+                print(Student.show_students_list())
             elif user_choose == "2":
-                self.show_mentors_list()
+                print(Mentor.show_mentors_list())
             elif user_choose == "3":
                 pass
             elif user_choose == "4":
@@ -29,15 +29,3 @@ class EmployeeUI():
                 break
             else:
                 print("Bad choice. Enter correct value.")
-
-    @classmethod
-    def show_students_list(cls):
-        students = Student.get_students_list()
-        for student in students:
-            print(student)
-
-    @classmethod
-    def show_mentors_list(cls):
-        mentors = Mentor.get_mentors_list()
-        for mentor in mentors:
-            print(mentor)
