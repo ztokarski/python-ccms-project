@@ -1,3 +1,4 @@
+PRAGMA foreign_keys=OFF;
 BEGIN TRANSACTION;
 
 DROP TABLE IF EXISTS assignments;
@@ -6,7 +7,6 @@ DROP TABLE IF EXISTS roles;
 DROP TABLE IF EXISTS sub_assignments;
 DROP TABLE IF EXISTS teams;
 DROP TABLE IF EXISTS users;
-
 
 CREATE TABLE "users" (
 	`ID_user`	INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT UNIQUE,
@@ -77,22 +77,23 @@ CREATE TABLE `attendance` (
 	`attendance_status`	INTEGER NOT NULL DEFAULT 0,
 	`ID_user`	INTEGER NOT NULL
 );
-INSERT INTO "attendance" VALUES(1,'2017-02-01',0,2);
-INSERT INTO "attendance" VALUES(2,'2017-02-02',1,2);
-INSERT INTO "attendance" VALUES(3,'2017-02-03',1,2);
-INSERT INTO "attendance" VALUES(4,'2017-02-04',1,2);
-INSERT INTO "attendance" VALUES(5,'2017-02-01',1,1);
-INSERT INTO "attendance" VALUES(6,'2017-02-01',1,3);
-INSERT INTO "attendance" VALUES(7,'2017-02-01',1,4);
-INSERT INTO "attendance" VALUES(8,'2017-02-01',1,5);
-INSERT INTO "attendance" VALUES(9,'2017-02-01',1,6);
-INSERT INTO "attendance" VALUES(10,'2017-02-03',0,7);
-INSERT INTO "attendance" VALUES(11,'2017-02-03',1,1);
-INSERT INTO "attendance" VALUES(12,'2017-02-04',1,3);
-INSERT INTO "attendance" VALUES(13,'2017-02-03',1,4);
-INSERT INTO "attendance" VALUES(14,'2017-02-05',1,5);
-INSERT INTO "attendance" VALUES(15,'2017-02-07',1,6);
+INSERT INTO "attendance" VALUES(1,'10.02.2017',0,2);
+INSERT INTO "attendance" VALUES(2,'11.02.2017',1,2);
+INSERT INTO "attendance" VALUES(3,'12.02.2017',1,2);
+INSERT INTO "attendance" VALUES(4,'13.02.2017',1,2);
+INSERT INTO "attendance" VALUES(5,'10.02.2017',1,1);
+INSERT INTO "attendance" VALUES(6,'10.02.2017',1,3);
+INSERT INTO "attendance" VALUES(7,'10.02.2017',1,4);
+INSERT INTO "attendance" VALUES(8,'10.02.2017',1,5);
+INSERT INTO "attendance" VALUES(9,'10.02.2017',1,6);
+INSERT INTO "attendance" VALUES(10,'10.02.2017',0,7);
+INSERT INTO "attendance" VALUES(11,'11.02.2017',1,1);
+INSERT INTO "attendance" VALUES(12,'11.02.2017',1,3);
+INSERT INTO "attendance" VALUES(13,'11.02.2017',1,4);
+INSERT INTO "attendance" VALUES(14,'11.02.2017',1,5);
+INSERT INTO "attendance" VALUES(15,'11.02.2017',1,6);
 DELETE FROM sqlite_sequence;
+INSERT INTO "sqlite_sequence" VALUES('users',14);
 INSERT INTO "sqlite_sequence" VALUES('teams',3);
 INSERT INTO "sqlite_sequence" VALUES('roles',4);
 INSERT INTO "sqlite_sequence" VALUES('assignments',4);
