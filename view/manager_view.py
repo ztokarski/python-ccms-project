@@ -6,7 +6,8 @@ class ManagerUI(EmployeeUI):
     def __init__(self, manager):
         super().__init__(manager)
 
-    def show_manager_menu(self):
+    @classmethod
+    def show_manager_menu(cls):
         while True:
             print(
                 "\n/-----------------------------------------------------"

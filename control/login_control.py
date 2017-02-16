@@ -26,6 +26,8 @@ class Login_control:
         elif object.id_role == 3:
             employee = Employee(object.name, object.surname)
 
+            return employee
+
         elif object.id_role == 4:
             Jurek = Manager(object.name, object.surname)
 

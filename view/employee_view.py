@@ -3,7 +3,9 @@ from model.user import *
 class EmployeeUI():
     def __init__(self, employee):
         self.employee = employee
-    def show_employee_menu(self):
+
+    @classmethod
+    def show_employee_menu(cls):
         while True:
             print(
                 "\n/-----------------------"

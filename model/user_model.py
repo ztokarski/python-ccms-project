@@ -1,6 +1,7 @@
 import sqlite3
 from model.user import *
 class User_model:
+
     conn = sqlite3.connect('ccms.db')
     cursor = conn.cursor()
 
@@ -16,10 +17,10 @@ class User_model:
             user_object.login = user[3]
             user_object.password = user[4]
             user_object.status = user[5]
-            user_object.id_team = user[6]
-            user_object.id_role = user[7]
-            user_list.append(user_object)
+            user_object.id_role = user[6]
+            user_object.id_team = user[7]
 
+            user_list.append(user_object)
         return user_list
 
 

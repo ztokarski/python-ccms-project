@@ -49,7 +49,7 @@ class Assigment:
 
     @classmethod
     def get_object_id(cls, id):
-        conn = sqlite3.connect('/home/lukasz/PycharmProjects/ccm/python-ccms-programadores/ccms.db')
+        conn = sqlite3.connect('ccms.db')
         assignments = conn.execute("SELECT * FROM assignments WHERE ID_assignment == %i" % (int(id)))
         for assignment in assignments:
             name = assignment[1]
@@ -73,8 +73,3 @@ class Sub_assignment(Assigment):
 
     def __repr__(self):
         return "{} {} {}".format(self.name, self.due, self.student)
-
-
-
-
-

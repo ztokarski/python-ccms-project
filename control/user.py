@@ -1,9 +1,10 @@
 
-
 class User:
+
     '''
     Class for user.
     '''
+
     def __init__(self, name, surname):
         self.id = 0
         self.name = name
@@ -11,19 +12,44 @@ class User:
         self.login = None
         self.password = None
         self.status = 1
-        self.list_of_users.append(self)
+        self.id_role = 0
+        self.id_team = 0
+
+    def __repr__(self):
+        return "ID: {} Name: {} Surname {} Status: {}".format(self.id, self.name, self.surname, self.status)
+
+
+class Student(User):
+
+    '''
+    Class for student.
+    '''
+    def __init__(self, name, surname):
+        super().__init__(name, surname)
+        self.team = None
+        self.grades_list = []
 
     def __str__(self):
-        return "{} {} {} {}".format(self.name, self.surname)
+        return "{} {} {} {} {}\n".format(self.name, self.surname, self.login, self.password, self.status)
 
-    def change_status(self):
-        '''
-        change user's status (Activ/Disactiv)
-        '''
-        self.status = not self.status
 
-    def display_status(self):
-        if self.status == True:
-            return("Activ")
-        else:
-            return("Disactiv")
+
+class Mentor(User):
+
+    def __init__(self, name, surname):
+        super().__init__(name, surname)
+
+class Manager(User):
+    '''
+    Class for Manager.
+    '''
+    def __init__(self, name, surname):
+        super().__init__(name, surname)
+
+    def __str__(self):
+        return "{}".format("BOSKI JUREK")
+
+
+class Employee(User):
+    def __init__(self, name, surname):
+        super().__init__(name, surname)
