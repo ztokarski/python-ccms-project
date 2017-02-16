@@ -1,6 +1,10 @@
-class MentorUI():
+from view.employee_view import EmployeeUI
+from control.students import Student
+from control.mentors import Mentor
+
+class MentorUI(EmployeeUI):
     def __init__(self, mentor):
-        self.mentor = mentor
+        super().__init__(mentor)
     def show_mentor_menu(self):
         while True:
             print(
@@ -10,14 +14,15 @@ class MentorUI():
                 "\n| (2) Add student."
                 "\n| (3) Remove student."
                 "\n| (4) Show students list."
-                "\n| (5) Add grade."
-                "\n| (6) Update grade."
-                "\n| (7) Show grades list."
-                "\n| (8) Create student teams."
-                "\n| (9) Add student to team."
-                "\n| (10) List all students groups."
-                "\n| (11) Add specific card for student."
-                "\n| (12) See full report of students between dates."
+                "\n| (5) Show assignments list."
+                "\n| (6) Add assignment to the list."
+                "\n| (7) Update grade."
+                "\n| (8) Show grades list."
+                "\n| (9) Create student teams."
+                "\n| (10) Add student to team."
+                "\n| (11) List all students groups."
+                "\n| (12) Add specific card for student."
+                "\n| (13) See full report of students between dates."
                 "\n| (0) Exit"
                 "\n\----------------------------------------------------"
             )
@@ -26,11 +31,11 @@ class MentorUI():
             if user_choose == "1":
                 pass
             elif user_choose == "2":
-                pass
+                self.add_new_student()
             elif user_choose == "3":
-                pass
+                self.remove_student()
             elif user_choose == "4":
-                pass
+                print(Student.show_students_list())
             elif user_choose == "5":
                 pass
             elif user_choose == "6":
@@ -51,3 +56,29 @@ class MentorUI():
                 break
             else:
                 print("Bad choice. Enter correct value.")
+
+    def add_new_student(self):
+        name = input("Type student name: ")
+        while len(name) == 0:
+            name = input("Name must not be empty: ")
+        surname = input("Type surname: ")
+        while len(surname) == 0:
+            surname = input("Surname must not be empty: ")
+        login = input("Type login: ")
+        while len(login) == 0:
+            name = input("Login must not be empty: ")
+        Student.add_student(name, surname, login)
+
+    def remove_student(self):
+        student_id = input("Type student ID: ")
+        while not student_id.isdigit():
+            student_id = input("Student ID must be valid number: ")
+        Student.remove_student(student_id)
+
+    def add_assignment(self):
+        '''do kontrolera'''
+        pass
+
+
+
+

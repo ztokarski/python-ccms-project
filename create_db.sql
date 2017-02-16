@@ -50,14 +50,14 @@ INSERT INTO "roles" VALUES(4,'manager');
 CREATE TABLE `assignments` (
 	`ID_assignment`	INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT UNIQUE,
 	`assignment_name`	TEXT NOT NULL,
-	`due_date`	INTEGER NOT NULL,
+	`due_date`	TEXT NOT NULL,
 	`max_points`	INTEGER NOT NULL,
 	`ID_user`	INTEGER NOT NULL
 );
-INSERT INTO "assignments" VALUES(1,'ccms','14.02.2017',72,8);
-INSERT INTO "assignments" VALUES(2,'geometry','15.02.2017',36,9);
-INSERT INTO "assignments" VALUES(3,'dojo','01.01.2017',12,11);
-INSERT INTO "assignments" VALUES(4,'erp','02.02.2017',36,9);
+INSERT INTO "assignments" VALUES(1,'ccms','2017-02-14',72,8);
+INSERT INTO "assignments" VALUES(2,'geometry','2017-02-10',36,9);
+INSERT INTO "assignments" VALUES(3,'dojo','2017-01-04',12,11);
+INSERT INTO "assignments" VALUES(4,'erp','2017-02-16',36,9);
 CREATE TABLE `sub_assignments` (
 	`ID_sub_assignment`	INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT UNIQUE,
 	`sub_date`	INTEGER NOT NULL,
@@ -65,33 +65,33 @@ CREATE TABLE `sub_assignments` (
 	`ID_assignment`	INTEGER NOT NULL,
 	`ID_user`	INTEGER NOT NULL
 );
-INSERT INTO "sub_assignments" VALUES(1,'13.02.2017',50,1,2);
-INSERT INTO "sub_assignments" VALUES(2,'14.02.2017',30,2,2);
-INSERT INTO "sub_assignments" VALUES(3,'02.01.2017','',3,2);
-INSERT INTO "sub_assignments" VALUES(4,'05.02.2017',61,1,1);
-INSERT INTO "sub_assignments" VALUES(5,'10.02.2017',24,2,1);
-INSERT INTO "sub_assignments" VALUES(6,'11.02.2017','',1,3);
+INSERT INTO "sub_assignments" VALUES(1,'2017-02-12',50,1,2);
+INSERT INTO "sub_assignments" VALUES(2,'2017-02-13',30,2,2);
+INSERT INTO "sub_assignments" VALUES(3,'2017-01-23','',3,2);
+INSERT INTO "sub_assignments" VALUES(4,'2017-01-12',61,1,1);
+INSERT INTO "sub_assignments" VALUES(5,'2017-01-16',24,2,1);
+INSERT INTO "sub_assignments" VALUES(6,'2017-01-20','',1,3);
 CREATE TABLE `attendance` (
 	`ID_attendance`	INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT UNIQUE,
-	`date`	INTEGER NOT NULL,
+	`date`	TEXT NOT NULL,
 	`attendance_status`	INTEGER NOT NULL DEFAULT 0,
 	`ID_user`	INTEGER NOT NULL
 );
-INSERT INTO "attendance" VALUES(1,'10.02.2017',0,2);
-INSERT INTO "attendance" VALUES(2,'11.02.2017',1,2);
-INSERT INTO "attendance" VALUES(3,'12.02.2017',1,2);
-INSERT INTO "attendance" VALUES(4,'13.02.2017',1,2);
-INSERT INTO "attendance" VALUES(5,'10.02.2017',1,1);
-INSERT INTO "attendance" VALUES(6,'10.02.2017',1,3);
-INSERT INTO "attendance" VALUES(7,'10.02.2017',1,4);
-INSERT INTO "attendance" VALUES(8,'10.02.2017',1,5);
-INSERT INTO "attendance" VALUES(9,'10.02.2017',1,6);
-INSERT INTO "attendance" VALUES(10,'10.02.2017',0,7);
-INSERT INTO "attendance" VALUES(11,'11.02.2017',1,1);
-INSERT INTO "attendance" VALUES(12,'11.02.2017',1,3);
-INSERT INTO "attendance" VALUES(13,'11.02.2017',1,4);
-INSERT INTO "attendance" VALUES(14,'11.02.2017',1,5);
-INSERT INTO "attendance" VALUES(15,'11.02.2017',1,6);
+INSERT INTO "attendance" VALUES(1,'2017-02-01',0,2);
+INSERT INTO "attendance" VALUES(2,'2017-02-02',1,2);
+INSERT INTO "attendance" VALUES(3,'2017-02-03',1,2);
+INSERT INTO "attendance" VALUES(4,'2017-02-04',1,2);
+INSERT INTO "attendance" VALUES(5,'2017-02-01',1,1);
+INSERT INTO "attendance" VALUES(6,'2017-02-01',1,3);
+INSERT INTO "attendance" VALUES(7,'2017-02-01',1,4);
+INSERT INTO "attendance" VALUES(8,'2017-02-01',1,5);
+INSERT INTO "attendance" VALUES(9,'2017-02-01',1,6);
+INSERT INTO "attendance" VALUES(10,'2017-02-03',0,7);
+INSERT INTO "attendance" VALUES(11,'2017-02-03',1,1);
+INSERT INTO "attendance" VALUES(12,'2017-02-04',1,3);
+INSERT INTO "attendance" VALUES(13,'2017-02-03',1,4);
+INSERT INTO "attendance" VALUES(14,'2017-02-05',1,5);
+INSERT INTO "attendance" VALUES(15,'2017-02-07',1,6);
 DELETE FROM sqlite_sequence;
 INSERT INTO "sqlite_sequence" VALUES('teams',3);
 INSERT INTO "sqlite_sequence" VALUES('roles',4);

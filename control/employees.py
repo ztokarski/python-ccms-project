@@ -1,6 +1,4 @@
-
-
-
+from control.user import User
 
 class Manager(User):
     '''
@@ -16,3 +14,4 @@ class Manager(User):
 class Employee(User):
     def __init__(self, name, surname):
         super().__init__(name, surname)
+
