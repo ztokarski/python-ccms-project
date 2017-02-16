@@ -1,5 +1,6 @@
 from control.user import User
 from model.student_model import Student_model
+from tabulate import tabulate
 
 class Student(User):
     student_list = []
@@ -58,3 +59,9 @@ class Student(User):
     def remove_student(student_id):
         model = Student_model()
         model.remove_student(student_id)
+
+    @classmethod
+    def show_students_list(cls):
+        students = Student.get_students_list()
+        return tabulate(students, headers=['ID', 'NAME', 'SURNAME', 'GROUP'], tablefmt='fancy_grid',
+                   stralign='center')
