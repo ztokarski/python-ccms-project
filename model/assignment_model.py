@@ -33,13 +33,3 @@ class AssignmentModel:
         self.conn.commit()
 
 
-#
-# if __name__ == '__main__':
-#     model = AssignmentModel()
-#
-#     # model.add_assignment('nowe zadanie', '2017-03-03', '36', '9')
-#     as_list = model.get_list_of_assignments()
-#     print(tabulate(as_list, headers=['Name', 'Max.Points', 'Due Date', 'Created by'], tablefmt='fancy_grid',
-#                    stralign='center'))
-
-

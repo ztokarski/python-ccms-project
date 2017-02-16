@@ -7,13 +7,17 @@ class Assignment:
     Class for assignment.
     """
     assignments_list = []
-    def __init__(self, name, due_date):
+    def __init__(self, name):
+        self.id = id_assignment
         self.name = name
         self.due = due_date
+        self.points = max_points
+        self.mentor = mentor id
+
         self.assignments_list.append(self)
 
     def __repr__(self):
-        return "{} {}".format(self.name, self.due)
+        return "{} {} {}".format(self.name, self.due, self.points, self.points)
 
     @classmethod
     def get_assignments_list(cls):
@@ -33,10 +37,3 @@ class Assignment:
 
 
 
-
-
-# ass1 = Assignment("kaszanka", '2017-02-05')
-# ass2 = Assignment("pasztet", "2017-02-02")
-# print(Assignment.get_assignments_list())
-
-print(Assignment.get_assignments_list())

@@ -36,7 +36,6 @@ class Student(User):
         Method for submitting assignment
         '''
         assigment = Sub_assigment(name)
-        # assigment.student = student
         assigment.date = "{}.{}.{}".format(time.localtime()[2], time.localtime()[1], time.localtime()[0])
         return assigment
 
