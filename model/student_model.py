@@ -2,6 +2,7 @@ import sqlite3
 from model.user_model import *
 import os
 from tabulate import tabulate
+from sqlite3 import OperationalError
 
 
 class StudentModel(User_model):
@@ -48,5 +49,8 @@ class StudentModel(User_model):
         self.conn.commit()
 
     def remove_student(self, student_id):
-        self.conn.execute("DELETE FROM users where ID_user = {}".format(student_id))
-        # TODO trychatch if id not valid
+        try:
+            self.conn.execute("DELETE FROM users where ID_user = {} and ID_role = 1".format(student_id))
+            self.conn.commit()
+        except OperationalError:
+            print("Cannot remove")

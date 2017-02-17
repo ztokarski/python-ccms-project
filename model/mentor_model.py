@@ -47,6 +47,7 @@ class MentorModel:
     def remove_mentor(self, mentor_id):
         try:
             self.conn.execute("DELETE FROM users where ID_user = {} and ID_role = 2".format(mentor_id))
+            self.conn.commit()
         except OperationalError:
             print("Cannot remove")
 
