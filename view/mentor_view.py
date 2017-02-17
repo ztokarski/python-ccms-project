@@ -83,6 +83,7 @@ class MentorUI(EmployeeUI):
           login = input("Login must not be empty: ")
         StudentControl.add_student(name, surname, login)
 
+    @classmethod
     def remove_student(cls):
         student_id = input("Type student ID: ")
         while not student_id.isdigit():
