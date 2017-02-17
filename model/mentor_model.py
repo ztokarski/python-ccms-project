@@ -30,15 +30,7 @@ class MentorModel:
 
         return list_of_mentors
 
-    @staticmethod
-    def add_mentor(cls, *args):
-        model = Mentor_model()
-        model.add_mentor(args)
 
-    @staticmethod
-    def remove_mentor(mentor_id):
-        model = Mentor_model()
-        model.remove_mentor(mentor_id)
 
     @classmethod
     def show_mentors_list(cls):
@@ -50,3 +42,12 @@ class MentorModel:
         value = {'name':team_name}
         persistance.insert_data('Teams', value)
 
+
+    def add_mentor(self, name, surname, login):
+        self.conn.execute("INSERT INTO `users`(`name`,`surname`,`login`, `ID_role`) VALUES ('{}','{}','{}', 2);".format(name, surname, login))
+        self.conn.commit()
+
+
+    def remove_mentor(self, mentor_id):
+        self.conn.execute("DELETE FROM users where ID_user = {}".format(mentor_id))
+        # TODO trychatch if id not valid

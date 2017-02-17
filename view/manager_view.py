@@ -1,6 +1,5 @@
 from view.employee_view import EmployeeUI
-from model.user import Mentor
-from model.user import Student
+from control.mentors import MentorControl
 from model.mentor_model import *
 from tabulate import tabulate
 
@@ -28,9 +27,9 @@ class ManagerUI(EmployeeUI):
             if user_choose == "1":
                 print(tabulate(MentorModel.get_all_mentors(), headers= "", tablefmt='fancy_grid',stralign='center'))
             elif user_choose == "2":
-                self.add_new_mentor()
+                cls.add_new_mentor(cls)
             elif user_choose == "3":
-                self.remove_mentor()
+                cls.remove_mentor(cls)
             elif user_choose == "4":
                 print(Student.show_students_list())
             elif user_choose == "5":
@@ -54,7 +53,7 @@ class ManagerUI(EmployeeUI):
         login = input("Type login")
         while len(login) == 0:
             name = input("Login must not be empty: ")
-        Mentor.add_mentor(name, surname, login)
+        MentorControl.add_mentor(name, surname, login)
 
     def remove_mentor(self):
         print(Mentor.show_mentors_list())
