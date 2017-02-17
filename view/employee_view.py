@@ -29,7 +29,6 @@ class EmployeeUI():
                 print("Not implemented yet")
             elif user_choose == "5":
                 print("Not implemented yet")
-
             elif user_choose == "0":
                 break
             else:
