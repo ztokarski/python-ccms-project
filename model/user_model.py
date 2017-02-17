@@ -17,16 +17,16 @@ class User_model:
             user_object.login = user[3]
             user_object.password = user[4]
             user_object.status = user[5]
-            user_object.id_team = user[6]
-            user_object.id_role = user[7]
-            user_list.append(user_object)
+            user_object.id_role = user[6]
+            user_object.id_team = user[7]
 
+            user_list.append(user_object)
         return user_list
 
 
     @classmethod
     def get_object_by_id(self, id):
-        conn = sqlite3.connect('/home/lukasz/PycharmProjects/ccm/python-ccms-programadores/ccms.db')
+        conn = sqlite3.connect('ccms.db')
         users = conn.execute("SELECT * FROM users WHERE ID_user == %i" % (int(id)))
         for user in users:
             name = user[1]

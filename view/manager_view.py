@@ -1,6 +1,8 @@
 from view.employee_view import EmployeeUI
 from model.user import Mentor
 from model.user import Student
+from model.mentor_model import *
+from tabulate import tabulate
 
 class ManagerUI(EmployeeUI):
     def __init__(self, manager):
@@ -24,7 +26,7 @@ class ManagerUI(EmployeeUI):
             )
             user_choose = input('Your choose: ')
             if user_choose == "1":
-                print(Mentor.show_mentors_list())
+                print(tabulate(MentorModel.get_all_mentors(), headers= "", tablefmt='fancy_grid',stralign='center'))
             elif user_choose == "2":
                 self.add_new_mentor()
             elif user_choose == "3":

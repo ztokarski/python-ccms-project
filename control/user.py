@@ -1,6 +1,9 @@
 
 class User:
-    """Class for user."""
+
+    '''
+    Class for user.
+    '''
 
     def __init__(self, name, surname):
         self.id = 0
@@ -17,8 +20,10 @@ class User:
 
 
 class Student(User):
-    """Class for student."""
 
+    '''
+    Class for student.
+    '''
     def __init__(self, name, surname):
         super().__init__(name, surname)
         self.team = None
@@ -28,13 +33,16 @@ class Student(User):
         return "{} {} {} {} {}\n".format(self.name, self.surname, self.login, self.password, self.status)
 
 
+
 class Mentor(User):
 
     def __init__(self, name, surname):
         super().__init__(name, surname)
 
 class Manager(User):
-    """Class for Manager."""
+    '''
+    Class for Manager.
+    '''
     def __init__(self, name, surname):
         super().__init__(name, surname)
 

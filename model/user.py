@@ -49,7 +49,7 @@ class Manager(User):
         super().__init__(name, surname)
 
     def __str__(self):
-        return "{}".format("BOSKI JUREK")
+        return "{}".format("Witaj Szefo")
 
 
 class Employee(User):

@@ -7,7 +7,7 @@ import os
 
 class Assigment:
 
-    conn = sqlite3.connect(os.path.realpath('../ccms.db'))
+    conn = sqlite3.connect(os.path.realpath('ccms.db'))
 
     def __init__(self, name, due):
         self.name = name

@@ -1,4 +1,6 @@
-from model.user import *
+from model.mentor_model import *
+from model.student_model import *
+from tabulate import tabulate
 
 class EmployeeUI():
     def __init__(self, employee):
@@ -17,9 +19,9 @@ class EmployeeUI():
             )
             user_choose = input('Your choose: ')
             if user_choose == "1":
-                print(Student.show_students_list())
+                print(tabulate(StudentModel.get_all_students(), headers=['ID', "name", "surname"], tablefmt='fancy_grid',stralign='center'))
             elif user_choose == "2":
-                print(Mentor.show_mentors_list())
+                print(tabulate(MentorModel.get_all_mentors(), headers="", tablefmt='fancy_grid', stralign='center'))
             elif user_choose == "3":
                 pass
             elif user_choose == "4":
