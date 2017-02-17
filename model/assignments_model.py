@@ -6,7 +6,18 @@ import os
 class AssignmentModel():
 
     conn = sqlite3.connect(os.path.realpath('ccms.db'))
+
     cursor = conn.cursor()
+
+
+    def __init__(self, name, due):
+        self.name = name
+        self.due = due
+
+    def __repr__(self):
+
+     return "{} {}".format(self.name, self.due)
+
 
     @classmethod
     def get_assignments_list(cls):

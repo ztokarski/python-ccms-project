@@ -1,9 +1,11 @@
 from view.employee_view import *
 from model.student_model import *
-from tabulate import tabulate
 from model.assignments_model import *
 from model.attendance_model import AttendanceModel
 from control.attendance import AttendanceControl
+from tabulate import tabulate
+from control.students import StudentControl
+
 
 class MentorUI(EmployeeUI):
     def __init__(self, mentor):
@@ -78,8 +80,8 @@ class MentorUI(EmployeeUI):
             surname = input("Surname must not be empty: ")
         login = input("Type login: ")
         while len(login) == 0:
-            name = input("Login must not be empty: ")
-        StudentModel.add_student(name, surname, login)
+          login = input("Login must not be empty: ")
+        StudentControl.add_student(name, surname, login)
 
     def remove_student(cls):
         student_id = input("Type student ID: ")

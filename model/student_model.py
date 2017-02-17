@@ -1,11 +1,18 @@
 import sqlite3
 from model.user_model import *
 import os
-
+from tabulate import tabulate
 
 
 class StudentModel(User_model):
     conn = sqlite3.connect(os.path.realpath('ccms.db'))
+
+
+
+
+
+class StudentModel(User_model):
+    conn = sqlite3.connect('ccms.db')
     cursor = conn.cursor()
 
     @classmethod
@@ -36,15 +43,10 @@ class StudentModel(User_model):
         students = Mentor.get_mentors_list()
         return tabulate(students, headers=['ID', 'NAME', 'SURNAME'], tablefmt='fancy_grid',stralign='center')
 
+    def add_student(self, name, surname, login):
+        self.conn.execute("INSERT INTO `users`(`name`,`surname`,`login`) VALUES ('{}','{}','{}');".format(name, surname, login))
+        self.conn.commit()
 
-
-    # @staticmethod
-    # def add_student(cls, *args):
-    #     model = StudentModel()
-    #     model.add_student(args)
-
-    # @classmethod
-    # def add_student(self, ID, name, surname, login, password, status, ID_role, ID_team):
-    #     values = {'ID_user': ID, 'name': name, 'surname': surname, 'login': login, 'password': password, 'status': status, 'ID_role': ID_role,'ID_team':ID_team}
-
-
+    def remove_student(self, student_id):
+        self.conn.execute("DELETE FROM users where ID_user = {}".format(student_id))
+        # TODO trychatch if id not valid

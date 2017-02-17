@@ -22,6 +22,14 @@ class EmployeeUI():
                 print(tabulate(StudentModel.get_all_students(), headers=['ID', "name", "surname"], tablefmt='fancy_grid',stralign='center'))
             elif user_choose == "2":
                 print(tabulate(MentorModel.get_all_mentors(), headers="", tablefmt='fancy_grid', stralign='center'))
+
+            elif user_choose == "3":
+                pass
+            elif user_choose == "4":
+                pass
+            elif user_choose == "5":
+                pass
+
             elif user_choose == "0":
                 break
             else:

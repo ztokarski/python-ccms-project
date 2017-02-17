@@ -1,6 +1,9 @@
 from model.user import *
 import os
 import sqlite3
+from sqlite3 import OperationalError
+from tabulate import tabulate
+
 
 
 class MentorModel:
@@ -30,23 +33,20 @@ class MentorModel:
 
         return list_of_mentors
 
-    @staticmethod
-    def add_mentor(cls, *args):
-        model = Mentor_model()
-        model.add_mentor(args)
-
-    @staticmethod
-    def remove_mentor(mentor_id):
-        model = Mentor_model()
-        model.remove_mentor(mentor_id)
 
     @classmethod
     def show_mentors_list(cls):
         mentors = Mentor.get_mentors_list()
         return tabulate(mentors, headers=['ID', 'NAME', 'SURNAME'], tablefmt='fancy_grid',
                         stralign='center')
-    @classmethod
-    def create_team(self, team_name):
-        value = {'name':team_name}
-        persistance.insert_data('Teams', value)
+
+    def add_mentor(self, name, surname, login):
+        self.conn.execute("INSERT INTO `users`(`name`,`surname`,`login`, `ID_role`) VALUES ('{}','{}','{}', 2);".format(name, surname, login))
+        self.conn.commit()
+
+    def remove_mentor(self, mentor_id):
+        try:
+            self.conn.execute("DELETE FROM users where ID_user = {} and ID_role = 2".format(mentor_id))
+        except OperationalError:
+            print("Cannot remove")
 
