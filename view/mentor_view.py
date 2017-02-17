@@ -52,19 +52,19 @@ class MentorUI(EmployeeUI):
             elif user_choose == "5":
                 print(tabulate(AssignmentModel.get_assignments_list(), headers=['ID', "name", "surname"], tablefmt='fancy_grid',stralign='center'))
             elif user_choose == "6":
-                pass
+                print("Not implemented yet")
             elif user_choose == "7":
-                pass
+                print("Not implemented yet")
             elif user_choose == "8":
-                pass
+                print("Not implemented yet")
             elif user_choose == "9":
-                pass
+                print("Not implemented yet")
             elif user_choose == "10":
-                pass
+                print("Not implemented yet")
             elif user_choose == "11":
-                pass
+                print("Not implemented yet")
             elif user_choose == "12":
-                pass
+                print("Not implemented yet")
             elif user_choose == "0":
                 break
             else:

@@ -30,9 +30,9 @@ class StudentUI():
                 pass
 
             elif user_choose == "4":
-                pass
+                print("Not implemented yet")
             elif user_choose == "5":
-                pass
+                print("Not implemented yet")
             elif user_choose == "0":
                 break
             else:

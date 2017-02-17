@@ -24,11 +24,11 @@ class EmployeeUI():
                 print(tabulate(MentorModel.get_all_mentors(), headers="", tablefmt='fancy_grid', stralign='center'))
 
             elif user_choose == "3":
-                pass
+                print("Not implemented yet")
             elif user_choose == "4":
-                pass
+                print("Not implemented yet")
             elif user_choose == "5":
-                pass
+                print("Not implemented yet")
 
             elif user_choose == "0":
                 break

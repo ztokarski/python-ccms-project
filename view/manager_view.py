@@ -35,11 +35,11 @@ class ManagerUI(EmployeeUI):
             elif user_choose == "4":
                 print(tabulate(StudentModel.get_all_students(), headers=['ID', "name", "surname"], tablefmt='fancy_grid',stralign='center'))
             elif user_choose == "5":
-                pass
+                print("Not implemented yet")
             elif user_choose == "6":
-                pass
+                print("Not implemented yet")
             elif user_choose == "7":
-                pass
+                print("Not implemented yet")
             elif user_choose == "0":
                 break
             else:
