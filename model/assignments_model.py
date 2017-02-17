@@ -1,31 +1,20 @@
-import sqlite3
 from model.user import *
-
 
 import sqlite3
 import os
 
-class Assigment:
+class AssignmentModel():
 
-    conn = sqlite3.connect(os.path.realpath('../ccms.db'))
-
-    def __init__(self, name, due):
-        self.name = name
-        self.due = due
-
-    def __repr__(self):
-
-     return "{} {}".format(self.name, self.due)
+    conn = sqlite3.connect(os.path.realpath('ccms.db'))
+    cursor = conn.cursor()
 
     @classmethod
     def get_assignments_list(cls):
         assignment_list = []
-        conn = sqlite3.connect('ccms.db')
         assignments = cls.conn.execute("SELECT * FROM assignments")
         for assignment in assignments:
             name = assignment[1]
-
-            object = Assigment(name)
+            object = Assignment(name)
             object.due = assignment[2]
             object.max_points = assignment[3]
             object.id = assignment[0]
@@ -53,14 +42,14 @@ class Assigment:
         assignments = conn.execute("SELECT * FROM assignments WHERE ID_assignment == %i" % (int(id)))
         for assignment in assignments:
             name = assignment[1]
-            assignment_object = Assigment(name)
+            assignment_object = Assignment(name)
             assignment_object.due = assignment[2]
             assignment_object.max_points = assignment[3]
 
         return assignment_object
 
 
-class Sub_assignment(Assigment):
+class Sub_assignment(AssignmentModel):
 
 
     def __init__(self, name):

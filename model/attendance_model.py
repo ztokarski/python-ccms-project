@@ -14,3 +14,4 @@ class AttendanceModel:  # tworzyc instacncje z danymi
 
     def set_attendance(self):
         pass
+

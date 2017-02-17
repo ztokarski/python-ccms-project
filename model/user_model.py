@@ -26,7 +26,7 @@ class User_model:
 
     @classmethod
     def get_object_by_id(self, id):
-        conn = sqlite3.connect('/home/lukasz/PycharmProjects/ccm/python-ccms-programadores/ccms.db')
+        conn = sqlite3.connect('ccms.db')
         users = conn.execute("SELECT * FROM users WHERE ID_user == %i" % (int(id)))
         for user in users:
             name = user[1]

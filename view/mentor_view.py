@@ -1,5 +1,9 @@
 from view.employee_view import *
-
+from model.student_model import *
+from tabulate import tabulate
+from model.assignments_model import *
+from model.attendance_model import AttendanceModel
+from control.attendance import AttendanceControl
 
 class MentorUI(EmployeeUI):
     def __init__(self, mentor):
@@ -30,15 +34,21 @@ class MentorUI(EmployeeUI):
             user_choose = input('Your choose: ')
 
             if user_choose == "1":
-                pass
+                # headers = ["id", "data", "attendance", "id_student"]
+                # print(tabulate((AttendanceControl.display_attendance(a.get_attendance_from_db())), headers,tablefmt="fancy_grid", numalign="center"))
+                a = AttendanceModel()
+                attendance_list = a.get_attendance_from_db()
+                headers = ["id", "data", "attendance", "id_student"]
+                print(tabulate((AttendanceControl.display_attendance(a.get_attendance_from_db())), headers,tablefmt="fancy_grid", numalign="center"))
             elif user_choose == "2":
-                self.add_new_student()
+                MentorUI.add_new_student()
             elif user_choose == "3":
-                self.remove_student()
+                MentorUI.remove_student()
             elif user_choose == "4":
-                print(Student.show_students_list())
+                headers = ['ID', "name", "surname"]
+                print(tabulate(StudentModel.get_all_students(), headers, tablefmt='fancy_grid', stralign='center'))
             elif user_choose == "5":
-                pass
+                print(tabulate(AssignmentModel.get_assignments_list(), headers=['ID', "name", "surname"], tablefmt='fancy_grid',stralign='center'))
             elif user_choose == "6":
                 pass
             elif user_choose == "7":
@@ -58,7 +68,8 @@ class MentorUI(EmployeeUI):
             else:
                 print("Bad choice. Enter correct value.")
 
-    def add_new_student(self):
+    @classmethod
+    def add_new_student(cls):
         name = input("Type student name: ")
         while len(name) == 0:
             name = input("Name must not be empty: ")
@@ -68,13 +79,13 @@ class MentorUI(EmployeeUI):
         login = input("Type login: ")
         while len(login) == 0:
             name = input("Login must not be empty: ")
-        Student.add_student(name, surname, login)
+        StudentModel.add_student(name, surname, login)
 
-    def remove_student(self):
+    def remove_student(cls):
         student_id = input("Type student ID: ")
         while not student_id.isdigit():
             student_id = input("Student ID must be valid number: ")
-        Student.remove_student(student_id)
+        StudentModel.remove_student(student_id)
 
     def add_assignment(self):
         '''do kontrolera'''
