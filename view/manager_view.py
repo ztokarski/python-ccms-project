@@ -56,9 +56,8 @@ class ManagerUI(EmployeeUI):
         MentorControl.add_mentor(name, surname, login)
 
     def remove_mentor(self):
-        print(Mentor.show_mentors_list())
         mentor_id = input("Type mentor id: ")
         while not mentor_id.isdigit():
             mentor_id = input("Student ID must be valid number: ")
 
-        Mentor.remove_mentor(mentor_id)
+        MentorControl.remove_mentor(mentor_id)

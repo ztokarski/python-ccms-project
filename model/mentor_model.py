@@ -1,6 +1,7 @@
 from model.user import *
 import os
 import sqlite3
+from sqlite3 import OperationalError
 
 
 class MentorModel:
@@ -49,5 +50,7 @@ class MentorModel:
 
 
     def remove_mentor(self, mentor_id):
-        self.conn.execute("DELETE FROM users where ID_user = {}".format(mentor_id))
-        # TODO trychatch if id not valid
+        try:
+            self.conn.execute("DELETE FROM users where ID_user = {} and ID_role = 2".format(mentor_id))
+        except OperationalError:
+            print("Cannot remove")
