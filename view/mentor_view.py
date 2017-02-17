@@ -74,12 +74,12 @@ class MentorUI(EmployeeUI):
         StudentControl.add_student(name, surname, login)
 
 
-
-    def remove_student(cls):
+    @staticmethod
+    def remove_student():
         student_id = input("Type student ID: ")
         while not student_id.isdigit():
             student_id = input("Student ID must be valid number: ")
-        StudentModel.remove_student(student_id)
+        StudentControl.remove_student(student_id)
 
     def add_assignment(self):
         '''do kontrolera'''
