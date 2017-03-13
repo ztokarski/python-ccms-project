@@ -1,0 +1,2 @@
+
+DATABASE = "ccms.db"
