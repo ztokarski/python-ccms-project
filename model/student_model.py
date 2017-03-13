@@ -6,13 +6,6 @@ from sqlite3 import OperationalError
 
 
 class StudentModel(User_model):
-    conn = sqlite3.connect(os.path.realpath('ccms.db'))
-
-
-
-
-
-class StudentModel(User_model):
     conn = sqlite3.connect('ccms.db')
     cursor = conn.cursor()
 
