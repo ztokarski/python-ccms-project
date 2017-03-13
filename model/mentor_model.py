@@ -4,8 +4,6 @@ import sqlite3
 from sqlite3 import OperationalError
 from tabulate import tabulate
 
-
-
 class MentorModel:
 
     conn = sqlite3.connect(os.path.realpath('ccms.db'))
