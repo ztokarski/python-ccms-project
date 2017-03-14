@@ -2,7 +2,7 @@ from model.student_model import *
 from flask import Flask, render_template, request
 # from configure import DATABASE as db
 import sqlite3
-import db_connection
+from model.user import Student
 
 app = Flask(__name__)
 # app.database = db
@@ -42,10 +42,8 @@ def submit_student():
     name = request.form["name"]
     surname = request.form["surname"]
     login = request.form["login"]
-    test_list = []
-    test_list.append(name)
-    test_list.append(surname)
-    test_list.append(login)
+    my_student = Student(name, surname)
+    my_student.login = login
     return render_template("/test_from.html", lista=test_list)
 
 @app.route("/student_edit")
@@ -104,6 +102,8 @@ def employee_edit():
 
 
 if __name__ == '__main__':
-    database = db_connection.DB
-    database.execute("DROP TABLE IF EXISTS users")
+    # database = db_connection.DB
+    # database.execute("DROP TABLE IF EXISTS users;"
+    #                  "CREATE TABLE users (ID_user PRIMARY KEY AUTOINCREMENT, name, surname, login, password, status, ID_role, status)
+    # VALUES ())
     app.run(debug=True)

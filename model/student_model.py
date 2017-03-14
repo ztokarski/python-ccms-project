@@ -30,7 +30,6 @@ class StudentModel(User_model):
 
         return list_of_students
 
-
     @classmethod
     def show_student_list(cls):
         students = Mentor.get_mentors_list()
@@ -51,4 +50,4 @@ class StudentModel(User_model):
         except OperationalError:
             print("Cannot remove")
 
-# StudentModel.add_student("Antoni", "Macierewicz", "smolenskkurwa")
+
