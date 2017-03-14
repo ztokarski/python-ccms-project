@@ -9,8 +9,6 @@ app.database = db
 @app.route("/")
 def index():
     return render_template("index.html")
-# def main():
-#     Login_view.login_password()
 
 @app.route("/main")
 def main():
@@ -20,8 +18,7 @@ def main():
 def test():
     c = sqlite3.connect(app.database)
     conn = c.cursor()
-    db_list = conn.execute(""SELECT * FROM users "
-                            "WHERE ID_role = 1 ")
+    db_list = conn.execute("SELECT * FROM users WHERE ID_role = 1 ")
     my_list = []
     for row in db_list:
         my_list.append(row)
@@ -75,8 +72,7 @@ def assignment_edit():
 def employee_list():
     c = sqlite3.connect(app.database)
     conn = c.cursor()
-    db_list = conn.execute(""SELECT * FROM users "
-                            "WHERE ID_role = 3 ")
+    db_list = conn.execute("SELECT * FROM users WHERE ID_role = 3 ")
     employees = []
     for row in db_list:
         employees.append(row)
