@@ -1,10 +1,10 @@
-# from model.student_model import *
+from model.student_model import *
 from flask import Flask, render_template, request
-from configure import DATABASE as db
+# from configure import DATABASE as db
 import sqlite3
 
 app = Flask(__name__)
-app.database = db
+# app.database = db
 
 @app.route("/")
 def index():
@@ -28,10 +28,14 @@ def test():
 
 @app.route("/student_list")
 def student_list():
-    return render_template("student_list.html")
+    list_of_students = StudentModel.get_all_students()
+    return render_template("student_list.html", lista=list_of_students)
 
-@app.route("/student_add")
+@app.route("/student_add.html", methods=["POST"])
 def student_add():
+    name = request.form["name"]
+    surname = request.form["surname"]
+    login = request.form["login"]
     return render_template("student_add.html")
 
 @app.route("/student_edit")
