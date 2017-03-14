@@ -2,6 +2,7 @@ from model.student_model import *
 from flask import Flask, render_template, request
 # from configure import DATABASE as db
 import sqlite3
+import db_connection
 
 app = Flask(__name__)
 # app.database = db
@@ -31,16 +32,25 @@ def student_list():
     list_of_students = StudentModel.get_all_students()
     return render_template("student_list.html", lista=list_of_students)
 
-@app.route("/student_add.html", methods=["POST"])
-def student_add():
+@app.route("/student_add")
+def student_form():
+    return render_template("student_add.html")
+
+@app.route("/student_add", methods=["POST"])
+def submit_student():
+
     name = request.form["name"]
     surname = request.form["surname"]
     login = request.form["login"]
-    return render_template("student_add.html")
+    test_list = []
+    test_list.append(name)
+    test_list.append(surname)
+    test_list.append(login)
+    return render_template("/test_from.html", lista=test_list)
 
 @app.route("/student_edit")
 def student_edit():
-    return render_template("student_edit.html")
+    return render_template("test.html")
 
 
 
@@ -94,4 +104,6 @@ def employee_edit():
 
 
 if __name__ == '__main__':
+    database = db_connection.DB
+    database.execute("DROP TABLE IF EXISTS users")
     app.run(debug=True)

@@ -51,4 +51,4 @@ class StudentModel(User_model):
         except OperationalError:
             print("Cannot remove")
 
-StudentModel.add_student("Antoni", "Macierewicz", "smolenskkurwa")
+# StudentModel.add_student("Antoni", "Macierewicz", "smolenskkurwa")
