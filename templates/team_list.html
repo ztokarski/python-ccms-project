@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+
+<html>
+    <head>
+        <link rel="stylesheet" type="text/css" href="css/style.css">
+        <link rel="stylesheet" type="text/css" href="css/table.css">
+        <title>Team List</title>
+        <meta charset="utf-8">
+    </head>
+    <body>
+        <header style="background-image: url(img/ccms-header.jpg)"></header>
+        <div class="sidebar">
+            <div class="profile">
+                <img id="profile_picture" src="http://bit.ly/2l7tkrK"/>
+                <p id="profile_name">Logged as: <strong>PRZEMEK</strong> <hr></p>
+                <button type="button" id="logout_button"
+                onclick="location.href='index.html'">logout</button>
+            </div>
+            <div class="navigation">
+                <nav>
+                    <ul class="navigation"><strong>LOGIN</strong>
+                        <li><a href="index.html">correct login</a> </li>
+                        <li><a href="login_error.html">incorrect login</a> </li><hr>
+                        <li><strong>STUDENT</strong></li>
+                        <li><a href="student_list.html">List</a></li>
+                        <li><a href="student_add.html">Add</a></li>
+                        <li><a href="student_edit.html">Edit</a></li>
+                        <li><a href="student_details.html">Details</a></li><hr>
+                        <li><strong>TEAM</strong></li>
+                        <li><a class = "active" href="team_list.html">List</a></li>
+                        <li><a href="team_add.html">Add</a></li>
+                        <li><a href="team_edit.html">Edit</a></li><hr>
+                        <li><strong>MENTOR</strong></li>
+                        <li><a href="mentor_list.html">List</a></li>
+                        <li><a href="mentor_add.html">Add</a></li>
+                        <li><a href="mentor_edit.html">Edit</a></li>
+                        <li><a href="mentor_details.html">Details</a></li><hr>
+                        <li><strong>EMPLOYEE</strong></li>
+                        <li><a href="employee_list.html">List</a></li>
+                        <li><a href="employee_add.html">Add</a></li>
+                        <li><a href="employee_edit.html">Edit</a></li><hr>
+                        <li><strong>CLASS</strong></li>
+                        <li><a href="class_list.html">List</a></li>
+                        <li><a href="class_add.html">Add</a></li>
+                        <li><a href="class_edit.html">Edit</a></li><hr>
+                        <li><strong>ASSIGNMENTS</strong></li>
+                        <li><a href="assignment_list.html">List</a></li>
+                        <li><a href="assignment_add.html">Add</a></li>
+                        <li><a href="assignment_edit.html">Edit</a></li><hr>
+                        <li><strong>ATTENDANCE</strong></li>
+                        <li><a href="attendance_check.html">Check</a></li>
+                    </ul>
+                </nav>
+            </div>
+        </div>
+        <article>
+            <h3>LIST OF TEAMS</h3>
+            <div>
+                <center><table class="team">
+                    <tr>
+                        <th>#</th>
+                        <th>Team Name</th>
+                        <th>Members</th>
+                        <th>Actions</th>
+                        <th class="button_border"><button class="button" type="button"
+                            onclick="location.href='team_add.html'">add team</button></th>
+                    </tr>
+                    <tr>
+                        <td>1</td>
+                        <td>MOTYLKI</td>
+                        <td>5</td>
+                        <td>
+                            <ul>
+                                <li><a href="team_edit.html">[Edit] </a></li>
+                                <li><a href="#.html">[Remove]</a></li>
+                            </ul>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>2</td>
+                        <td>BIEDRONKI</td>
+                        <td>4</td>
+                        <td>
+                            <ul>
+                                <li><a href="team_edit.html">[Edit] </a></li>
+                                <li><a href="#.html">[Remove]</a></li>
+                            </ul>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>3</td>
+                        <td>MUCHOMORKI</td>
+                        <td>5</td>
+                        <td>
+                            <ul>
+                                <li><a href="team_edit.html">[Edit] </a></li>
+                                <li><a href="#.html">[Remove]</a></li>
+                            </ul>
+                        </td>
+                    </tr>
+              </table></center>
+            </div>
+        </article>
+    </body>
+</html>

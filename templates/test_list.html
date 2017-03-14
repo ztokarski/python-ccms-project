@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+
+<html>
+<link rel="stylesheet" type="text/css" href="static/css/style.css">
+<link rel="stylesheet" type="text/css" href="static/css/table.css">
+<head></head>
+<body>
+<table>
+<thead>
+
+{% for item in my_list %}
+    <tr>
+    <th>Item</th>
+    </tr>
+    </thead>
+    <tbody><tr><td>{{ item }}</td></tr></tbody>
+    {% endfor %}
+
+</table>
+</body>
+</html>
