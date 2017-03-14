@@ -6,7 +6,7 @@ from sqlite3 import OperationalError
 
 
 class StudentModel(User_model):
-    conn = sqlite3.connect(os.path.realpath('ccms.db'))
+    conn = sqlite3.connect('ccms.db')
     cursor = conn.cursor()
 
     @classmethod
@@ -14,6 +14,7 @@ class StudentModel(User_model):
         list_of_students = []
         students = cls.conn.execute("SELECT * FROM users "
                                     "WHERE ID_role = 1 ")
+
         for student in students:
             name = student[1]
             surname = student[2]
@@ -27,7 +28,9 @@ class StudentModel(User_model):
             list_object= []
             list_object.append(student_object)
             list_of_students.append(list_object)
+
         return list_of_students
+
 
     @classmethod
     def show_student_list(cls):

@@ -1,7 +1,6 @@
-# from model.student_model import *
-from flask import Flask, render_template, request
+
 from configure import DATABASE as db
-import sqlite3
+from flask import Flask , render_template , request
 
 app = Flask(__name__)
 app.database = db
@@ -12,7 +11,7 @@ def index():
 # def main():
 #     Login_view.login_password()
 
-@app.route("/main")
+@app.route("/main.html")
 def main():
     return render_template("main.html")
 
@@ -20,7 +19,7 @@ def main():
 def test():
     c = sqlite3.connect(app.database)
     conn = c.cursor()
-    db_list = conn.execute(""SELECT * FROM users "
+    db_list = conn.execute("SELECT * FROM users "
                             "WHERE ID_role = 1 ")
     my_list = []
     for row in db_list:
@@ -75,7 +74,7 @@ def assignment_edit():
 def employee_list():
     c = sqlite3.connect(app.database)
     conn = c.cursor()
-    db_list = conn.execute(""SELECT * FROM users "
+    db_list = conn.execute("SELECT * FROM users "
                             "WHERE ID_role = 3 ")
     employees = []
     for row in db_list:
