@@ -65,89 +65,21 @@
                         <th class="button_border"><button class="button" type="button"
                             onclick="location.href='student_add.html'">add student</button></th>
                     </tr>
-                    <tr>
-                        <td>1</td>
-                        <td>Adam</td>
-                        <td>Abacki</td>
-                        <td>
-                            <ul>
-                                <li><a href="student_edit.html">[Edit] </a></li>
-                                <li><a href="#.html">[Remove]</a></li>
-                                <li><a href="student_edit.html">[Add to team]</a></li>
-                            </ul>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>2</td>
-                        <td>Bolesław</td>
-                        <td>Babacki</td>
-                        <td>
-                            <ul>
-                                <li><a href="student_edit.html">[Edit] </a></li>
-                                <li><a href="#.html">[Remove]</a></li>
-                                <li><a href="student_edit.html">[Add to team]</a></lli>
-                            </ul>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>3</td>
-                        <td>Czesław</td>
-                        <td>Cabacki</td>
-                        <td>
-                            <ul>
-                                <li><a href="student_edit.html">[Edit] </a></li>
-                                <li><a href="#.html">[Remove]</a></li>
-                                <li><a href="student_edit.html">[Add to team]</a></l
-                            </ul>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>4</td>
-                        <td>Damian</td>
-                        <td>Dabacki</td>
-                        <td>
-                            <ul>
-                                <li><a href="student_edit.html">[Edit] </a></li>
-                                <li><a href="#.html">[Remove]</a></li>
-                                <li><a href="student_edit.html">[Add to team]</a></l
-                            </ul>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>5</td>
-                        <td>Edward</td>
-                        <td>Ebacki</td>
-                        <td>
-                            <ul>
-                                <li><a href="student_edit.html">[Edit] </a></li>
-                                <li><a href="#.html">[Remove]</a></li>
-                                <li><a href="student_edit.html">[Add to team]</a></l
-                            </ul>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>6</td>
-                        <td>Fabian</td>
-                        <td>Fabacki</td>
-                        <td>
-                            <ul>
-                                <li><a href="student_edit.html">[Edit] </a></li>
-                                <li><a href="#.html">[Remove]</a></li>
-                                <li><a href="student_edit.html">[Add to team]</a></l
-                            </ul>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>7</td>
-                        <td>Grzegorz</td>
-                        <td>Gabacki</td>
-                        <td>
-                            <ul>
-                                <li><a href="student_edit.html">[Edit] </a></li>
-                                <li><a href="#.html">[Remove]</a></li>
-                                <li><a href="student_edit.html">[Add to team]</a></l                            </ul>
-                        </td>
-                    </tr>
+                    {% block content %}
+                        {% for student in students %}
+                            <tr>
+                            <td>{{ students.index(student)+1 }}</td>
+                            <td>{{ student[1] }}</td>
+                            <td>{{ student[2] }}</td>
+                            <td>
+                                <ul>
+                                    <li><a href="employee_edit.html">[Edit] </a></li>
+                                    <li><a href="#">[Remove]</a></li><br>
+                                </ul>
+                            </td>
+                            </tr>
+                        {% endfor %}
+                    {% endblock %}
               </table></center>
             </div>
         </article>

@@ -14,22 +14,16 @@ def index():
 def main():
     return render_template("main.html")
 
-@app.route("/test")
-def test():
+@app.route("/student_list.html")
+def student_list():
     c = sqlite3.connect(app.database)
     conn = c.cursor()
     db_list = conn.execute("SELECT * FROM users "
                             "WHERE ID_role = 1 ")
-    my_list = []
+    students = []
     for row in db_list:
-        my_list.append(row)
-    return render_template("test_list.html", my_list=my_list)
-
-
-
-@app.route("/student_list.html")
-def student_list():
-    return render_template("student_list.html")
+        students.append(row)
+    return render_template("student_list.html" , students=students)
 
 @app.route("/student_add.html")
 def student_add():
@@ -43,7 +37,14 @@ def student_edit():
 
 @app.route("/mentor_list.html")
 def mentor_list():
-    return render_template("mentor_list.html")
+    c = sqlite3.connect(app.database)
+    conn = c.cursor()
+    db_list = conn.execute("SELECT * FROM users "
+                            "WHERE ID_role = 2 ")
+    mentors = []
+    for row in db_list:
+        mentors.append(row)
+    return render_template("mentor_list.html", mentors=mentors)
 
 @app.route("/mentor_add.html")
 def mentor_add():
@@ -57,7 +58,14 @@ def mentor_edit():
 
 @app.route("/assignment_list.html")
 def assignment_list():
-    return render_template("assignment_list.html")
+    c = sqlite3.connect(app.database)
+    conn = c.cursor()
+    db_list = conn.execute("SELECT * FROM assignments ")
+
+    assignments = []
+    for row in db_list:
+        assignments.append(row)
+    return render_template("assignment_list.html", assignments=assignments)
 
 @app.route("/assignment_add.html")
 def assignment_add():
@@ -89,6 +97,25 @@ def employee_edit():
     return render_template("employee_edit.html")
 
 
+
+@app.route("/team_list.html")
+def team_list():
+    c = sqlite3.connect(app.database)
+    conn = c.cursor()
+    db_list = conn.execute("SELECT * FROM teams ")
+
+    teams = []
+    for row in db_list:
+        teams.append(row)
+    return render_template("team_list.html", teams=teams)
+
+@app.route("/team_add.html")
+def team_add():
+    return render_template("team_add.html")
+
+@app.route("/team_edit.html")
+def team_edit():
+    return render_template("team_edit.html")
 
 
 if __name__ == '__main__':

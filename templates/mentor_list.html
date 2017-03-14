@@ -65,50 +65,21 @@
                         <th class="button_border"><button class="button" type="button"
                             onclick="location.href='mentor_add.html'">Add mentor</button></th>
                     </tr>
-                    <tr>
-                        <td>1</td>
-                        <td>Przemysław</td>
-                        <td>Ciąćka</td>
-                        <td>
-                            <ul>
-                                <li><a href="mentor_edit.html">[Edit] </a></li>
-                                <li><a href="#">[Remove]</a></li>
-                            </ul>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>2</td>
-                        <td>Mateusz</td>
-                        <td>Ostafil</td>
-                        <td>
-                            <ul>
-                                <li><a href="mentor_edit.html">[Edit] </a></li>
-                                <li><a href="#">[Remove]</a></li>
-                            </ul>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>3</td>
-                        <td>Marcin</td>
-                        <td>Izworski</td>
-                        <td>
-                            <ul>
-                                <li><a href="mentor_edit.html">[Edit] </a></li>
-                                <li><a href="#">[Remove]</a></li>
-                            </ul>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>4</td>
-                        <td>Rafał</td>
-                        <td>Stępień</td>
-                        <td>
-                            <ul>
-                                <li><a href="mentor_edit.html">[Edit] </a></li>
-                                <li><a href="#">[Remove]</a></li>
-                            </ul>
-                        </td>
-                    </tr>
+                    {% block content %}
+                        {% for mentor in mentors %}
+                            <tr>
+                            <td>{{ mentors.index(mentor)+1 }}</td>
+                            <td>{{ mentor[1] }}</td>
+                            <td>{{ mentor[2] }}</td>
+                            <td>
+                                <ul>
+                                    <li><a href="employee_edit.html">[Edit] </a></li>
+                                    <li><a href="#">[Remove]</a></li><br>
+                                </ul>
+                            </td>
+                            </tr>
+                        {% endfor %}
+                    {% endblock %}
               </table></center>
             </div>
         </article>

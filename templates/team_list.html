@@ -2,8 +2,8 @@
 
 <html>
     <head>
-        <link rel="stylesheet" type="text/css" href="css/style.css">
-        <link rel="stylesheet" type="text/css" href="css/table.css">
+        <link rel="stylesheet" type="text/css" href="static/css/style.css">
+        <link rel="stylesheet" type="text/css" href="static/css/table.css">
         <title>Team List</title>
         <meta charset="utf-8">
     </head>
@@ -60,44 +60,24 @@
                     <tr>
                         <th>#</th>
                         <th>Team Name</th>
-                        <th>Members</th>
                         <th>Actions</th>
                         <th class="button_border"><button class="button" type="button"
                             onclick="location.href='team_add.html'">add team</button></th>
                     </tr>
-                    <tr>
-                        <td>1</td>
-                        <td>MOTYLKI</td>
-                        <td>5</td>
-                        <td>
-                            <ul>
-                                <li><a href="team_edit.html">[Edit] </a></li>
-                                <li><a href="#.html">[Remove]</a></li>
-                            </ul>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>2</td>
-                        <td>BIEDRONKI</td>
-                        <td>4</td>
-                        <td>
-                            <ul>
-                                <li><a href="team_edit.html">[Edit] </a></li>
-                                <li><a href="#.html">[Remove]</a></li>
-                            </ul>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>3</td>
-                        <td>MUCHOMORKI</td>
-                        <td>5</td>
-                        <td>
-                            <ul>
-                                <li><a href="team_edit.html">[Edit] </a></li>
-                                <li><a href="#.html">[Remove]</a></li>
-                            </ul>
-                        </td>
-                    </tr>
+                    {% block content %}
+                        {% for team in teams %}
+                            <tr>
+                            <td>{{ teams.index(team) + 1 }}</td>
+                            <td>{{ team[1] }}</td>
+                            <td>
+                                <ul>
+                                    <li><a href="employee_edit.html">[Edit] </a></li>
+                                    <li><a href="#">[Remove]</a></li><br>
+                                </ul>
+                            </td>
+                            </tr>
+                        {% endfor %}
+                    {% endblock %}
               </table></center>
             </div>
         </article>
