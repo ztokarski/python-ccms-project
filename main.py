@@ -1,11 +1,9 @@
-from model.student_model import *
 from flask import Flask, render_template, request, url_for, redirect
-# from configure import DATABASE as db
+from model.student_model import *
 import sqlite3
-from model.user import Student
 
 app = Flask(__name__)
-# app.database = db
+
 
 @app.route("/")
 def index():
@@ -29,8 +27,8 @@ def test():
 
 @app.route("/student_list", methods=["GET", "POST"])
 def student_list():
-    list_of_students = StudentModel.get_all_students()
-    return render_template("student_list.html", lista=list_of_students)
+    students = StudentModel.get_all_students()
+    return render_template("student_list.html", students=students)
 
 @app.route("/add")
 def student_form():
@@ -48,9 +46,13 @@ def submit_student():
     return redirect(url_for("student_list"))
 
 
-@app.route("/student_edit")
-def student_edit():
-    return render_template("test.html")
+# @app.route("/student_edit")
+# def student_edit():
+#     return render_template("test.html")
+@app.route("/student_remove/<int:student_id>", methods=["GET", "POST"])
+def remove_student(student_id):
+    StudentModel.remove_student(student_id)
+    return redirect(url_for("student_list"))
 
 
 @app.route("/mentor_list")

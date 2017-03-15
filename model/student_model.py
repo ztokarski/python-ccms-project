@@ -1,6 +1,4 @@
-import sqlite3
 from model.user_model import *
-# from tabulate import tabulate
 from sqlite3 import OperationalError
 from db_connection import DB
 
@@ -41,11 +39,12 @@ class StudentModel(User_model):
         data.commit()
         data.close()
 
+    @classmethod
     def remove_student(self, student_id):
-        try:
-            self.conn.execute("DELETE FROM users where ID_user = {} and ID_role = 1".format(student_id))
-            self.conn.commit()
-        except OperationalError:
-            print("Cannot remove")
+        data = DB.get_connection()
+        cursor = data.cursor()
+        cursor.execute("DELETE FROM users where ID_user = {} and ID_role = 1".format(student_id))
+        data.commit()
+        data.close()
 
 
