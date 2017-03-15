@@ -56,7 +56,7 @@
         <article>
             <center>
             <div class="form">
-                <form action=""{{ url_for('submit_student') }}" method="POST">
+                <form action="{{ url_for('submit_student') }}" method="POST">
                     <h2>Add student menu</h2>
                     <p>
                         <label>Name</label>
@@ -69,7 +69,7 @@
                     <input type="radio" name="areyou" value="female"> Female
                     <input type="radio" name="areyou" value="robot"> Robot</p>
                     <p><textarea  rows="5" cols="30" name="comments" placeholder="Enter your comments"></textarea></p>
-                    <p> <button class="button" type="submit" formaction="/test_from.html"> ADD STUDENT</button> </p>
+                    <p> <button class="button" type="submit" formaction="/add"> ADD STUDENT</button> </p>
                 </form>
             </div>
             </center>

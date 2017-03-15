@@ -1,5 +1,5 @@
 from model.student_model import *
-from flask import Flask, render_template, request, url_for, redirect
+from flask import Flask, render_template, request, url_for
 # from configure import DATABASE as db
 import sqlite3
 from model.user import Student
@@ -38,14 +38,13 @@ def student_form():
 
 @app.route("/add", methods=["POST"])
 def submit_student():
+
     name = request.form["name"]
     surname = request.form["surname"]
     login = request.form["login"]
     my_student = Student(name, surname)
     my_student.login = login
     StudentModel.add_student(my_student)
-    # return render_template("student_list.html")
-    return redirect(url_for("student_list"))
 
 # @app.route("/test_from", methods=["POST", "GET"])
 # def test_from():
