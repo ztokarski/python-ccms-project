@@ -2,20 +2,16 @@ from model.user import *
 import os
 import sqlite3
 from sqlite3 import OperationalError
-from tabulate import tabulate
-
+from db_connection import DB
 
 
 class MentorModel:
-
-    conn = sqlite3.connect(os.path.realpath('ccms.db'))
-    cursor = conn.cursor()
-
     @classmethod
     def get_all_mentors(cls):
+        data = DB.get_connection()
+        data.cursor()
         list_of_mentors = []
-        mentors = cls.conn.execute("SELECT * FROM users "
-                                   "WHERE ID_role = 2 ")
+        mentors = data.execute("SELECT * FROM users WHERE ID_role = 2; ")
 
         for mentor in mentors:
             name = mentor[1]
@@ -27,9 +23,7 @@ class MentorModel:
             mentor_object.status = mentor[5]
             mentor_object.id_team = mentor[6]
             mentor_object.id_role = mentor[7]
-            list_object= []
-            list_object.append(mentor_object)
-            list_of_mentors.append(list_object)
+            list_of_mentors.append(mentor_object)
 
         return list_of_mentors
 

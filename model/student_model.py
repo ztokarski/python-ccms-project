@@ -1,14 +1,15 @@
 from model.user_model import *
-from sqlite3 import OperationalError
 from db_connection import DB
 
 class StudentModel(User_model):
+
     @classmethod
     def get_all_students(cls):
         data = DB.get_connection()
         data.cursor()
         list_of_students = []
         students = data.execute("SELECT * FROM users WHERE ID_role = 1; ")
+
         for student in students:
             student_object = Student(student[1], student[2])
             student_object.id = student[0]

@@ -1,14 +1,9 @@
 from model.user import *
-
+from db_connection import DB
 import sqlite3
 import os
 
 class AssignmentModel():
-
-    conn = sqlite3.connect(os.path.realpath('ccms.db'))
-
-    cursor = conn.cursor()
-
 
     def __init__(self, name, due):
         self.name = name
@@ -21,8 +16,11 @@ class AssignmentModel():
 
     @classmethod
     def get_assignments_list(cls):
-        assignment_list = []
-        assignments = cls.conn.execute("SELECT * FROM assignments")
+        data = DB.get_connection()
+        data.cursor()
+        list_of_assignments = []
+        assignments = data.execute("SELECT * FROM assignments")
+
         for assignment in assignments:
             name = assignment[1]
             object = Assignment(name)
@@ -31,7 +29,7 @@ class AssignmentModel():
             object.id = assignment[0]
             assignment_list.append(object)
 
-        return assignment_list
+        return list_of_assignments
 
 
 

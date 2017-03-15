@@ -2,16 +2,16 @@
 
 <html>
     <head>
-        <link rel="stylesheet" type="text/css" href="css/style.css">
-        <link rel="stylesheet" type="text/css" href="css/table.css">
+        <link rel="stylesheet" type="text/css" href="static/css/style.css">
+        <link rel="stylesheet" type="text/css" href="static/css/table.css">
         <title>Mentor List</title>
         <meta charset="utf-8">
     </head>
     <body>
-        <header style="background-image: url(img/ccms-header.jpg)"></header>
+        <header style="background-image: url(static/img/ccms-header.jpg)"></header>
         <div class="sidebar">
             <div class="profile">
-                <img id="profile_picture" src="http://bit.ly/2l7tkrK"/>
+                <img id="profile_picture" src="http://www.ockrk.co/assets/nophoto.jpeg"/>
                 <p id="profile_name">Logged as: <strong>PRZEMEK</strong> <hr></p>
                 <button type="button" id="logout_button"
                 onclick="location.href='index.html'">logout</button>
@@ -65,50 +65,21 @@
                         <th class="button_border"><button class="button" type="button"
                             onclick="location.href='mentor_add.html'">Add mentor</button></th>
                     </tr>
-                    <tr>
-                        <td>1</td>
-                        <td>Przemysław</td>
-                        <td>Ciąćka</td>
-                        <td>
-                            <ul>
-                                <li><a href="mentor_edit.html">[Edit] </a></li>
-                                <li><a href="#">[Remove]</a></li>
-                            </ul>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>2</td>
-                        <td>Mateusz</td>
-                        <td>Ostafil</td>
-                        <td>
-                            <ul>
-                                <li><a href="mentor_edit.html">[Edit] </a></li>
-                                <li><a href="#">[Remove]</a></li>
-                            </ul>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>3</td>
-                        <td>Marcin</td>
-                        <td>Izworski</td>
-                        <td>
-                            <ul>
-                                <li><a href="mentor_edit.html">[Edit] </a></li>
-                                <li><a href="#">[Remove]</a></li>
-                            </ul>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>4</td>
-                        <td>Rafał</td>
-                        <td>Stępień</td>
-                        <td>
-                            <ul>
-                                <li><a href="mentor_edit.html">[Edit] </a></li>
-                                <li><a href="#">[Remove]</a></li>
-                            </ul>
-                        </td>
-                    </tr>
+                    {% block content %}
+                        {% for mentor in mentors %}
+                            <tr>
+                            <td>{{ mentors.index(mentor)+1 }}</td>
+                            <td>{{ mentor.name }}</td>
+                            <td>{{ mentor.surname }}</td>
+                            <td>
+                                <ul>
+                                    <li><a href="employee_edit.html">[Edit] </a></li>
+                                    <li><a href="#">[Remove]</a></li><br>
+                                </ul>
+                            </td>
+                            </tr>
+                        {% endfor %}
+                    {% endblock %}
               </table></center>
             </div>
         </article>
