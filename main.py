@@ -44,18 +44,13 @@ def submit_student():
     my_student = Student(name, surname)
     my_student.login = login
     StudentModel.add_student(my_student)
-    # return render_template("student_list.html")
-    return redirect(url_for("student_list"))
 
-# @app.route("/test_from", methods=["POST", "GET"])
-# def test_from():
-#     render_template("test_from.html")
+    return redirect(url_for("student_list"))
 
 
 @app.route("/student_edit")
 def student_edit():
     return render_template("test.html")
-
 
 
 @app.route("/mentor_list")
@@ -69,8 +64,6 @@ def mentor_add():
 @app.route("/mentor_edit")
 def mentor_edit():
     return render_template("mentor_edit.html")
-
-
 
 @app.route("/assignment_list")
 def assignment_list():
