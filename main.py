@@ -1,3 +1,4 @@
+from model.employee_model import *
 from model.assignments_model import *
 from model.student_model import *
 from model.mentor_model import *
@@ -65,14 +66,8 @@ def assignment_edit():
 
 @app.route("/employee_list.html")
 def employee_list():
-    c = sqlite3.connect(app.database)
-    conn = c.cursor()
-    db_list = conn.execute("SELECT * FROM users "
-                            "WHERE ID_role = 3 ")
-    employees = []
-    for row in db_list:
-        employees.append(row)
-    return render_template("employee_list.html", employees = employees)
+    employees = EmployeeModel.get_all_employees()
+    return render_template("employee_list.html", employees=employees)
 
 @app.route("/employee_add.html")
 def employee_add():

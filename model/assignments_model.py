@@ -5,11 +5,6 @@ import os
 
 class AssignmentModel():
 
-    conn = sqlite3.connect(os.path.realpath('ccms.db'))
-
-    cursor = conn.cursor()
-
-
     def __init__(self, name, due):
         self.name = name
         self.due = due

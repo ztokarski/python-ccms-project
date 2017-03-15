@@ -4,7 +4,7 @@ from model.user_model import *
 from sqlite3 import OperationalError
 from db_connection import DB
 
-class StudentModel(User_model):
+class StudentModel():
 
 
     @classmethod
@@ -48,6 +48,3 @@ class StudentModel(User_model):
             self.conn.commit()
         except OperationalError:
             print("Cannot remove")
-
-# StudentModel.add_student("Antoni", "Macierewicz", "smolenskkurwa")
-print(StudentModel.get_all_students())
