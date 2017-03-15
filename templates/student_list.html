@@ -8,7 +8,7 @@
         <meta charset="utf-8">
     </head>
     <body>
-        <header style="background-image: url(img/ccms-header.jpg)"></header>
+        <header style="background-image: url(static/img/ccms-header.jpg)"></header>
         <div class="sidebar">
             <div class="profile">
                 <img id="profile_picture" src="http://bit.ly/2l7tkrK"/>
@@ -69,8 +69,8 @@
                         {% for student in students %}
                             <tr>
                             <td>{{ students.index(student)+1 }}</td>
-                            <td>{{ student[1] }}</td>
-                            <td>{{ student[2] }}</td>
+                            <td>{{ student.name }}</td>
+                            <td>{{ student.surname }}</td>
                             <td>
                                 <ul>
                                     <li><a href="employee_edit.html">[Edit] </a></li>

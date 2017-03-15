@@ -1,3 +1,6 @@
+from model.assignments_model import *
+from model.student_model import *
+from model.mentor_model import *
 import sqlite3
 from configure import DATABASE as db
 from flask import Flask , render_template , request
@@ -14,16 +17,11 @@ def index():
 def main():
     return render_template("main.html")
 
+
 @app.route("/student_list.html")
 def student_list():
-    c = sqlite3.connect(app.database)
-    conn = c.cursor()
-    db_list = conn.execute("SELECT * FROM users "
-                            "WHERE ID_role = 1 ")
-    students = []
-    for row in db_list:
-        students.append(row)
-    return render_template("student_list.html" , students=students)
+    students = StudentModel.get_all_students()
+    return render_template("student_list.html", students=students)
 
 @app.route("/student_add.html")
 def student_add():
@@ -37,13 +35,7 @@ def student_edit():
 
 @app.route("/mentor_list.html")
 def mentor_list():
-    c = sqlite3.connect(app.database)
-    conn = c.cursor()
-    db_list = conn.execute("SELECT * FROM users "
-                            "WHERE ID_role = 2 ")
-    mentors = []
-    for row in db_list:
-        mentors.append(row)
+    mentors = MentorModel.get_all_mentors()
     return render_template("mentor_list.html", mentors=mentors)
 
 @app.route("/mentor_add.html")
@@ -58,13 +50,7 @@ def mentor_edit():
 
 @app.route("/assignment_list.html")
 def assignment_list():
-    c = sqlite3.connect(app.database)
-    conn = c.cursor()
-    db_list = conn.execute("SELECT * FROM assignments ")
-
-    assignments = []
-    for row in db_list:
-        assignments.append(row)
+    assignments = AssignmentModel.get_assignments_list()
     return render_template("assignment_list.html", assignments=assignments)
 
 @app.route("/assignment_add.html")
