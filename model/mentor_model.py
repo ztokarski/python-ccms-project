@@ -32,9 +32,14 @@ class MentorModel:
         return tabulate(mentors, headers=['ID', 'NAME', 'SURNAME'], tablefmt='fancy_grid',
                         stralign='center')
 
-    def add_mentor(self, name, surname, login):
-        self.conn.execute("INSERT INTO `users`(`name`,`surname`,`login`, `ID_role`) VALUES ('{}','{}','{}', 2);".format(name, surname, login))
-        self.conn.commit()
+    @classmethod
+    def add_mentor(self, mentor):
+        data = DB.get_connection()
+        cursor = data.cursor()
+        cursor.execute("INSERT INTO `users`(`name`,`surname`,`login`) VALUES ('{}','{}','{}');".format(mentor.name, mentor.surname, mentor.login))
+        data.commit()
+        data.close()
+
 
     def remove_mentor(self, mentor_id):
         try:
