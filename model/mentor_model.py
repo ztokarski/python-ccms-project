@@ -14,9 +14,7 @@ class MentorModel:
         mentors = data.execute("SELECT * FROM users WHERE ID_role = 2; ")
 
         for mentor in mentors:
-            name = mentor[1]
-            surname = mentor[2]
-            mentor_object = Mentor(name, surname)
+            mentor_object = Mentor(mentor[1], mentor[2])
             mentor_object.id = mentor[0]
             mentor_object.login = mentor[3]
             mentor_object.password = mentor[4]
@@ -24,7 +22,7 @@ class MentorModel:
             mentor_object.id_team = mentor[6]
             mentor_object.id_role = mentor[7]
             list_of_mentors.append(mentor_object)
-
+        data.close()
         return list_of_mentors
 
 
