@@ -7,11 +7,9 @@ import sqlite3
 
 app = Flask(__name__)
 
-
 @app.route("/")
 def index():
     return render_template("index.html")
-
 
 @app.route("/main.html")
 def main():
@@ -36,8 +34,7 @@ def submit_student():
     StudentModel.add_student(my_student)
     return redirect(url_for("student_list"))
 
-
-@app.route("/student_edit.html")
+@app.route("/student_edit")
 def student_edit():
     return render_template("student_edit.html")
 
@@ -46,12 +43,10 @@ def remove_student(student_id):
     StudentModel.remove_student(student_id)
     return redirect(url_for("student_list"))
 
-
 @app.route("/mentor_list")
 def mentor_list():
     mentors = MentorModel.get_all_mentors()
     return render_template("mentor_list.html", mentors=mentors)
-
 
 @app.route("/mentor_add")
 def mentor_form():
@@ -61,7 +56,7 @@ def mentor_form():
 def remove_mentor(mentor_id):
     MentorModel.remove_mentor(mentor_id)
     return redirect(url_for("mentor_list"))
-#
+
 @app.route("/mentor_add", methods=["POST"])
 def submit_mentor():
     name = request.form["name"]
@@ -107,7 +102,6 @@ def team_list():
     c = sqlite3.connect(app.database)
     conn = c.cursor()
     db_list = conn.execute("SELECT * FROM teams ")
-
     teams = []
     for row in db_list:
         teams.append(row)
@@ -120,7 +114,6 @@ def team_add():
 @app.route("/team_edit.html")
 def team_edit():
     return render_template("team_edit.html")
-
 
 if __name__ == '__main__':
     app.run(debug=True)
