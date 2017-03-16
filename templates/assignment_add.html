@@ -12,7 +12,7 @@
         <!-- baner end -->
         <div class="sidebar">
             <div class="profile">
-                <img id="profile_picture" src="http://www.ockrk.co/assets/nophoto.jpeg/>
+                <img id="profile_picture" src="http://bit.ly/2l7tkrK"/>
                 <p id="profile_name">Logged as: <strong>PRZEMEK</strong> <hr></p>
                 <button type="button" id="logout_button"
                 onclick="location.href='index'">logout</button>
@@ -59,68 +59,13 @@
             <!-- assignment form -->
             <center>
             <div class="form">
+                <form action="{{ url_for('submit_assignment') }}" method="POST">
                 <h2>Add assignment menu</h2>
-                <p>Name<br><input name="name" placeholder="Enter assignment name" required="required"></p>
-                <p>Description<br><textarea rows="5" cols="30" name="comments" placeholder="Enter assignment description, please make it clear to help students understand easily :)"></textarea></p>
-                <p>Deadline term<br>
-                    <select name="day">
-                        <option value="day"></option>
-                        <option value="day">1</option>
-                        <option value="day">2</option>
-                        <option value="day">3</option>
-                        <option value="day">4</option>
-                        <option value="day">5</option>
-                        <option value="day">6</option>
-                        <option value="day">7</option>
-                        <option value="day">8</option>
-                        <option value="day">9</option>
-                        <option value="day">10</option>
-                        <option value="day">11</option>
-                        <option value="day">12</option>
-                        <option value="day">13</option>
-                        <option value="day">14</option>
-                        <option value="day">15</option>
-                        <option value="day">16</option>
-                        <option value="day">17</option>
-                        <option value="day">18</option>
-                        <option value="day">19</option>
-                        <option value="day">20</option>
-                        <option value="day">21</option>
-                        <option value="day">22</option>
-                        <option value="day">23</option>
-                        <option value="day">24</option>
-                        <option value="day">25</option>
-                        <option value="day">26</option>
-                        <option value="day">27</option>
-                        <option value="day">28</option>
-                        <option value="day">29</option>
-                        <option value="day">30</option>
-                        <option value="day">31</option>
-                    </select>
-                    <select name="month">
-                        <option value="month"></option>
-                        <option value="month">January</option>
-                        <option value="month">February</option>
-                        <option value="month">March</option>
-                        <option value="month">April</option>
-                        <option value="month">May</option>
-                        <option value="month">June</option>
-                        <option value="month">July</option>
-                        <option value="month">August</option>
-                        <option value="month">September</option>
-                        <option value="month">October</option>
-                        <option value="month">November</option>
-                        <option value="month">December</option>
+                <p><lable>Name</lable></p>
+                    <p><input name="name" placeholder="Enter assignment name"></p>
+                    <p><lable>Description</lable></p>
+                    <p><textarea rows="5" cols="30" name="comments" placeholder="Enter assignment description, please make it clear to help students understand easily :)"></textarea></p>
 
-                    </select>
-                    <select name="year">
-                        <option value="year"></option>
-                        <option value="year">2017</option>
-                        <option value="year">2018</option>
-                        <option value="year">2019</option>
-                        <option value="year">2020</option>
-                    </select>
-                </p>
                 <p>Max points<br><input type="radio" name="points" > 12
                     <input type="radio" name="points" > 24
                     <input type="radio" name="points" > 36
@@ -129,7 +74,9 @@
                     <input type="radio" name="points" > 72
                 </p>
                 <p> <button class="button" type="button" >ADD ASSIGNMENT</button> </p>
-            </div></center>
+                </form>
+            </div>
+            </center>
         </article>
     </body>
-    </html>
+</html>

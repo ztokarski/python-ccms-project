@@ -31,6 +31,24 @@ class AssignmentModel:
         data.commit()
         data.close()
 
+    @classmethod
+    def remove_assignment(cls, ID_assignment):
+        """remove assignment from DB"""
+        data = DB.get_connection()
+        cursor = data.cursor()
+        cursor.execute("DELETE FROM attendance where ID_user = {}".format(ID_assignment))
+        data.commit()
+        data.close()
+
+    @classmethod
+    def edit_assignment(cls, assignment):
+        """edit assignment in DB"""
+        data = DB.get_connection()
+        cursor = data.cursor()
+        cursor.execute("UPDATE assignments SET assignment_name = ?, due_date = ?, max_points = ? WHERE ID_assignment = ?", (assignment.assignment_name, assignment.due_date, assignment.max_points))
+        data.commit()
+        data.close()
+
 
     @classmethod
     def get_object_id(cls, id):
