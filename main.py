@@ -34,9 +34,19 @@ def submit_student():
     StudentModel.add_student(my_student)
     return redirect(url_for("student_list"))
 
-@app.route("/student_edit")
-def student_edit():
-    return render_template("student_edit.html")
+
+@app.route("/student_edit/<int:student_id>", methods=["POST", "GET"])
+def student_edit(student_id):
+    student_to_edit = User_model.get_object_by_id(student_id)
+    if request.method == "GET":
+        return render_template("student_edit.html", student=student_to_edit)
+    elif request.method == "POST":
+        student_with_new_data = Student(request.form["name"], request.form["surname"])
+        student_with_new_data.login = request.form["login"]
+        student_with_new_data.id = student_id
+        print(student_with_new_data)
+        StudentModel.edit_student(student_with_new_data)
+        return redirect(url_for("student_list"))
 
 @app.route("/student_remove/<int:student_id>", methods=["GET", "POST"])
 def remove_student(student_id):

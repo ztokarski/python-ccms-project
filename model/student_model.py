@@ -44,4 +44,11 @@ class StudentModel(User_model):
         data.commit()
         data.close()
 
-
+    @classmethod
+    def edit_student(cls, student):
+        data = DB.get_connection()
+        cursor = data.cursor()
+        cursor.execute("UPDATE users SET name = ?, surname = ?, login = ? WHERE ID_user = ?",
+                       (student.name, student.surname, student.login, student.id))
+        data.commit()
+        data.close()
