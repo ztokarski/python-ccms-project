@@ -37,7 +37,7 @@ def submit_student():
 
     return redirect(url_for("student_list"))
 
-@app.route("/student_edit.html")
+@app.route("/student_edit")
 def student_edit():
     return render_template("student_edit.html")
 
@@ -47,16 +47,16 @@ def remove_student(student_id):
     return redirect(url_for("student_list"))
 
 
-@app.route("/mentor_list.html")
+@app.route("/mentor_list")
 def mentor_list():
     mentors = MentorModel.get_all_mentors()
     return render_template("mentor_list.html", mentors=mentors)
 
-@app.route("/mentor_add.html")
+@app.route("/mentor_add")
 def mentor_add():
     return render_template("mentor_add.html")
 
-@app.route("/mentor_edit.html")
+@app.route("/mentor_edit")
 def mentor_edit():
     return render_template("mentor_edit.html")
 
@@ -65,32 +65,30 @@ def assignment_list():
     assignments = AssignmentModel.get_assignments_list()
     return render_template("assignment_list.html", assignments=assignments)
 
-@app.route("/assignment_add.html")
+@app.route("/assignment_add")
 def assignment_add():
     return render_template("assignment_add.html")
 
-@app.route("/assignment_edit.html")
+@app.route("/assignment_edit")
 def assignment_edit():
     return render_template("assignment_edit.html")
 
 
 
-@app.route("/employee_list.html")
+@app.route("/employee_list")
 def employee_list():
     employees = EmployeeModel.get_all_employees()
     return render_template("employee_list.html", employees=employees)
 
-@app.route("/employee_add.html")
+@app.route("/employee_add")
 def employee_add():
     return render_template("employee_add.html")
 
-@app.route("/employee_edit.html")
+@app.route("/employee_edit")
 def employee_edit():
     return render_template("employee_edit.html")
 
-
-
-@app.route("/team_list.html")
+@app.route("/team_list")
 def team_list():
     c = sqlite3.connect(app.database)
     conn = c.cursor()
@@ -101,11 +99,11 @@ def team_list():
         teams.append(row)
     return render_template("team_list.html", teams=teams)
 
-@app.route("/team_add.html")
+@app.route("/team_add")
 def team_add():
     return render_template("team_add.html")
 
-@app.route("/team_edit.html")
+@app.route("/team_edit")
 def team_edit():
     return render_template("team_edit.html")
 
