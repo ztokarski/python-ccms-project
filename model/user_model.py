@@ -28,9 +28,15 @@ class User_model:
         conn = sqlite3.connect('ccms.db')
         users = conn.execute("SELECT * FROM users WHERE ID_user == %i" % (int(id)))
         for user in users:
-            name = user[1]
-            surname = user[2]
-            user_object = User(name, surname)
+            if user[7] == 1:
+                user_object =Student(user[1], [user[2]])
+            elif user[7] == 2:
+                user_object = Mentor(user[1], user[2])
+            elif user[7] == 3:
+                user_object = Employee(user[1], user[2])
+            else:
+                user_object = Manager(user[1], user[2])
+
             user_object.id = user[0]
             user_object.login = user[3]
             user_object.password = user[4]
@@ -38,4 +44,5 @@ class User_model:
             user_object.id_team = user[6]
             user_object.id_role = user[7]
 
-        return user_object
+
+            return user_object

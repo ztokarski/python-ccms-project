@@ -13,6 +13,11 @@ app = Flask(__name__)
 def index():
     return render_template("index.html")
 
+@app.route("/set_cookie", methods=["POST", "GET"])
+def set_cookie():
+    if request.method == "POST":
+
+
 
 @app.route("/main.html")
 def main():
