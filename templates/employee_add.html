@@ -8,7 +8,7 @@
         <meta charset="utf-8">
     </head>
     <body>
-        <header style="background-image: url(img/ccms-header.jpg)"></header>
+        <header style="background-image: url(static/img/ccms-header.jpg)"></header>
         <div class="sidebar">
             <div class="profile">
                 <img id="profile_picture" src="http://bit.ly/2l7tkrK"/>
@@ -56,16 +56,17 @@
         <article>
             <center>
                 <div class="form">
-                    <h2>Add employee menu</h2>
-                    <p>Name<br><input name="name" placeholder="Enter employee name"></p>
-                    <p>Surname<br><input name="surname" placeholder="Enter employee surname"></p>
-                    <p>Login<br><input name="login" placeholder="Enter employee login"></p>
-                    <p>Password<br><input name="password" placeholder="Enter employee password"></p>
-                    <p>Gender<br><input type="radio" name="areyou" value="male"> Male
-                        <input type="radio" name="areyou" value="female"> Female
-                        <input type="radio" name="areyou" value="robot"> Robot</p>
-                    <p><textarea  rows="5" cols="30" name="comments" placeholder="Enter your comments"></textarea></p>
-                    <p> <button class="button" type="button" > ADD EMPLOYEE</button> </p>
+                    <form action="{{ url_for('submit_employee') }}" method="POST">
+                        <h2>Add employee menu</h2>
+                        <p>
+                            <label>Name</label>
+                            <input name="name" placeholder="Enter employee name">
+                        </p>
+                        <p>Surname<br><input name="surname" placeholder="Enter employee surname"></p>
+                        <p>Login<br><input name="login" placeholder="Enter employee login"></p>
+                        <p>Password<br><input name="password" placeholder="Enter employee password"></p>
+                        <p> <button class="button" type="submit" formaction="/employee_add"> Add employee</button> </p>
+                    </form>
                 </div>
             </center>
         </article>
