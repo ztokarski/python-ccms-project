@@ -44,5 +44,5 @@ class User_model:
             user_object.id_team = user[6]
             user_object.id_role = user[7]
 
-
             return user_object
+

@@ -1,4 +1,4 @@
-from flask import Flask, render_template, request, url_for, redirect
+from flask import Flask, render_template, request, url_for, redirect, make_response
 from model.employee_model import *
 from model.assignments_model import *
 from model.student_model import *
@@ -16,12 +16,18 @@ def index():
 @app.route("/set_cookie", methods=["POST", "GET"])
 def set_cookie():
     if request.method == "POST":
+        user_name = request.form["login"]
 
+        response = make_response(redirect("main"))
+        response.set_cookie("User_NAME", user_name)
 
+        return response
 
-@app.route("/main.html")
+@app.route("/main")
 def main():
-    return render_template("main.html")
+    name = request.cookies.get("User_NAME")
+    return render_template("main.html", name=name)
+
 
 @app.route("/student_list", methods=["GET", "POST"])
 def student_list():
@@ -54,8 +60,9 @@ def student_edit(student_id):
         student_with_new_data.id = student_id
         print(student_with_new_data)
         StudentModel.edit_student(student_with_new_data)
+
         return redirect(url_for("student_list"))
-            # redirect(url_for("student_list"))
+
 
 
 
