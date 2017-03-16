@@ -1,13 +1,13 @@
 from model.user import *
-class User_model:
+from db_connection import DB
 
-    conn = sqlite3.connect('ccms.db')
-    cursor = conn.cursor()
+class User_model:
 
     @classmethod
     def get_all_users(cls):
         user_list = []
-        db_list = cls.conn.execute("SELECT * FROM users")
+        database = DB.get_connection()
+        db_list = database.execute("SELECT * FROM users")
         for user in db_list:
             name = user[1]
             surname = user[2]
@@ -22,11 +22,19 @@ class User_model:
             user_list.append(user_object)
         return user_list
 
+    @classmethod
+    def get_id_from_login(cls, user_login):
+        database = DB.get_connection()
+        id_db = database.execute("SELECT ID_user FROM users WHERE login = ?", (user_login,))
+        user_id = id_db.fetchone()
+
+        return user_id[0]
+
 
     @classmethod
-    def get_object_by_id(self, id):
-        conn = sqlite3.connect('ccms.db')
-        users = conn.execute("SELECT * FROM users WHERE ID_user == %i" % (int(id)))
+    def get_object_by_id(cls, id):
+        database = DB.get_connection()
+        users = database.execute("SELECT * FROM users WHERE ID_user = ?", (int(id),))
         for user in users:
             if user[7] == 1:
                 user_object =Student(user[1], [user[2]])
@@ -44,5 +52,6 @@ class User_model:
             user_object.id_team = user[6]
             user_object.id_role = user[7]
 
-            return user_object
+            database.close()
 
+            return user_object
