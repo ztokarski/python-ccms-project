@@ -98,7 +98,12 @@ def assignment_form():
 
 @app.route("/assignment_add", methods=["POST"])
 def submit_assignment():
-    pass
+    assignment_name = request.form["assignment_name"]
+    due_date = request.form["due_date"]
+    max_points = request.form["max_points"]
+    my_assignment = Assignment(assignment_name, due_date, max_points)
+    AssignmentModel.add_assignment(my_assignment)
+    return redirect(url_for(assignment_list))
 
 @app.route("/assignment_edit")
 def assignment_edit():

@@ -4,14 +4,7 @@ import sqlite3
 import os
 
 
-class AssignmentModel():
-
-    def __init__(self, name, due):
-        self.name = name
-        self.due = due
-
-    def __repr__(self):
-        return "{} {}".format(self.name, self.due)
+class AssignmentModel:
 
     @classmethod
     def get_assignments_list(cls):
@@ -29,14 +22,15 @@ class AssignmentModel():
         data.close()
         return list_of_assignments
 
-    def add_assignment(self, *args):
-        '''
-        add a new assignment to DB
-        '''
-        self.conn.execute(
-            '''INSERT INTO assignments(assignment_name, due_date, max_points, ID_user)
-            VALUES ('{}','{}','{}','{}')'''.format(*args))
-        self.conn.commit()
+    @classmethod
+    def add_assignment(cls, assignment):
+        """add a new assignment to DB"""
+        data = DB.get_connection()
+        cursor = data.cursor()
+        cursor.execute("INSERT INTO `assignments`(`assignment_name`, `due_date`, `max_points`, `ID_user`) VALUES ('{}','{}','{}');".format(assignment.assignment_name, assignment.due_date, assignment.max_points))
+        data.commit()
+        data.close()
+
 
     @classmethod
     def get_object_id(cls, id):
