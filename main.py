@@ -3,6 +3,7 @@ from model.employee_model import *
 from model.assignments_model import *
 from model.student_model import *
 from model.mentor_model import *
+from model.user_model import User_model
 import sqlite3
 
 app = Flask(__name__)
@@ -39,13 +40,17 @@ def submit_student():
 
 @app.route("/student_edit/<int:student_id>", methods=["POST", "GET"])
 def student_edit(student_id):
+    student_to_edit = User_model.get_object_by_id(student_id)
     if request.method == "GET":
-        return render_template("student_edit.html")
-    else:
-        student_to_edit = Student(request.form["surname"], request.form["surname"])
-        student_to_edit.login = request.form["login"]
-        student_to_edit.id = student_id
-        StudentModel.edit_student(student_to_edit)
+        return render_template("student_edit.html", student=student_to_edit)
+    elif request.method == "POST":
+        student_with_new_data = Student(request.form["name"], request.form["surname"])
+        student_with_new_data.login = request.form["login"]
+        student_with_new_data.id = student_id
+        print(student_with_new_data)
+        StudentModel.edit_student(student_with_new_data)
+        return redirect(url_for("student_list"))
+            # redirect(url_for("student_list"))
 
 
 
@@ -116,7 +121,6 @@ def team_add():
 @app.route("/team_edit.html")
 def team_edit():
     return render_template("team_edit.html")
-
 
 if __name__ == '__main__':
     # database = db_connection.DB

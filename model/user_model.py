@@ -1,4 +1,3 @@
-import sqlite3
 from model.user import *
 class User_model:
 
@@ -31,7 +30,7 @@ class User_model:
         for user in users:
             name = user[1]
             surname = user[2]
-            user_object = User_model(name, surname)
+            user_object = User(name, surname)
             user_object.id = user[0]
             user_object.login = user[3]
             user_object.password = user[4]
