@@ -22,11 +22,11 @@ def student_list():
     students = StudentModel.get_all_students()
     return render_template("student_list.html", students=students)
 
-@app.route("/add")
+@app.route("/student_add")
 def student_form():
     return render_template("student_add.html")
 
-@app.route("/add", methods=["POST"])
+@app.route("/student_add", methods=["POST"])
 def submit_student():
     name = request.form["name"]
     surname = request.form["surname"]
@@ -75,14 +75,25 @@ def assignment_edit():
 
 
 
-@app.route("/employee_list.html")
+@app.route("/employee_list")
 def employee_list():
     employees = EmployeeModel.get_all_employees()
     return render_template("employee_list.html", employees=employees)
 
-@app.route("/employee_add.html")
-def employee_add():
+@app.route("/employee_add")
+def employee_form():
     return render_template("employee_add.html")
+
+@app.route("/employee_add", methods=["POST"])
+def submit_employee():
+    name = request.form["name"]
+    surname = request.form["surname"]
+    login = request.form["login"]
+    my_employee = Employee(name, surname)
+    my_employee.login = login
+    EmployeeModel.add_employee(my_employee)
+
+    return redirect(url_for("employee_list"))
 
 @app.route("/employee_edit.html")
 def employee_edit():
