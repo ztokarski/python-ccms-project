@@ -1,4 +1,10 @@
 /*Classes for login and forms*/
+#error_message {
+    color: red;
+    text-align: center;
+    font-size: 18px;
+}
+
 .header {
     text-align: center;
     background-color: #4682B4;

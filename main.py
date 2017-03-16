@@ -19,21 +19,23 @@ def set_cookie():
         user_login = request.form["login"]
         user_id = User_model.get_id_from_login(user_login)
         if user_id == "There's no such user!":
-            return user_id
+            return redirect("set_cookie")
         else:
-            user_object = User_model.get_object_by_id()
+            user_object = User_model.get_object_by_id(user_id)
 
             response = make_response(redirect("main"))
             response.set_cookie("user_login", user_login)
-            response.set_cookie("user_name", user_object.name)
-            response.set_cookie("user_surname", user_object.surname)
-            response.set_cookie("user_id", user_object.id)
+            response.set_cookie("user_name", str(user_object.name))
+            response.set_cookie("user_surname", str(user_object.surname))
+            response.set_cookie("user_id", str(user_object.id))
 
             return response
+    else:
+        return render_template("index.html", message="Invalid login or password!")
 
 @app.route("/main")
 def main():
-    name = request.cookies.get("User_NAME")
+    name = request.cookies.get("user_name")
     return render_template("main.html", name=name)
 
 
