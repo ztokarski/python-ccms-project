@@ -99,6 +99,10 @@ def submit_employee():
 def employee_edit():
     return render_template("employee_edit.html")
 
+@app.route("/employee_remove/<int:employee_id>", methods=["GET", "POST"])
+def remove_employee(employee_id):
+    EmployeeModel.remove_employee(employee_id)
+    return redirect(url_for("employee_list"))
 
 
 @app.route("/team_list.html")

@@ -58,17 +58,3 @@
         </article>
     </body>
     </html>
-
-                        {% block content %}
-                            {% for employee in employees %}
-                                <td>{{ employee[0] }}</td>
-                                <td>{{ employee[1] }}</td>
-                                <td>{{ employee[2] }}</td>
-                                <td>
-                                    <ul>
-                                        <li><a href="employee_edit.html">[Edit] </a></li>
-                                        <li><a href="#">[Remove]</a></li>
-                                    </ul>
-                                </td>
-                            {% endfor %}
-                        {% endblock %}
