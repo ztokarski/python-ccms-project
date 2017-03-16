@@ -22,23 +22,23 @@
                     <li><a href="index.html">correct login</a> </li>
                     <li><a href="login_error.html">incorrect login</a> </li><hr>
                     <strong>STUDENT</strong>
-                        <li><a href="student_list.html">List</a></li>
-                        <li><a href="student_add.html">Add</a></li>
-                        <li><a href="student_edit.html">Edit</a></li>
+                        <li><a href="student_list">List</a></li>
+                        <li><a href="student_add">Add</a></li>
+                        <li><a href="student_edit">Edit</a></li>
                         <li><a href="student_details.html">Details</a></li><hr>
                     <strong>TEAM</strong>
                         <li><a href="team_list.html">List</a></li>
                         <li><a href="team_add.html">Add</a></li>
                         <li><a href="team_edit.html">Edit</a></li><hr>
                     <strong>MENTOR</strong>
-                        <li><a href="mentor_list.html">List</a></li>
-                        <li><a href="mentor_add.html">Add</a></li>
-                        <li><a href="mentor_edit.html">Edit</a></li>
+                        <li><a href="mentor_list">List</a></li>
+                        <li><a href="mentor_add">Add</a></li>
+                        <li><a href="mentor_edit">Edit</a></li>
                         <li><a href="mentor_details.html">Details</a></li><hr>
                     <strong>EMPLOYEE</strong>
-                        <li><a href="employee_list.html">List</a></li>
-                        <li><a href="employee_add.html">Add</a></li>
-                        <li><a href="employee_edit.html">Edit</a></li><hr>
+                        <li><a href="employee_list">List</a></li>
+                        <li><a href="employee_add">Add</a></li>
+                        <li><a href="employee_edit">Edit</a></li><hr>
                     <strong>CLASS</strong>
                         <li><a href="class_list.html">List</a></li>
                         <li><a href="class_add.html">Add</a></li>
@@ -59,16 +59,3 @@
     </body>
     </html>
 
-                        {% block content %}
-                            {% for employee in employees %}
-                                <td>{{ employee[0] }}</td>
-                                <td>{{ employee[1] }}</td>
-                                <td>{{ employee[2] }}</td>
-                                <td>
-                                    <ul>
-                                        <li><a href="employee_edit.html">[Edit] </a></li>
-                                        <li><a href="#">[Remove]</a></li>
-                                    </ul>
-                                </td>
-                            {% endfor %}
-                        {% endblock %}

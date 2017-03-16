@@ -1,14 +1,14 @@
-from model.user import *
+from model.user_model import *
 from db_connection import DB
 
-class MentorModel:
+class MentorModel(User_model):
+
     @classmethod
     def get_all_mentors(cls):
         data = DB.get_connection()
         data.cursor()
         list_of_mentors = []
         mentors = data.execute("SELECT * FROM users WHERE ID_role = 2; ")
-
         for mentor in mentors:
             mentor_object = Mentor(mentor[1], mentor[2])
             mentor_object.id = mentor[0]
@@ -32,7 +32,7 @@ class MentorModel:
     def add_mentor(self, mentor):
         data = DB.get_connection()
         cursor = data.cursor()
-        cursor.execute("INSERT INTO `users`(`name`,`surname`,`login`) VALUES ('{}','{}','{}');".format(mentor.name, mentor.surname, mentor.login))
+        cursor.execute("INSERT INTO `users`(`name`,`surname`,`login`, 'ID_role') VALUES ('{}','{}','{}','{}');".format(mentor.name, mentor.surname, mentor.login, 2))
         data.commit()
         data.close()
 
@@ -40,6 +40,6 @@ class MentorModel:
     def remove_mentor(self, mentor_id):
         data = DB.get_connection()
         cursor = data.cursor()
-        cursor.execute("DELETE FROM users where ID_user = {} and ID_role = 1".format(mentor_id))
+        cursor.execute("DELETE FROM users where ID_user = {} and ID_role = 2".format(mentor_id))
         data.commit()
         data.close()
