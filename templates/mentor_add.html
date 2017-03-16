@@ -8,65 +8,63 @@
         <meta charset="utf-8">
     </head>
     <body>
-        <header style="background-image: url(img/ccms-header.jpg)"></header>
+        <header style="background-image: url(img/static/ccms-header.jpg)"></header>
         <div class="sidebar">
             <div class="profile">
                 <img id="profile_picture" src="http://bit.ly/2l7tkrK"/>
                 <p id="profile_name">Logged as: <strong>PRZEMEK</strong> <hr></p>
                 <button type="button" id="logout_button"
-                onclick="location.href='index.html'">logout</button>
+                onclick="location.href='index'">logout</button>
             </div>
             <div class="navigation">
                 <nav>
                     <ul class="navigation"><strong>LOGIN</strong>
-                        <li><a href="index.html">correct login</a> </li>
-                        <li><a href="login_error.html">incorrect login</a> </li><hr>
+                        <li><a href="index">correct login</a> </li>
+                        <li><a href="login_error">incorrect login</a> </li><hr>
                         <strong>STUDENT</strong>
-                            <li><a href="student_list.html">List</a></li>
-                            <li><a href="student_add.html">Add</a></li>
-                            <li><a href="student_edit.html">Edit</a></li>
-                            <li><a href="student_details.html">Details</a></li><hr>
+                            <li><a href="student_list">List</a></li>
+                            <li><a href="student_add">Add</a></li>
+                            <li><a href="student_edit">Edit</a></li>
+                            <li><a href="student_details">Details</a></li><hr>
                         <strong>TEAM</strong>
-                            <li><a href="team_list.html">List</a></li>
-                            <li><a href="team_add.html">Add</a></li>
-                            <li><a href="team_edit.html">Edit</a></li><hr>
+                            <li><a href="team_list">List</a></li>
+                            <li><a href="team_add">Add</a></li>
+                            <li><a href="team_edit">Edit</a></li><hr>
                         <strong>MENTOR</strong>
-                            <li><a href="mentor_list.html">List</a></li>
-                            <li><a class = "active" href="mentor_add.html">Add</a></li>
-                            <li><a href="mentor_edit.html">Edit</a></li>
-                            <li><a href="mentor_details.html">Details</a></li><hr>
+                            <li><a href="mentor_list">List</a></li>
+                            <li><a class = "active" href="mentor_add">Add</a></li>
+                            <li><a href="mentor_edit">Edit</a></li>
+                            <li><a href="mentor_details">Details</a></li><hr>
                         <strong>EMPLOYEE</strong>
-                            <li><a href="employee_list.html">List</a></li>
-                            <li><a href="employee_add.html">Add</a></li>
-                            <li><a href="employee_edit.html">Edit</a></li><hr>
+                            <li><a href="employee_list">List</a></li>
+                            <li><a href="employee_add">Add</a></li>
+                            <li><a href="employee_edit">Edit</a></li><hr>
                         <strong>CLASS</strong>
-                            <li><a href="class_list.html">List</a></li>
-                            <li><a href="class_add.html">Add</a></li>
-                            <li><a href="class_edit.html">Edit</a></li><hr>
+                            <li><a href="class_list">List</a></li>
+                            <li><a href="class_add">Add</a></li>
+                            <li><a href="class_edit">Edit</a></li><hr>
                         <strong>ASSIGNMENTS</strong>
-                            <li><a href="assignment_list.html">List</a></li>
-                            <li><a href="assignment_add.html">Add</a></li>
-                            <li><a href="assignment_edit.html">Edit</a></li><hr>
+                            <li><a href="assignment_list">List</a></li>
+                            <li><a href="assignment_add">Add</a></li>
+                            <li><a href="assignment_edit">Edit</a></li><hr>
                         <strong>ATTENDANCE</strong>
-                            <li><a href="attendance_check.html">Check</a></li>
+                            <li><a href="attendance_check">Check</a></li>
                     </ul>
                 </nav>
             </div>
         </div>
         <article>
             <center>
-                <div class="form">
+            <div class="form">
+                <form action="{{ url_for('submit_mentor') }}" method="POST">
                     <h2>Add mentor menu</h2>
-                    <p>Name<br><input name="name" placeholder="Enter mentor name"></p>
-                    <p>Surname<br><input name="surname" placeholder="Enter mentor surname"></p>
-                    <p>Login<br><input name="login" placeholder="Enter mentor login"></p>
-                    <p>Password<br><input name="password" placeholder="Enter mentor password"></p>
-                    <p>Gender<br><input type="radio" name="areyou" value="male"> Male
-                        <input type="radio" name="areyou" value="female"> Female
-                        <input type="radio" name="areyou" value="robot"> Robot</p>
-                    <p><textarea  rows="5" cols="30" name="comments" placeholder="Enter your comments"></textarea></p>
-                    <p> <button class="button" type="button" > ADD MENTOR</button> </p>
-                </div>
+                    <p>Name</p><p><input name="name" placeholder="Enter mentor name"></p>
+                    <p>Surname</p><p><input name="surname" placeholder="Enter mentor surname"></p>
+                    <p>Login</p><p><input name="login" placeholder="Enter mentor login"></p>
+                    <p>Password</p><p><input name="password" placeholder="Enter mentor password"></p>
+                    <p> <button class="button" type="submit" formaction="/mentor_add"> ADD MENTOR</button> </p>
+                </form>
+            </div>
             </center>
         </article>
     </body>

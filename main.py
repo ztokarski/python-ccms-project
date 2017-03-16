@@ -8,11 +8,9 @@ import sqlite3
 
 app = Flask(__name__)
 
-
 @app.route("/")
 def index():
     return render_template("index.html")
-
 
 @app.route("/main.html")
 def main():
@@ -35,7 +33,6 @@ def submit_student():
     my_student = Student(name, surname)
     my_student.login = login
     StudentModel.add_student(my_student)
-
     return redirect(url_for("student_list"))
 
 @app.route("/student_edit/<int:student_id>", methods=["POST", "GET"])
@@ -50,26 +47,37 @@ def student_edit(student_id):
         print(student_with_new_data)
         StudentModel.edit_student(student_with_new_data)
         return redirect(url_for("student_list"))
-            # redirect(url_for("student_list"))
-
-
 
 @app.route("/student_remove/<int:student_id>", methods=["GET", "POST"])
 def remove_student(student_id):
     StudentModel.remove_student(student_id)
     return redirect(url_for("student_list"))
 
-
-@app.route("/mentor_list.html")
+@app.route("/mentor_list")
 def mentor_list():
     mentors = MentorModel.get_all_mentors()
     return render_template("mentor_list.html", mentors=mentors)
 
-@app.route("/mentor_add.html")
-def mentor_add():
+@app.route("/mentor_add")
+def mentor_form():
     return render_template("mentor_add.html")
 
-@app.route("/mentor_edit.html")
+@app.route("/mentor_remove/<int:mentor_id>", methods=["GET", "POST"])
+def remove_mentor(mentor_id):
+    MentorModel.remove_mentor(mentor_id)
+    return redirect(url_for("mentor_list"))
+
+@app.route("/mentor_add", methods=["POST"])
+def submit_mentor():
+    name = request.form["name"]
+    surname = request.form["surname"]
+    login = request.form["login"]
+    my_mentor = Mentor(name, surname)
+    my_mentor.login = login
+    MentorModel.add_mentor(my_mentor)
+    return redirect(url_for("mentor_list"))
+
+@app.route("/mentor_edit")
 def mentor_edit():
     return render_template("mentor_edit.html")
 
@@ -86,8 +94,6 @@ def assignment_add():
 def assignment_edit():
     return render_template("assignment_edit.html")
 
-
-
 @app.route("/employee_list.html")
 def employee_list():
     employees = EmployeeModel.get_all_employees()
@@ -101,14 +107,11 @@ def employee_add():
 def employee_edit():
     return render_template("employee_edit.html")
 
-
-
 @app.route("/team_list.html")
 def team_list():
     c = sqlite3.connect(app.database)
     conn = c.cursor()
     db_list = conn.execute("SELECT * FROM teams ")
-
     teams = []
     for row in db_list:
         teams.append(row)
@@ -123,9 +126,5 @@ def team_edit():
     return render_template("team_edit.html")
 
 if __name__ == '__main__':
-    # database = db_connection.DB
-    # database.execute("DROP TABLE IF EXISTS users;"
-    #                  "CREATE TABLE users (ID_user PRIMARY KEY AUTOINCREMENT, name, surname, login, password, status, ID_role, status)
-    # VALUES ())
     app.run(debug=True)
 
