@@ -16,12 +16,20 @@ def index():
 @app.route("/set_cookie", methods=["POST", "GET"])
 def set_cookie():
     if request.method == "POST":
-        user_name = request.form["login"]
+        user_login = request.form["login"]
+        user_id = User_model.get_id_from_login(user_login)
+        if user_id == "There's no such user!":
+            return user_id
+        else:
+            user_object = User_model.get_object_by_id()
 
-        response = make_response(redirect("main"))
-        response.set_cookie("User_NAME", user_name)
+            response = make_response(redirect("main"))
+            response.set_cookie("user_login", user_login)
+            response.set_cookie("user_name", user_object.name)
+            response.set_cookie("user_surname", user_object.surname)
+            response.set_cookie("user_id", user_object.id)
 
-        return response
+            return response
 
 @app.route("/main")
 def main():

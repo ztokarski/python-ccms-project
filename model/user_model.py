@@ -27,8 +27,10 @@ class User_model:
         database = DB.get_connection()
         id_db = database.execute("SELECT ID_user FROM users WHERE login = ?", (user_login,))
         user_id = id_db.fetchone()
-
-        return user_id[0]
+        try:
+            return user_id[0]
+        except TypeError:
+            return "There's no such user!"
 
 
     @classmethod
@@ -55,3 +57,4 @@ class User_model:
             database.close()
 
             return user_object
+User_model.get_id_from_login("d")
