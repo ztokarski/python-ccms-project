@@ -3,6 +3,7 @@ from db_connection import DB
 import sqlite3
 import os
 
+
 class AssignmentModel():
 
     def __init__(self, name, due):
@@ -10,9 +11,7 @@ class AssignmentModel():
         self.due = due
 
     def __repr__(self):
-
-     return "{} {}".format(self.name, self.due)
-
+        return "{} {}".format(self.name, self.due)
 
     @classmethod
     def get_assignments_list(cls):
@@ -22,17 +21,13 @@ class AssignmentModel():
         assignments = data.execute("SELECT * FROM assignments")
 
         for assignment in assignments:
-            name = assignment[1]
-            object = Assignment(name)
-            object.due = assignment[2]
-            object.max_points = assignment[3]
-            object.id = assignment[0]
-            assignment_list.append(object)
-
+            assignment_object = Assignment(assignment[1], assignment[2], assignment[3])
+            assignment_object.due_date = assignment[2]
+            assignment_object.max_points = assignment[3]
+            assignment_object.ID_user = assignment[0]
+            list_of_assignments.append(assignment_object)
+        data.close()
         return list_of_assignments
-
-
-
 
     def add_assignment(self, *args):
         '''
@@ -42,8 +37,6 @@ class AssignmentModel():
             '''INSERT INTO assignments(assignment_name, due_date, max_points, ID_user)
             VALUES ('{}','{}','{}','{}')'''.format(*args))
         self.conn.commit()
-
-
 
     @classmethod
     def get_object_id(cls, id):
@@ -60,14 +53,12 @@ class AssignmentModel():
 
 class Sub_assignment(AssignmentModel):
 
-
     def __init__(self, name):
         self.name = name
         self.student = ""
         self.due = None
         self.date = None
         self.grade = 0
-
 
     def __repr__(self):
         return "{} {} {}".format(self.name, self.due, self.student)

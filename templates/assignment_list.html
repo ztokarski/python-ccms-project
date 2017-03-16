@@ -45,7 +45,7 @@
                             <li><a href="class_add.html">Add</a></li>
                             <li><a href="class_edit.html">Edit</a></li><hr>
                         <strong>ASSIGNMENTS</strong>
-                            <li><a class = "active" href="assignment_list.html">List</a></li>
+                            <li><a class = "active" href="assignment_list">List</a></li>
                             <li><a href="assignment_add.html">Add</a></li>
                             <li><a href="assignment_edit.html">Edit</a></li><hr>
                         <strong>ATTENDANCE</strong>
@@ -70,10 +70,10 @@
                     {% block content %}
                         {% for assignment in assignments %}
                             <tr>
-                            <td>{{ assignments.index(assignment)+1 }}</td>
-                            <td>{{ assignment[1] }}</td>
-                            <td>{{ assignment[2] }}</td>
-                            <td>{{ assignment[3] }}</td>
+                            <td>{{ assignments.index(assignment) + 1 }}</td>
+                            <td>{{ assignment.assignment_name }}</td>
+                            <td>{{ assignment.due_date }}</td>
+                            <td>{{ assignment.max_points }}</td>
                             <td>
                                 <ul>
                                     <li><a href="employee_edit.html">[Edit] </a></li>
