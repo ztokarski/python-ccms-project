@@ -1,40 +1,57 @@
-from flask import Flask, render_template, request, url_for, redirect, make_response
+from flask import Flask, render_template, request, url_for, redirect, make_response, session
 from model.employee_model import *
 from model.assignments_model import *
 from model.student_model import *
 from model.mentor_model import *
 from model.user_model import User_model
+from model.user import *
 import sqlite3
 
 app = Flask(__name__)
-
+app.secret_key = "npionWGOJPOJKWAFR1423508-';\/[;498yhdoiuajwfniol"
 
 @app.route("/")
 def index():
+    session.clear()
     return render_template("index.html")
 
-@app.route("/set_cookie", methods=["POST", "GET"])
-def set_cookie():
+@app.route("/login", methods=["POST"])
+@app.route("/invalid", methods=["GET"])
+def login():
     if request.method == "POST":
         user_login = request.form["login"]
         user_id = User_model.get_id_from_login(user_login)
         if user_id == "There's no such user!":
-            return redirect("set_cookie")
+            return redirect("/invalid")
         else:
             user_object = User_model.get_object_by_id(user_id)
+            cookies_dict = {"user_login": user_login, "user_name": user_object.name,
+                            "user_surname": user_object.surname,
+                            "user_id": user_object.id}
+            if isinstance(user_object, Student):
+                cookies_dict["user_role"] = "student"
+            elif isinstance(user_object, Mentor):
+                cookies_dict["user_role"] = "mentor"
 
-            response = make_response(redirect("main"))
-            response.set_cookie("user_login", user_login)
-            response.set_cookie("user_name", str(user_object.name))
-            response.set_cookie("user_surname", str(user_object.surname))
-            response.set_cookie("user_id", str(user_object.id))
+            if isinstance(user_object, Employee):
+                cookies_dict["user_role"] = "employee"
+            if isinstance(user_object, Manager):
+                cookies_dict["user_role"] = "manager"
 
-            return response
+            session.update(cookies_dict)
+
+            return make_response(redirect("main"))
+
     else:
         return render_template("index.html", message="Invalid login or password!")
+# @app.route("/invalid")
+# def invalid_login():
+#     return render_template("index.html", message="Invalid login or passwor" )
+
 
 @app.route("/main")
 def main():
+    print(session)
     name = request.cookies.get("user_name")
     return render_template("main.html", name=name)
 
@@ -145,9 +162,7 @@ def team_edit():
     return render_template("team_edit.html")
 
 if __name__ == '__main__':
-    # database = db_connection.DB
-    # database.execute("DROP TABLE IF EXISTS users;"
-    #                  "CREATE TABLE users (ID_user PRIMARY KEY AUTOINCREMENT, name, surname, login, password, status, ID_role, status)
-    # VALUES ())
     app.run(debug=True)
+
+
 
