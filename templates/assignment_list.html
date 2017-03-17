@@ -46,8 +46,7 @@
                             <li><a href="class_edit">Edit</a></li><hr>
                         <strong>ASSIGNMENTS</strong>
                             <li><a class = "active" href="assignment_list">List</a></li>
-                            <li><a href="assignment_add">Add</a></li>
-                            <li><a href="assignment_edit">Edit</a></li><hr>
+                            <li><a href="assignment_add">Add</a></li><hr>
                         <strong>ATTENDANCE</strong>
                             <li><a href="attendance_check">Check</a></li>
                     </ul>
@@ -76,7 +75,6 @@
                             <td>{{ assignment.max_points }}</td>
                             <td>
                                 <ul>
-                                    <li><a href="/assignment_edit/{{ assignment.ID_assignment }}">[Edit] </a></li>
                                     <li><a href="/assignment_remove/{{ assignment.ID_assignment }}">[Remove]</a></li><br>
                                 </ul>
                             </td>
