@@ -17,7 +17,8 @@ class AssignmentModel:
             assignment_object = Assignment(assignment[1], assignment[2], assignment[3])
             assignment_object.due_date = assignment[2]
             assignment_object.max_points = assignment[3]
-            assignment_object.ID_user = assignment[0]
+            assignment_object.ID_assignment = assignment[0]
+            assignment_object.ID_user = assignment[4]
             list_of_assignments.append(assignment_object)
         data.close()
         return list_of_assignments
@@ -36,7 +37,7 @@ class AssignmentModel:
         """remove assignment from DB"""
         data = DB.get_connection()
         cursor = data.cursor()
-        cursor.execute("DELETE FROM attendance where ID_user = {}".format(ID_assignment))
+        cursor.execute("DELETE FROM assignments where ID_assignment = {}".format(ID_assignment))
         data.commit()
         data.close()
 
@@ -45,7 +46,7 @@ class AssignmentModel:
         """edit assignment in DB"""
         data = DB.get_connection()
         cursor = data.cursor()
-        cursor.execute("UPDATE assignments SET assignment_name = ?, due_date = ?, max_points = ? WHERE ID_assignment = ?", (assignment.assignment_name, assignment.due_date, assignment.max_points))
+        cursor.execute("UPDATE assignments SET assignment_name = ?, due_date = ?, max_points = ? WHERE ID_assignment = ?", (assignment.assignment_name, assignment.due_date, assignment.max_points, assignment.ID_assignment))
         data.commit()
         data.close()
 

@@ -54,20 +54,20 @@
         </div>
         <article>
             <center>
-                <form action="{{ url_for('assignment_edit', ID_assignment=ID_assignment) }}" method="post">
                 <div class="form">
-                    <h2>Edit assignment menu</h2>
-                    <p>Name<br><input name="name" value="{{ assignment.assignment_name }}">  </p>
-                    <p>Due Date<br><input name="surname" value="{{ student.surname }}"></p>
-                    <p><lable>Description</lable></p>
-                    <p><textarea rows="5" cols="30" name="comments" placeholder="Enter assignment description, please make it clear to help students understand easily :)"></textarea></p>
-
-                    <p>Description<br><textarea rows="5" cols="30" name="comments">This assignment is not about design but about functionality. Take your time on CSS and HTML practice.</textarea></p>
-                    <p>Deadline term<br>
-
-                    <p> <button class="button" type="button">SAVE CHANGES</button></p>
+                    <form action="{{ url_for('assignment_edit', ID_assignment=ID_assignment) }}" method="post">
+                        <h2>Edit assignment menu</h2>
+                        <p><lable>Name</lable></p>
+                            <p><input name="assignment_name" value="{{ assignment.assignment_name }}"></p>
+                            <p><lable>Due Date</lable></p>
+                            <p><input name="due_date" value="{{ assignment.due_date }}"></p>
+                            <p><lable>Max points</lable></p>
+                            <input name="max_points" value="{{ assignment.max_points }}" ></p>
+                            <p><lable>Description</lable></p>
+                            <p><textarea rows="5" cols="30" name="comments" placeholder="Enter assignment description, please make it clear to help students understand easily :)"></textarea></p></p>
+                        <p> <button class="button" type="submit" formaction="{{ url_for('assignment_edit', ID_assignment=ID_assignment) }}" formmethod="post"> SAVE CHANGES</button> </p>
+                    </form>
                 </div>
-                </form>
             </center>
         </article>
     </body>

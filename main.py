@@ -113,15 +113,15 @@ def assignment_edit(ID_assignment):
         return render_template("assignment_edit.html", assignment=assignment_to_edit)
     elif request.method == "POST":
         assignment_with_new_data = Assignment(request.form["assignment_name"], request.form["due_date"], request.form["max_points"])
-        assignment_with_new_data.ID_assignment = request.form["ID_assignment"]
+        # assignment_with_new_data.ID_assignment = request.form["ID_assignment"]
         print(assignment_with_new_data)
         StudentModel.edit_student(assignment_with_new_data)
         return redirect(url_for("assignment_list"))
 
 
-@app.route("/assignment_remove/<int:assignment_id>", methods=["GET", "POST"])
-def remove_assignment(assignment_id):
-    AssignmentModel.remove_assignment(assignment_id)
+@app.route("/assignment_remove/<int:ID_assignment>", methods=["GET", "POST"])
+def remove_assignment(ID_assignment):
+    AssignmentModel.remove_assignment(ID_assignment)
     return redirect(url_for("assignment_list"))
 
 
@@ -178,4 +178,3 @@ def team_edit():
 
 if __name__ == '__main__':
     app.run(debug=True)
-
