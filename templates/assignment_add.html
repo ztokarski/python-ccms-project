@@ -62,18 +62,15 @@
                 <form action="{{ url_for('submit_assignment') }}" method="POST">
                 <h2>Add assignment menu</h2>
                 <p><lable>Name</lable></p>
-                    <p><input name="name" placeholder="Enter assignment name"></p>
+                    <p><input name="assignment_name" placeholder="Enter assignment name"></p>
+                    <p><lable>Due Date</lable></p>
+                    <p><input name="due_date" placeholder="Enter assignment submit date"></p>
+                    <p><lable>Max points</lable></p>
+                    <input name="max_points" placeholder="Enter max points"  ></p>
                     <p><lable>Description</lable></p>
                     <p><textarea rows="5" cols="30" name="comments" placeholder="Enter assignment description, please make it clear to help students understand easily :)"></textarea></p>
-
-                <p>Max points<br><input type="radio" name="points" > 12
-                    <input type="radio" name="points" > 24
-                    <input type="radio" name="points" > 36
-                    <input type="radio" name="points" > 48
-                    <input type="radio" name="points" > 60
-                    <input type="radio" name="points" > 72
                 </p>
-                <p> <button class="button" type="button" >ADD ASSIGNMENT</button> </p>
+                <p><button class="button" type="submit" formaction="/assignment_add">ADD ASSIGNMENT</button></p>
                 </form>
             </div>
             </center>
