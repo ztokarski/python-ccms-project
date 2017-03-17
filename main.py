@@ -44,7 +44,6 @@ def student_edit(student_id):
         student_with_new_data = Student(request.form["name"], request.form["surname"])
         student_with_new_data.login = request.form["login"]
         student_with_new_data.id = student_id
-        print(student_with_new_data)
         StudentModel.edit_student(student_with_new_data)
         return redirect(url_for("student_list"))
 
@@ -52,6 +51,18 @@ def student_edit(student_id):
 def remove_student(student_id):
     StudentModel.remove_student(student_id)
     return redirect(url_for("student_list"))
+
+@app.route("/mentor_edit/<int:mentor_id>", methods=["POST", "GET"])
+def mentor_edit(mentor_id):
+    mentor_to_edit = User_model.get_object_by_id(mentor_id)
+    if request.method == "GET":
+        return render_template("mentor_edit.html", mentor=mentor_to_edit)
+    elif request.method == "POST":
+        mentor_with_new_data = Mentor(request.form["name"], request.form["surname"])
+        mentor_with_new_data.login = request.form["login"]
+        mentor_with_new_data.id = mentor_id
+        MentorModel.edit_mentor(mentor_with_new_data)
+        return redirect(url_for("mentor_list"))
 
 @app.route("/mentor_list")
 def mentor_list():
@@ -76,10 +87,6 @@ def submit_mentor():
     my_mentor.login = login
     MentorModel.add_mentor(my_mentor)
     return redirect(url_for("mentor_list"))
-
-@app.route("/mentor_edit")
-def mentor_edit():
-    return render_template("mentor_edit.html")
 
 @app.route("/assignment_list")
 def assignment_list():

@@ -21,18 +21,11 @@ class MentorModel(User_model):
         data.close()
         return list_of_mentors
 
-
-    @classmethod
-    def show_mentors_list(cls):
-        mentors = Mentor.get_mentors_list()
-        return tabulate(mentors, headers=['ID', 'NAME', 'SURNAME'], tablefmt='fancy_grid',
-                        stralign='center')
-
     @classmethod
     def add_mentor(self, mentor):
         data = DB.get_connection()
         cursor = data.cursor()
-        cursor.execute("INSERT INTO `users`(`name`,`surname`,`login`, 'ID_role') VALUES ('{}','{}','{}','{}');".format(mentor.name, mentor.surname, mentor.login, 2))
+        cursor.execute("INSERT INTO 'users'('name','surname','login', 'ID_role') VALUES ('{}','{}','{}','{}');".format(mentor.name, mentor.surname, mentor.login, 2))
         data.commit()
         data.close()
 
@@ -41,5 +34,13 @@ class MentorModel(User_model):
         data = DB.get_connection()
         cursor = data.cursor()
         cursor.execute("DELETE FROM users where ID_user = {} and ID_role = 2".format(mentor_id))
+        data.commit()
+        data.close()
+        
+    @classmethod
+    def edit_mentor(cls, mentor):
+        data = DB.get_connection()
+        cursor = data.cursor()
+        cursor.execute("UPDATE users SET name = ?, surname = ?, login = ? WHERE ID_user = ?", (mentor.name, mentor.surname, mentor.login, mentor.id))
         data.commit()
         data.close()
