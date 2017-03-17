@@ -114,9 +114,19 @@ def submit_employee():
 
     return redirect(url_for("employee_list"))
 
-@app.route("/employee_edit.html")
-def employee_edit():
-    return render_template("employee_edit.html")
+
+@app.route("/employee_edit/<int:employee_id>", methods=["POST", "GET"])
+def employee_edit(employee_id):
+    employee_to_edit = User_model.get_object_by_id(employee_id)
+    if request.method == "GET":
+        return render_template("employee_edit.html", employee=employee_to_edit)
+    elif request.method == "POST":
+        employee_with_new_data = Employee(request.form["name"], request.form["surname"])
+        employee_with_new_data.login = request.form["login"]
+        employee_with_new_data.id = employee_id
+        print(employee_with_new_data)
+        EmployeeModel.edit_employee(employee_with_new_data)
+        return redirect(url_for("employee_list"))
 
 @app.route("/employee_remove/<int:employee_id>", methods=["GET", "POST"])
 def remove_employee(employee_id):

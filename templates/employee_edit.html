@@ -2,8 +2,8 @@
 
 <html>
     <head>
-        <link rel="stylesheet" type="text/css" href="static/css/style.css">
-        <link rel="stylesheet" type="text/css" href="static/css/table.css">
+        <link rel="stylesheet" type="text/css" href= "{{ url_for('static',filename='css/style.css') }}">
+        <link rel="stylesheet" type="text/css" href= "{{ url_for('static',filename='css/table.css') }}">
         <title>Employee Edit</title>
         <meta charset="utf-8">
     </head>
@@ -55,19 +55,15 @@
         </div>
         <article>
             <center>
+            <form action="{{ url_for('employee_edit', employee_id=employee.id) }}" method="post">
             <div class="form">
                 <h2>Edit employee menu</h2>
-                <p>Name<br><input name="name" value="Leon">  </p>
-                <p>Surname<br><input name="surname" value="Zawodowiec"></p>
-                <p>Login<br><input name="login" value="lzawodowiec"></p>
-                <p>Password<br><input name="password" value="***"></p>
-                <p>Gender<br><input type="radio" name="areyou" value="male" > Male
-                    <input type="radio" name="areyou" value="female"> Female
-                    <input type="radio" name="areyou" value="robot" checked> Robot</p>
-                <p><textarea  rows="5" cols="30" name="comments" placeholder="Enter your comments"></textarea></p>
-                </p>
-                <p> <button class="button" type="button" > SAVE CHANGES</button> </p>
-            </div>
+                <p>Name<p></p><input name="name" value="{{ employee.name }}">  </p>
+                <p>Surname<p></p><input name="surname" value="{{ employee.surname }}"></p>
+                <p>Login<p></p><input name="login" value="{{ employee.login }}"></p>
+                <p>Password<p></p><input name="password" value="***"></p>
+                <p><button class="button" type="submit" formaction="{{ url_for('employee_edit', employee_id=employee.id) }}" formmethod="post"> SAVE CHANGES</button></p>
+            </div></form>
             </center>
         </article>
     </body>

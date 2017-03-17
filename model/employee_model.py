@@ -25,7 +25,7 @@ class EmployeeModel():
         return list_of_employees
 
     @classmethod
-    def add_employee(self, employee):
+    def add_employee(cls, employee):
         data = DB.get_connection()
         cursor = data.cursor()
         cursor.execute("INSERT INTO `users`(`name`,`surname`,`login`,'ID_role') VALUES ('{}','{}','{}','{}');".format(employee.name, employee.surname, employee.login,3))
@@ -33,9 +33,17 @@ class EmployeeModel():
         data.close()
 
     @classmethod
-    def remove_employee(self, employee_id):
+    def remove_employee(cls, employee_id):
         data = DB.get_connection()
         cursor = data.cursor()
         cursor.execute("DELETE FROM users where ID_user = {} and ID_role = 3".format(employee_id))
+        data.commit()
+        data.close()
+
+    @classmethod
+    def edit_employee(cls, employee):
+        data = DB.get_connection()
+        cursor = data.cursor()
+        cursor.execute("UPDATE users SET name = ?, surname = ?, login = ? WHERE ID_user = ?", (employee.name, employee.surname, employee.login, employee.id))
         data.commit()
         data.close()
