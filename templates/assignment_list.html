@@ -57,14 +57,13 @@
                     {% block content %}
                         {% for assignment in assignments %}
                             <tr>
-                            <td>{{ assignments.index(assignment)+1 }}</td>
-                            <td>{{ assignment[1] }}</td>
-                            <td>{{ assignment[2] }}</td>
-                            <td>{{ assignment[3] }}</td>
+                            <td>{{ assignments.index(assignment) + 1 }}</td>
+                            <td>{{ assignment.assignment_name }}</td>
+                            <td>{{ assignment.due_date }}</td>
+                            <td>{{ assignment.max_points }}</td>
                             <td>
                                 <ul>
-                                    <li><a href="employee_edit">[Edit] </a></li>
-                                    <li><a href="#">[Remove]</a></li><br>
+                                    <li><a href="/assignment_remove/{{ assignment.ID_assignment }}">[Remove]</a></li><br>
                                 </ul>
                             </td>
                             </tr>

@@ -57,13 +57,14 @@ class Employee(User):
     def __init__(self, name, surname):
         super().__init__(name, surname)
 
-class Assignment():
 
-    def __init__(self, name):
-        self.id = 0
-        self.ID_assignment = ID_assignment
+class Assignment:
+    def __init__(self, assignment_name, due_date, max_points):
+        self.ID_assignment = 0
         self.assignment_name = assignment_name
         self.due_date = due_date
         self.max_points = max_points
-        self.ID_user = ID_user
+        self.ID_user = None
+
+
 

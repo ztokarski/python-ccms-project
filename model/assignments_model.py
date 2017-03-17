@@ -3,16 +3,8 @@ from db_connection import DB
 import sqlite3
 import os
 
-class AssignmentModel():
 
-    def __init__(self, name, due):
-        self.name = name
-        self.due = due
-
-    def __repr__(self):
-
-     return "{} {}".format(self.name, self.due)
-
+class AssignmentModel:
 
     @classmethod
     def get_assignments_list(cls):
@@ -22,27 +14,41 @@ class AssignmentModel():
         assignments = data.execute("SELECT * FROM assignments")
 
         for assignment in assignments:
-            name = assignment[1]
-            object = Assignment(name)
-            object.due = assignment[2]
-            object.max_points = assignment[3]
-            object.id = assignment[0]
-            assignment_list.append(object)
-
+            assignment_object = Assignment(assignment[1], assignment[2], assignment[3])
+            assignment_object.due_date = assignment[2]
+            assignment_object.max_points = assignment[3]
+            assignment_object.ID_assignment = assignment[0]
+            assignment_object.ID_user = assignment[4]
+            list_of_assignments.append(assignment_object)
+        data.close()
         return list_of_assignments
 
+    @classmethod
+    def add_assignment(cls, assignment):
+        """add a new assignment to DB"""
+        data = DB.get_connection()
+        cursor = data.cursor()
+        cursor.execute("INSERT INTO `assignments`(`assignment_name`, `due_date`, `max_points`, `ID_user`) VALUES ('{}','{}','{}','{}')".format(assignment.assignment_name, assignment.due_date, assignment.max_points, assignment.ID_user))
+        data.commit()
+        data.close()
 
+    @classmethod
+    def remove_assignment(cls, ID_assignment):
+        """remove assignment from DB"""
+        data = DB.get_connection()
+        cursor = data.cursor()
+        cursor.execute("DELETE FROM assignments where ID_assignment = {}".format(ID_assignment))
+        data.commit()
+        data.close()
 
-
-    def add_assignment(self, *args):
-        '''
-        add a new assignment to DB
-        '''
-        self.conn.execute(
-            '''INSERT INTO assignments(assignment_name, due_date, max_points, ID_user)
-            VALUES ('{}','{}','{}','{}')'''.format(*args))
-        self.conn.commit()
-
+    @classmethod
+    def edit_assignment(cls, assignment):
+        """edit assignment in DB"""
+        data = DB.get_connection()
+        cursor = data.cursor()
+        cursor.execute("UPDATE assignments SET assignment_name = ?, due_date = ?, max_points = ? WHERE ID_assignment = ?", (assignment.assignment_name, assignment.due_date, assignment.max_points, assignment.ID_assignment))
+        data.commit()
+        data.close()
 
 
     @classmethod
@@ -60,14 +66,12 @@ class AssignmentModel():
 
 class Sub_assignment(AssignmentModel):
 
-
     def __init__(self, name):
         self.name = name
         self.student = ""
         self.due = None
         self.date = None
         self.grade = 0
-
 
     def __repr__(self):
         return "{} {} {}".format(self.name, self.due, self.student)

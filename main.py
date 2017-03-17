@@ -35,6 +35,7 @@ def submit_student():
     StudentModel.add_student(my_student)
     return redirect(url_for("student_list"))
 
+
 @app.route("/student_edit/<int:student_id>", methods=["POST", "GET"])
 def student_edit(student_id):
     student_to_edit = User_model.get_object_by_id(student_id)
@@ -64,6 +65,7 @@ def mentor_edit(mentor_id):
         MentorModel.edit_mentor(mentor_with_new_data)
         return redirect(url_for("mentor_list"))
 
+
 @app.route("/mentor_list")
 def mentor_list():
     mentors = MentorModel.get_all_mentors()
@@ -88,27 +90,56 @@ def submit_mentor():
     MentorModel.add_mentor(my_mentor)
     return redirect(url_for("mentor_list"))
 
-@app.route("/assignment_list")
+
+@app.route("/assignment_list", methods=["GET", "POST"])
 def assignment_list():
     assignments = AssignmentModel.get_assignments_list()
     return render_template("assignment_list.html", assignments=assignments)
 
-@app.route("/assignment_add.html")
-def assignment_add():
+
+@app.route("/assignment_add")
+def assignment_form():
     return render_template("assignment_add.html")
 
-@app.route("/assignment_edit.html")
-def assignment_edit():
-    return render_template("assignment_edit.html")
+
+@app.route("/assignment_add", methods=["POST"])
+def submit_assignment():
+    assignment_name = request.form["assignment_name"]
+    due_date = request.form["due_date"]
+    max_points = request.form["max_points"]
+    my_assignment = Assignment(assignment_name, due_date, max_points)
+    AssignmentModel.add_assignment(my_assignment)
+    return redirect(url_for("assignment_list"))
+
+
+@app.route("/assignment_edit/<int:ID_assignment>", methods=["POST", "GET"])
+def assignment_edit(ID_assignment):
+    assignment_to_edit = User_model.get_assignment_by_id(ID_assignment)
+    if request.method == "GET":
+        return render_template("assignment_edit.html", assignment=assignment_to_edit)
+    elif request.method == "POST":
+        assignment_with_new_data = Assignment(request.form["assignment_name"], request.form["due_date"], request.form["max_points"])
+        assignment_with_new_data.ID_assignment = request.form["ID_assignment"]
+        StudentModel.edit_student(assignment_with_new_data)
+        return redirect(url_for("assignment_list"))
+
+
+@app.route("/assignment_remove/<int:ID_assignment>", methods=["GET", "POST"])
+def remove_assignment(ID_assignment):
+    AssignmentModel.remove_assignment(ID_assignment)
+    return redirect(url_for("assignment_list"))
+
 
 @app.route("/employee_list")
 def employee_list():
     employees = EmployeeModel.get_all_employees()
     return render_template("employee_list.html", employees=employees)
 
+
 @app.route("/employee_add")
 def employee_form():
     return render_template("employee_add.html")
+
 
 @app.route("/employee_add", methods=["POST"])
 def submit_employee():
@@ -120,6 +151,7 @@ def submit_employee():
     EmployeeModel.add_employee(my_employee)
 
     return redirect(url_for("employee_list"))
+
 
 
 @app.route("/employee_edit/<int:employee_id>", methods=["POST", "GET"])
@@ -134,6 +166,8 @@ def employee_edit(employee_id):
         print(employee_with_new_data)
         EmployeeModel.edit_employee(employee_with_new_data)
         return redirect(url_for("employee_list"))
+
+
 
 @app.route("/employee_remove/<int:employee_id>", methods=["GET", "POST"])
 def remove_employee(employee_id):
@@ -150,14 +184,13 @@ def team_list():
         teams.append(row)
     return render_template("team_list.html", teams=teams)
 
-@app.route("/team_add.html")
+@app.route("/team_add")
 def team_add():
     return render_template("team_add.html")
 
-@app.route("/team_edit.html")
+@app.route("/team_edit")
 def team_edit():
     return render_template("team_edit.html")
 
 if __name__ == '__main__':
     app.run(debug=True)
-
