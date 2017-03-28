@@ -1,74 +1,39 @@
-<!DOCTYPE html>
-
-<html>
-    <head>
-        <link rel="stylesheet" type="text/css" href="static/css/style.css">
-        <link rel="stylesheet" type="text/css" href="static/css/table.css">
-        <title>Mentor List</title>
-        <meta charset="utf-8">
-    </head>
-    <body>
-        <header style="background-image: url(static/img/ccms-header.jpg)"></header>
-        <div class="sidebar">
-            <div class="profile">
-                <img id="profile_picture" src="http://www.ockrk.co/assets/nophoto.jpeg"/>
-                <p id="profile_name">Logged as: <strong>PRZEMEK</strong> <hr></p>
-                <button type="button" id="logout_button"
-                onclick="location.href='index'">logout</button>
-            </div>
-            <div class="navigation">
-                <nav>
-                    <ul class="navigation">
-                        <strong>LOGIN</strong>
-                            <li><a href="index.html">correct login</a> </li>
-                            <li><a href="login_error.html">incorrect login</a> </li><hr>
-                        <strong>STUDENT</strong>
-                            <li><a href="student_list">List</a></li>
-                            <li><a href="student_add">Add</a></li>
-                            <li><a href="student_details.html">Details</a></li><hr>
-                        <strong>MENTOR</strong>
-                            <li><a href="mentor_list">List</a></li>
-                            <li><a href="mentor_add">Add</a></li>
-                            <li><a href="mentor_details.html">Details</a></li><hr>
-                        <strong>EMPLOYEE</strong>
-                            <li><a href="employee_list">List</a></li>
-                            <li><a href="employee_add">Add</a></li><hr>
-                        <strong>ASSIGNMENTS</strong>
-                            <li><a href="assignment_list">List</a></li>
-                            <li><a href="assignment_add">Add</a></li>
-                    </ul>
-                </nav>
-            </div>
-        </div>
-        <article>
-            <h3>LIST OF MENTORS</h3>
-            <div>
-                <center><table class="mentor">
-                    <tr>
-                        <th>#</th>
-                        <th>First Name</th>
-                        <th>Surname</th>
-                        <th>Actions</th>
-                        <th class="button_border"><button class="button" type="button"
-                            onclick="location.href='mentor_add'">Add mentor</button></th>
-                    </tr>
-                    {% block content %}
-                        {% for mentor in mentors %}
+{% extends "layout.html" %}
+{% block content  %}
+            <div class="container">
+                <div class="page-header">
+                    <div class="col-md-3 col-sm-1 col-xs-1"></div>
+                    <h1>Mentor List <span class="glyphicon glyphicon-list-alt"></span></h1>
+                    <br></div>
+            <div class="row">
+                <div class="col-md-3 col-sm-1 col-xs-1"></div>
+            <div class="col-md-6 col-sm-12 col-xs-12">
+                <div class="table-responsive">
+                    <button class="button" type="button"
+                            onclick="location.href='mentor_add'">Add mentor</button><hr>
+                    <table class = "table table-striped table-bordered table-hover ">
+                        <thead class="bg-info text-white">
                             <tr>
-                            <td>{{ mentors.index(mentor)+1 }}</td>
-                            <td>{{ mentor.name }}</td>
-                            <td>{{ mentor.surname }}</td>
-                            <td>
-                                <ul>
-                                    <li><a href="/mentor_edit/{{ mentor.id }}">[Edit] </a></li>
-                                    <li><a href="/mentor_remove/{{ mentor.id }}">[Remove]</a></li><br>
-                                </ul>
-                            </td>
+                                <th>#</th>
+                                <th>First Name</th>
+                                <th>Surname</th>
+                                <th>Edit</th>
+                                <th>Remove</th>
                             </tr>
-                        {% endfor %}
-                    {% endblock %}
-              </table></center>
+                        </thead>
+
+                            {% for mentor in mentors %}
+                             <tr>
+                                <td class="col-md-1 col-sm-1 col-xs-1">{{ mentors.index(mentor)+1 }}</td>
+                                <td class="col-md-4 col-sm-4 col-xs-4">{{ mentor.name }}</td>
+                                <td class="col-md-4 col-sm-4 col-xs-4">{{ mentor.surname }}</td>
+                                <td class="col-md-1 col-sm-1 col-xs-1 text-center"><a href="/mentor_edit/{{ mentor.id }}" class="button "><span class="glyphicon glyphicon-pencil"></span></a></td>
+                                <td class="col-md-1 col-sm-1 col-xs-1 text-center"><a href="/mentor_remove/{{ mentor.id }}" class="button"><span class="glyphicon glyphicon-trash"></span></a></td>
+                             </tr>
+                            {% endfor %}
+                  </table>
+                </div>
             </div>
-        </article>
-    </body>
-</html>
+                <div class="col-md-3 col-sm-1 col-xs-1"></div>
+            </div></div></div>
+{% endblock %}
