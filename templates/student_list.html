@@ -2,8 +2,7 @@
 
 <html>
     <head>
-        <link rel="stylesheet" type="text/css" href= "{{ url_for('static',filename='css/style.css') }}">
-        <link rel="stylesheet" type="text/css" href= "{{ url_for('static',filename='css/table.css') }}">
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
         <title>Student List</title>
         <meta charset="utf-8">
     </head>
@@ -41,17 +40,32 @@
             </div>
         </div>
         <article>
-            <h3>LIST OF STUDENTS</h3>
-            <div>
-                <center><table>
+
+
+                                <h3>LIST OF STUDENTS</h3>
+            <div class="container">
+            <div class="row">
+            <div class="col-md-3"></div>
+            <div class="col-md-6">
+
+                <table class="table-bordered" style="width: 120%">
                     <tr>
+
+
                         <th>#</th>
+                        <div class="col-md-3">
                         <th>First Name</th>
+
+
                         <th>Surname</th>
+
+
                         <th>Actions</th>
+
                         <th class="button_border"><button class="button" type="button"
                             onclick="location.href='student_add'">add student</button></th>
                     </tr>
+
                     {% block content %}
                         {% for student in students %}
                             <tr>
@@ -65,10 +79,11 @@
                                 </ul>
                             </td>
                             </tr>
+
                         {% endfor %}
                     {% endblock %}
-              </table></center>
-            </div>
+                </table></div><div class="col-md-3"></div>
+            </div></div>
         </article>
     </body>
 </html>
