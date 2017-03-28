@@ -1,5 +1,4 @@
 <!DOCTYPE html>
-
 <html>
     <head>
         <title>Main Page</title>
@@ -19,59 +18,64 @@
 		          <div class="carousel-caption">
 		          </div>
 		        </div>
-
 		        <div class="item">
 		            <img src="http://bit.ly/2o1f8kQ" class="img-responsive">
 		          <div class="carousel-caption">
 		          </div>
 		        </div>
-
 		        <div class="item">
 		          <img src="http://bit.ly/2nvgqDv" class="img-responsive">
 		          <div class="carousel-caption">
 		          </div>
 		        </div>
-
 		      </div>
 		    </div>
 		</div>
         <div class="sidebar">
-				<div class="container" style="background-color: blue" >
-				  <div class="row">
-				    <div style="background-color: yellow" class="col-md-2 sidebar-brand">
-				        <nav class="navbar navbar-default navbar-fixed-side">
-				            <div class="col-md-12 profile">
-				            	<br/>
-				                <img style = "height: 70px; width: 80px; float: left; padding-left: 15px; padding-right: 0px; " src="http://blog.ramboll.com/fehmarnbelt/wp-content/themes/ramboll2/images/profile-img.jpg"/>
-				                <p id="profile_name"> Logged as: <strong>PRZEMEK</strong><hr></p>
-				                <br/><br/>
-            				</div>
-                        <ul>
-	                        <strong>LOGIN</strong>
-	                            <li><a href="index.html">correct login</a> </li>
-	                            <li><a href="login_error.html">incorrect login</a> </li><hr>
-	                        <strong>STUDENT</strong>
-	                            <li><a href="student_list">List</a></li>
-	                            <li><a href="student_add">Add</a></li><hr>
-	                        <strong>MENTOR</strong>
-	                            <li><a href="mentor_list">List</a></li>
-	                            <li><a href="mentor_add">Add</a></li><hr>
-	                        <strong>EMPLOYEE</strong>
-	                            <li><a href="employee_list">List</a></li>
-	                            <li><a href="employee_add">Add</a></li><hr>
-	                        <strong>ASSIGNMENTS</strong>
-	                            <li><a href="assignment_list">List</a></li>
-	                            <li><a href="assignment_add">Add</a></li>
-                    	</ul>
-				      </nav>
-				    </div>
-                      <div style="background-color: grey" class="col-md-10 content">
-                          {% block content %}
-                          {% endblock %}
-
-                      </div>
-				    </div>
-				  </div>
-				</div>
+            <div class="container" style="background-color: blue" >
+              <div class="row">
+                <div style="background-color: yellow" class="col-md-2 sidebar-brand">
+                    <nav class="navbar navbar-default navbar-fixed-side">
+                        <div class="col-md-12 profile">
+                            <br/>
+                            <img style = "height: 70px; width: 80px; float: left; padding-left: 15px; padding-right: 0px; " src="http://blog.ramboll.com/fehmarnbelt/wp-content/themes/ramboll2/images/profile-img.jpg"/>
+                            <p id="profile_name"> Logged as: <strong>PRZEMEK</strong><hr></p>
+                            <br/><br/>
+                        </div>
+                            <p><button type="button" class="btn btn-info" data-toggle="collapse" data-target="#login">LOGIN</button></p>
+                              <div id="login" class="collapse">
+                                  <p><a href="index.html">correct login</a></p>
+                                  <p><a href="login_error.html">incorrect login</a></p>
+                              </div>
+                            <p><button type="button" class="btn btn-info" data-toggle="collapse" data-target="#student">STUDENT</button></p>
+                              <div id="student" class="collapse">
+                                  <p><a href="student_list">List</a></p>
+                                  <p><a href="student_add">Add</a></p>
+                                  <p><a href="student_edit.html">Edit</a></p>
+                              </div>
+                            <p><button type="button" class="btn btn-info" data-toggle="collapse" data-target="#mentor">MENTOR</button></p>
+                              <div id="mentor" class="collapse">
+                                  <p><a href="mentor_list">List</a></p>
+                                  <p><a href="mentor_add">Add</a></p>
+                              </div>
+                            <p><button type="button" class="btn btn-info" data-toggle="collapse" data-target="#employee">EMPLOYEE</button></p>
+                              <div id="employee" class="collapse">
+                                  <p><a href="employee_list">List</a></p>
+                                  <p><a href="employee_add">Add</a></p>
+                              </div>
+                            <p><button type="button" class="btn btn-info" data-toggle="collapse" data-target="#assignment">ASSIGNMENT</button></p>
+                              <div id="assignment" class="collapse">
+                                  <p><a href="assignment_list">List</a></p>
+                                  <p><a href="assignment_add">Add</a></p>
+                              </div>
+                    </nav>
+                </div>
+                  <div style="background-color: grey" class="col-md-10 content">
+                      {% block content %}
+                      {% endblock %}
+                  </div>
+                </div>
+              </div>
+            </div>
     </body>
 </html>
