@@ -48,12 +48,11 @@
             <div class="col-md-3"></div>
             <div class="col-md-6">
 
-                <table class="table-bordered" style="width: 120%">
+                <table class="table-hover" style="width: 120%">
                     <tr>
 
 
                         <th>#</th>
-                        <div class="col-md-3">
                         <th>First Name</th>
 
 
@@ -72,7 +71,7 @@
                             <td>{{ students.index(student) + 1 }}</td>
                             <td>{{ student.name }}</td>
                             <td>{{ student.surname }}</td>
-                            <td>
+                            <td class="active">
                                 <ul>
                                     <li><a href="/student_edit/{{ student.id }}">[Edit] </a></li>
                                     <li><a href="/student_remove/{{ student.id }}">[Remove]</a></li><br>
