@@ -80,7 +80,7 @@
 
                                 <li style="list-style: none"><img style = "height: 70px; width: 80px; float: left; padding-left: 15px; padding-right: 0px; " src="http://blog.ramboll.com/fehmarnbelt/wp-content/themes/ramboll2/images/profile-img.jpg"/></>
 
-                                <li style="list-style: none"><p id="profile_name"> Logged as: </p><strong>PRZEMEK</strong></li>
+                                <li style="list-style: none"><p id="profile_name"> Logged as: </p><strong>{{ session["user_name"] }}</strong></li>
 
                                 <li style="list-style: none"><button type="button" id="logout_button" onclick="location.href='/'">logout</button></li>
 
@@ -99,10 +99,26 @@
                                   <p><a href="login_error">incorrect login</a></p>
 
                               </div>
-
+{% if session["user_role"] == "student" %}
                             <p><button type="button" class="btn btn btn-success btn-block btn-info" data-toggle="collapse" data-target="#student">STUDENT</button></p>
 
                               <div id="student" class="collapse">
+
+                                  <p><a href="student_list">List</a></p>
+
+
+                              </div>
+                        <p><button type="button" class="btn btn-success btn-block btn-info" data-toggle="collapse" data-target="#assignment">ASSIGNMENT</button></p>
+
+                              <div id="assignment" class="collapse">
+
+                                  <p><a href="assignment_list">List</a></p></div>
+
+                        {% elif session["user_role"] == "mentor"%}
+
+                        <p><button type="button" class="btn btn btn-success btn-block btn-info" data-toggle="collapse" data-target="#student">STUDENT</button></p>
+
+                          <div id="student" class="collapse">
 
                                   <p><a href="student_list">List</a></p>
 
@@ -111,6 +127,35 @@
                               </div>
 
                             <p><button type="button" class="btn btn btn-success btn-block btn-info" data-toggle="collapse" data-target="#mentor">MENTOR</button></p>
+
+                              <div id="mentor" class="collapse">
+
+                                  <p><a href="mentor_list">List</a></p> </div>
+
+    <p><button type="button" class="btn btn-success btn-block btn-info" data-toggle="collapse" data-target="#assignment">ASSIGNMENT</button></p>
+
+                              <div id="assignment" class="collapse">
+
+                                  <p><a href="assignment_list">List</a></p>
+
+                                  <p><a href="assignment_add">Add</a></p>
+
+                              </div>
+
+                        {% elif session["user_role"] == "manager" %}
+                        <p><button type="button" class="btn btn btn-success btn-block btn-info" data-toggle="collapse" data-target="#student">STUDENT</button></p>
+
+                          <div id="student" class="collapse">
+
+                                  <p><a href="student_list">List</a></p>
+
+                                  <p><a href="student_add">Add</a></p>
+
+                              </div>
+
+
+
+                        <p><button type="button" class="btn btn btn-success btn-block btn-info" data-toggle="collapse" data-target="#mentor">MENTOR</button></p>
 
                               <div id="mentor" class="collapse">
 
@@ -130,16 +175,8 @@
 
                               </div>
 
-                            <p><button type="button" class="btn btn-success btn-block btn-info" data-toggle="collapse" data-target="#assignment">ASSIGNMENT</button></p>
 
-                              <div id="assignment" class="collapse">
-
-                                  <p><a href="assignment_list">List</a></p>
-
-                                  <p><a href="assignment_add">Add</a></p>
-
-                              </div>
-
+{% endif %}
                     </nav>
 
                 </div>
