@@ -1,46 +1,5 @@
-<!DOCTYPE html>
-
-<html>
-    <head>
-        <link rel="stylesheet" type="text/css" href="static/css/style.css">
-        <link rel="stylesheet" type="text/css" href="static/css/table.css">
-        <title>Employee List</title>
-        <meta charset="utf-8">
-    </head>
-    <body>
-        <header style="background-image: url(static/img/ccms-header.jpg)"></header>
-        <div class="sidebar">
-            <div class="profile">
-                <img id="profile_picture" src="http://bit.ly/2l7tkrK"/>
-                <p id="profile_name">Logged as: <strong>PRZEMEK</strong> <hr></p>
-                <button type="button" id="logout_button"
-                onclick="location.href='index'">logout</button>
-            </div>
-            <div class="navigation">
-                <nav>
-                    <ul class="navigation">
-                        <strong>LOGIN</strong>
-                            <li><a href="index.html">correct login</a> </li>
-                            <li><a href="login_error.html">incorrect login</a> </li><hr>
-                        <strong>STUDENT</strong>
-                            <li><a href="student_list">List</a></li>
-                            <li><a href="student_add">Add</a></li>
-                            <li><a href="student_details.html">Details</a></li><hr>
-                        <strong>MENTOR</strong>
-                            <li><a href="mentor_list">List</a></li>
-                            <li><a href="mentor_add">Add</a></li>
-                            <li><a href="mentor_details.html">Details</a></li><hr>
-                        <strong>EMPLOYEE</strong>
-                            <li><a href="employee_list">List</a></li>
-                            <li><a href="employee_add">Add</a></li><hr>
-                        <strong>ASSIGNMENTS</strong>
-                            <li><a href="assignment_list">List</a></li>
-                            <li><a href="assignment_add">Add</a></li>
-                    </ul>
-                </nav>
-            </div>
-        </div>
-        <article>
+{% extends "layout.html" %}
+{% block content  %}
             <h3>LIST OF EMPLOYEE</h3>
             <div>
                 <center><table class="employee">
@@ -52,10 +11,9 @@
                         <th class="button_border"><button class="button" type="button"
                             onclick="location.href='employee_add'">Add employee</button></th>
                     </tr>
-                        {% block content %}
                             {% for employee in employees %}
                                 <tr>
-                                <td>{{ employees.index(employee)+1 }}</td>
+                                <td>{{ employees.index(employee) + 1}}</td>
                                 <td>{{ employee.name }}</td>
                                 <td>{{ employee.surname }}</td>
 
@@ -67,11 +25,6 @@
                                 </td>
                                 </tr>
                             {% endfor %}
-                        {% endblock %}
-
               </table></center>
             </div>
-        </article>
-    </body>
-    </html>
-
+{% endblock %}
