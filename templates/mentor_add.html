@@ -1,23 +1,28 @@
-
 {% extends "layout.html" %}
 {% block content %}
 <div class="container">
     <div class="row">
         <div class="col-md-2 col-sm-1 col-xs-1"></div>
         <div class="col-md-3 col-sm-12 col-xs-12">
-        <div class="page-header">
-            <h1>Mentor Add <span class="glyphicon glyphicon-plus"></span></h1>
-            <p>- add a new mentor</p>
-        </div>
-        <div class="form" >
-            <form action="{{ url_for('submit_mentor') }}" method="POST">
-                <p>Name</p><p><input name="name" class="form-control"  placeholder="Enter mentor name"></p>
-                <p>Surname</p><p><input name="surname" class="form-control" placeholder="Enter mentor surname"></p>
-                <p>Login</p><p><input name="login" class="form-control" placeholder="Enter mentor login"></p>
-                <p>Password</p><p><input name="password" class="form-control" placeholder="Enter mentor password"></p>
-                <p> <button class="btn btn-info" type="submit" formaction="/mentor_add">Add</button> </p>
-            </form>
-        </div>
+            <div class="page-header">
+                <h1>Mentor Add <span class="glyphicon glyphicon-plus"></span></h1>
+                <p>- add a new mentor</p>
+            </div>
+            <div class="form">
+                <form action="{{ url_for('submit_mentor') }}" method="POST">
+                    <p>Name</p>
+                    <p><input name="name" class="form-control" placeholder="Enter mentor name"></p>
+                    <p>Surname</p>
+                    <p><input name="surname" class="form-control" placeholder="Enter mentor surname"></p>
+                    <p>Login</p>
+                    <p><input name="login" class="form-control" placeholder="Enter mentor login"></p>
+                    <p>Password</p>
+                    <p><input name="password" class="form-control" placeholder="Enter mentor password"></p>
+                    <p>
+                        <button class="btn btn-info" type="submit" formaction="/mentor_add">Add</button>
+                    </p>
+                </form>
+            </div>
         </div>
     </div>
 </div>
