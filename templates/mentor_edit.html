@@ -1,23 +1,30 @@
-
 {% extends "layout.html" %}
 {% block content %}
 <div class="container">
     <div class="row">
         <div class="col-md-2 col-sm-1 col-xs-1"></div>
         <div class="col-md-3 col-sm-12 col-xs-12">
-        <div class="page-header">
-            <h1>Mentor Edit <span class="glyphicon glyphicon-pencil"></span></h1>
-            <p>- edit a mentor</p>
-        </div>
-        <div class="form" >
-            <form action="{{ url_for('mentor_edit', mentor_id=mentor.id) }}" method="post">
-                <p>Name</p><p><input name="name" class="form-control"  value="{{ mentor.name }}" required></p>
-                <p>Surname</p><p><input name="surname" class="form-control" value="{{ mentor.surname }}" required></p>
-                <p>Login</p><p><input name="login" class="form-control" value="{{ mentor.login }}"></p>
-                <p>Password</p><p><input name="password" class="form-control" value="***"></p>
-                <p><button class="btn btn-info" type="submit" formaction="{{ url_for('mentor_edit', mentor_id=mentor.id) }}" formmethod="post">Save</button> </p>
-            </form>
-        </div>
+            <div class="page-header">
+                <h1>Mentor Edit <span class="glyphicon glyphicon-pencil"></span></h1>
+                <p>- edit a mentor</p>
+            </div>
+            <div class="form">
+                <form action="{{ url_for('mentor_edit', mentor_id=mentor.id) }}" method="post">
+                    <p>Name</p>
+                    <p><input name="name" class="form-control" value="{{ mentor.name }}" required></p>
+                    <p>Surname</p>
+                    <p><input name="surname" class="form-control" value="{{ mentor.surname }}" required></p>
+                    <p>Login</p>
+                    <p><input name="login" class="form-control" value="{{ mentor.login }}"></p>
+                    <p>Password</p>
+                    <p><input name="password" class="form-control" value="***"></p>
+                    <p>
+                        <button class="btn btn-info" type="submit"
+                                formaction="{{ url_for('mentor_edit', mentor_id=mentor.id) }}" formmethod="post">Save
+                        </button>
+                    </p>
+                </form>
+            </div>
         </div>
     </div>
 </div>

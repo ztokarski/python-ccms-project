@@ -1,33 +1,41 @@
-from flask import Flask, render_template, request, url_for, redirect
-from model.employee_model import *
-from model.assignments_model import *
-from model.student_model import *
-from model.mentor_model import *
-from model.user_model import User_model
 import sqlite3
 
+from flask import Flask, render_template, request, url_for, redirect
+
+from model.assignments_model import *
+from model.employee_model import *
+from model.mentor_model import *
+from model.student_model import *
+from model.user_model import User_model
+
 app = Flask(__name__)
+
 
 @app.route("/")
 def index():
     return render_template("index.html")
 
+
 @app.route("/main")
 def main():
     return render_template("main.html")
 
+
 @app.route("/login_error")
 def login_error():
     return render_template("login_error.html")
+
 
 @app.route("/student_list", methods=["GET", "POST"])
 def student_list():
     students = StudentModel.get_all_students()
     return render_template("student_list.html", students=students)
 
+
 @app.route("/student_add")
 def student_form():
     return render_template("student_add.html")
+
 
 @app.route("/student_add", methods=["POST"])
 def submit_student():
@@ -52,10 +60,12 @@ def student_edit(student_id):
         StudentModel.edit_student(student_with_new_data)
         return redirect(url_for("student_list"))
 
+
 @app.route("/student_remove/<int:student_id>", methods=["GET", "POST"])
 def remove_student(student_id):
     StudentModel.remove_student(student_id)
     return redirect(url_for("student_list"))
+
 
 @app.route("/mentor_edit/<int:mentor_id>", methods=["POST", "GET"])
 def mentor_edit(mentor_id):
@@ -75,14 +85,17 @@ def mentor_list():
     mentors = MentorModel.get_all_mentors()
     return render_template("mentor_list.html", mentors=mentors)
 
+
 @app.route("/mentor_add")
 def mentor_form():
     return render_template("mentor_add.html")
+
 
 @app.route("/mentor_remove/<int:mentor_id>", methods=["GET", "POST"])
 def remove_mentor(mentor_id):
     MentorModel.remove_mentor(mentor_id)
     return redirect(url_for("mentor_list"))
+
 
 @app.route("/mentor_add", methods=["POST"])
 def submit_mentor():
@@ -122,7 +135,8 @@ def assignment_edit(ID_assignment):
     if request.method == "GET":
         return render_template("assignment_edit.html", assignment=assignment_to_edit)
     elif request.method == "POST":
-        assignment_with_new_data = Assignment(request.form["assignment_name"], request.form["due_date"], request.form["max_points"])
+        assignment_with_new_data = Assignment(request.form["assignment_name"], request.form["due_date"],
+                                              request.form["max_points"])
         assignment_with_new_data.ID_assignment = request.form["ID_assignment"]
         StudentModel.edit_student(assignment_with_new_data)
         return redirect(url_for("assignment_list"))
@@ -157,7 +171,6 @@ def submit_employee():
     return redirect(url_for("employee_list"))
 
 
-
 @app.route("/employee_edit/<int:employee_id>", methods=["POST", "GET"])
 def employee_edit(employee_id):
     employee_to_edit = User_model.get_object_by_id(employee_id)
@@ -172,11 +185,11 @@ def employee_edit(employee_id):
         return redirect(url_for("employee_list"))
 
 
-
 @app.route("/employee_remove/<int:employee_id>", methods=["GET", "POST"])
 def remove_employee(employee_id):
     EmployeeModel.remove_employee(employee_id)
     return redirect(url_for("employee_list"))
+
 
 @app.route("/team_list.html")
 def team_list():
@@ -188,13 +201,16 @@ def team_list():
         teams.append(row)
     return render_template("team_list.html", teams=teams)
 
+
 @app.route("/team_add")
 def team_add():
     return render_template("team_add.html")
 
+
 @app.route("/team_edit")
 def team_edit():
     return render_template("team_edit.html")
+
 
 if __name__ == '__main__':
     app.run(debug=True)
