@@ -1,74 +1,39 @@
-<!DOCTYPE html>
-
-<html>
-    <head>
-        <link rel="stylesheet" type="text/css" href= "{{ url_for('static',filename='css/style.css') }}">
-        <link rel="stylesheet" type="text/css" href= "{{ url_for('static',filename='css/table.css') }}">
-        <title>Student List</title>
-        <meta charset="utf-8">
-    </head>
-    <body>
-        <header style="background-image: url(static/img/ccms-header.jpg)"></header>
-        <div class="sidebar">
-            <div class="profile">
-                <img id="profile_picture" src="http://bit.ly/2l7tkrK"/>
-                <p id="profile_name">Logged as: <strong>PRZEMEK</strong> <hr></p>
-                <button type="button" id="logout_button"
-                onclick="location.href='index'">logout</button>
-            </div>
-            <div class="navigation">
-                <nav>
-                    <ul class="navigation">
-                        <strong>LOGIN</strong>
-                            <li><a href="index.html">correct login</a> </li>
-                            <li><a href="login_error.html">incorrect login</a> </li><hr>
-                        <strong>STUDENT</strong>
-                            <li><a href="student_list">List</a></li>
-                            <li><a href="student_add">Add</a></li>
-                            <li><a href="student_details.html">Details</a></li><hr>
-                        <strong>MENTOR</strong>
-                            <li><a href="mentor_list">List</a></li>
-                            <li><a href="mentor_add">Add</a></li>
-                            <li><a href="mentor_details.html">Details</a></li><hr>
-                        <strong>EMPLOYEE</strong>
-                            <li><a href="employee_list">List</a></li>
-                            <li><a href="employee_add">Add</a></li><hr>
-                        <strong>ASSIGNMENTS</strong>
-                            <li><a href="assignment_list">List</a></li>
-                            <li><a href="assignment_add">Add</a></li>
-                    </ul>
-                </nav>
-            </div>
-        </div>
-        <article>
-            <h3>LIST OF STUDENTS</h3>
-            <div>
-                <center><table>
-                    <tr>
-                        <th>#</th>
-                        <th>First Name</th>
-                        <th>Surname</th>
-                        <th>Actions</th>
-                        <th class="button_border"><button class="button" type="button"
-                            onclick="location.href='student_add'">add student</button></th>
-                    </tr>
-                    {% block content %}
-                        {% for student in students %}
+{% extends "layout.html" %}
+{% block content  %}
+            <div class="container">
+                <div class="page-header">
+                    <div class="col-md-2 col-sm-1 col-xs-1"></div>
+                    <h1>Student List <span class="glyphicon glyphicon-list-alt"></span></h1>
+                    <br></div>
+            <div class="row">
+                <div class="col-md-2 col-sm-1 col-xs-1"></div>
+            <div class="col-md-6 col-sm-12 col-xs-12">
+                <div class="table-responsive">
+                    <button class="btn btn-info" type="button"
+                            onclick="location.href='student_add'">Add student</button><hr>
+                    <table class = "table table-striped table-bordered table-hover ">
+                        <thead class="bg-info text-white">
                             <tr>
-                            <td>{{ students.index(student) + 1 }}</td>
-                            <td>{{ student.name }}</td>
-                            <td>{{ student.surname }}</td>
-                            <td>
-                                <ul>
-                                    <li><a href="/student_edit/{{ student.id }}">[Edit] </a></li>
-                                    <li><a href="/student_remove/{{ student.id }}">[Remove]</a></li><br>
-                                </ul>
-                            </td>
+                                <th>#</th>
+                                <th>First Name</th>
+                                <th>Surname</th>
+                                <th>Edit</th>
+                                <th>Remove</th>
                             </tr>
-                        {% endfor %}
-                    {% endblock %}
-              </table></center>
+                        </thead>
+
+                            {% for student in students %}
+                             <tr>
+                                <td class="col-md-1 col-sm-1 col-xs-1">{{ students.index(student)+1 }}</td>
+                                <td class="col-md-4 col-sm-4 col-xs-4">{{ student.name }}</td>
+                                <td class="col-md-4 col-sm-4 col-xs-4">{{ student.surname }}</td>
+                                <td class="col-md-1 col-sm-1 col-xs-1 text-center"><a href="/student_edit/{{ student.id }}" class="button "><span class="glyphicon glyphicon-pencil"></span></a></td>
+                                <td class="col-md-1 col-sm-1 col-xs-1 text-center"><a href="/student_remove/{{ student.id }}" class="button"><span class="glyphicon glyphicon-trash"></span></a></td>
+                             </tr>
+                            {% endfor %}
+                  </table>
+                </div>
             </div>
-        </article>
-    </body>
-</html>
+                <div class="col-md-3 col-sm-1 col-xs-1"></div>
+            </div></div></div>
+{% endblock %}
