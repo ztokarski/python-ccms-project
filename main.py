@@ -13,6 +13,7 @@ app.secret_key = "npionWGOJPOJKWAFR1423508-';\/[;498yhdoiuajwfniol"
 @app.route("/")
 def index():
     session.clear()
+    print(session)
     return render_template("index.html")
 
 @app.route("/login", methods=["POST"])
@@ -21,6 +22,7 @@ def login():
     if request.method == "POST":
         user_login = request.form["login"]
         user_id = User_model.get_id_from_login(user_login)
+        print(user_id)
         if user_id == "There's no such user!":
             return redirect("/invalid")
         else:
@@ -39,6 +41,7 @@ def login():
                 cookies_dict["user_role"] = "manager"
 
             session.update(cookies_dict)
+            print(session)
 
             return make_response(redirect("main"))
 

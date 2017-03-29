@@ -52,11 +52,11 @@ class User_model:
         database = DB.get_connection()
         users = database.execute("SELECT * FROM users WHERE ID_user = ?", (int(id),))
         for user in users:
-            if user[7] == 1:
-                user_object =Student(user[1], [user[2]])
-            elif user[7] == 2:
+            if user[6] == 1:
+                user_object = Student(user[1], [user[2]])
+            elif user[6] == 2:
                 user_object = Mentor(user[1], user[2])
-            elif user[7] == 3:
+            elif user[6] == 3:
                 user_object = Employee(user[1], user[2])
             else:
                 user_object = Manager(user[1], user[2])
