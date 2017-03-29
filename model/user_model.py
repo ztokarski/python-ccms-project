@@ -36,6 +36,7 @@ class User_model:
             assignment_list.append(assignment_object)
         return assignment_list
 
+    @classmethod
     def get_id_from_login(cls, user_login):
         database = DB.get_connection()
         id_db = database.execute("SELECT ID_user FROM users WHERE login = ?", (user_login,))
