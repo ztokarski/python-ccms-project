@@ -1,20 +1,55 @@
-from flask import Flask, render_template, request, url_for, redirect
+from flask import Flask, render_template, request, url_for, redirect, make_response, session
 from model.employee_model import *
 from model.assignments_model import *
 from model.student_model import *
 from model.mentor_model import *
 from model.user_model import User_model
+from model.user import *
 import sqlite3
 
 app = Flask(__name__)
+app.secret_key = "npionWGOJPOJKWAFR1423508-';\/[;498yhdoiuajwfniol"
 
 @app.route("/")
 def index():
+    session.clear()
     return render_template("index.html")
 
-@app.route("/main.html")
+@app.route("/login", methods=["POST"])
+@app.route("/invalid", methods=["GET"])
+def login():
+    if request.method == "POST":
+        user_login = request.form["login"]
+        user_id = User_model.get_id_from_login(user_login)
+        if user_id == "There's no such user!":
+            return redirect("/invalid")
+        else:
+            user_object = User_model.get_object_by_id(user_id)
+            cookies_dict = {"user_login": user_login, "user_name": user_object.name,
+                            "user_surname": user_object.surname,
+                            "user_id": user_object.id}
+            if isinstance(user_object, Student):
+                cookies_dict["user_role"] = "student"
+            elif isinstance(user_object, Mentor):
+                cookies_dict["user_role"] = "mentor"
+
+            if isinstance(user_object, Employee):
+                cookies_dict["user_role"] = "employee"
+            if isinstance(user_object, Manager):
+                cookies_dict["user_role"] = "manager"
+
+            session.update(cookies_dict)
+
+            return make_response(redirect("main"))
+
+    else:
+        return render_template("index.html", message="Invalid login or password!")
+
+@app.route("/main")
 def main():
-    return render_template("main.html")
+    name = request.cookies.get("user_name")
+    return render_template("main.html", name=name)
+
 
 @app.route("/student_list", methods=["GET", "POST"])
 def student_list():
@@ -46,7 +81,9 @@ def student_edit(student_id):
         student_with_new_data.login = request.form["login"]
         student_with_new_data.id = student_id
         StudentModel.edit_student(student_with_new_data)
+
         return redirect(url_for("student_list"))
+
 
 @app.route("/student_remove/<int:student_id>", methods=["GET", "POST"])
 def remove_student(student_id):
@@ -194,3 +231,4 @@ def team_edit():
 
 if __name__ == '__main__':
     app.run(debug=True)
+

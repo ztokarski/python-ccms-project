@@ -1,13 +1,13 @@
 from model.user import *
-class User_model:
+from db_connection import DB
 
-    conn = sqlite3.connect('ccms.db')
-    cursor = conn.cursor()
+class User_model:
 
     @classmethod
     def get_all_users(cls):
         user_list = []
-        db_list = cls.conn.execute("SELECT * FROM users")
+        database = DB.get_connection()
+        db_list = database.execute("SELECT * FROM users")
         for user in db_list:
             name = user[1]
             surname = user[2]
@@ -36,15 +36,30 @@ class User_model:
             assignment_list.append(assignment_object)
         return assignment_list
 
+    def get_id_from_login(cls, user_login):
+        database = DB.get_connection()
+        id_db = database.execute("SELECT ID_user FROM users WHERE login = ?", (user_login,))
+        user_id = id_db.fetchone()
+        try:
+            return user_id[0]
+        except TypeError:
+            return "There's no such user!"
+
+
     @classmethod
     def get_object_by_id(cls, id):
-        conn = sqlite3.connect('ccms.db')
-        users = conn.execute("SELECT * FROM users WHERE ID_user == %i" % (int(id)))
-        user_object = User("a", "b")
+        database = DB.get_connection()
+        users = database.execute("SELECT * FROM users WHERE ID_user = ?", (int(id),))
         for user in users:
-            name = user[1]
-            surname = user[2]
-            user_object = User(name, surname)
+            if user[7] == 1:
+                user_object =Student(user[1], [user[2]])
+            elif user[7] == 2:
+                user_object = Mentor(user[1], user[2])
+            elif user[7] == 3:
+                user_object = Employee(user[1], user[2])
+            else:
+                user_object = Manager(user[1], user[2])
+
             user_object.id = user[0]
             user_object.login = user[3]
             user_object.password = user[4]
@@ -66,4 +81,5 @@ class User_model:
             assignment_object = Assignment(assignment_name, due_date, max_points)
             assignment_object.ID_assignment = assignment[0]
             assignment_object.ID_user = assignment[4]
+        conn.close()
         return assignment_object

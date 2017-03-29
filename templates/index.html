@@ -8,14 +8,16 @@
     </head>
     <body>
         <!-- class for LOGIN page -->
+        <p id="error_message">{{ message }} </p>
         <center>
+            <form action="/login" method="post">
         <div class="form">
             <h1 class="header">CcMS</h1>
             <h2>Login to your account</h2>
             <p><input name="login" placeholder="Enter your login"></p>
             <p><input name="password" placeholder="Enter your password"></p>
-            <p> <button type="button" onclick="location.href='main.html'">Login</button> </p>
-        </div>
+            <p> <input type="submit" value="login"></p>
+        </div></form>
         </center>
     </body>
 </html>
