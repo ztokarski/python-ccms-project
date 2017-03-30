@@ -28,8 +28,9 @@ class AssignmentModel:
         """add a new assignment to DB"""
         data = DB.get_connection()
         cursor = data.cursor()
-        # cursor.execute("INSERT INTO assignments (assignment_name = ?, due_date = ?, max_points = ?, ID_assignment = ?, ID_user = ?)", (assignment.name, assignment.due_date, assignment.max_points, assignment.id, assignment.id_user))
-        cursor.execute("INSERT INTO assignments (assignment_name = ?, due_date = ?, max_points = ?, ID_assignment = ?, ID_user = ?)", (assignment.name, assignment.due_date, assignment.max_points, assignment.id, assignment.id_user))
+        cursor.execute(
+            "INSERT INTO `assignments`(`assignment_name`, `due_date`, `max_points`, `ID_user`) VALUES ('{}','{}','{}','{}')".format(
+                assignment.name, assignment.due_date, assignment.max_points, assignment.id_user))
         data.commit()
         data.close()
 
