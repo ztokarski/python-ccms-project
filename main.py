@@ -5,6 +5,7 @@ from model.mentor_model import *
 from model.student_model import *
 from model.user_model import User_model
 from model.user import *
+from model.spell_checker import Spell_checker
 import sqlite3
 
 app = Flask(__name__)
