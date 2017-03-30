@@ -1,50 +1,55 @@
 {% extends "layout.html" %}
 {% block content %}
-<div class="container">
-    <div class="header">
-        <div class="col-md-2 col-sm-1 col-xs-1"></div>
-        <h1>Assignment List <span class="glyphicon glyphicon-list-alt"></span></h1>
-        <br>
-    </div>
-    <div class="row">
-        <div class="col-md-2 col-sm-1 col-xs-1"></div>
-        <div class="col-md-6 col-sm-12 col-xs-12">
-            <div class="table-responsive">
-                {% if session["user_role"] != "student" %}
-                <button class="btn btn-info" type="button" onclick="location.href='assignment_add'">Add
-                    Assignment
-                </button>
-                <hr>
-                {% endif %}
-                <table class="table table-striped table-bordered table-hover ">
-                    <thead class="bg-info text-white">
-                    <tr>
-                        <th>#</th>
-                        <th>Assignment Name</th>
-                        <th>Due Date</th>
-                        <th>Max Points</th>
-                        {% if session["user_role"] != "student" %}
-                        <th>Remove</th>
-                        {% endif %}
-                    </tr>
-                    </thead>
-                    {% for assignment in assignments %}
-                    <tr>
-                        <td class="col-md-1 ">{{ assignments.index(assignment) + 1 }}</td>
-                        <td class="col-md-4 ">{{ assignment.assignment_name }}</td>
-                        <td class="col-md-4 ">{{ assignment.due_date }}</td>
-                        <td class="col-md-4 ">{{ assignment.max_points }}</td>
-                        {% if session["user_role"] != "student" %}
-                        <td class="col-md-1  text-center"><a
-                                href="/assignment_remove/{{ assignment.ID_assignment }}"
-                                class="button"><span class="glyphicon glyphicon-trash"></span></a></td>
-                        {% endif %}
-                    </tr>
-                    {% endfor %}
-                </table>
+    <div class="container">
+        <div class="header">
+            <div class="col-md-2 col-sm-1 col-xs-1"></div>
+            <h1>Assignment List <span class="glyphicon glyphicon-list-alt"></span></h1>
+            <br>
+        </div>
+        <div class="row">
+            <div class="col-md-2 col-sm-1 col-xs-1"></div>
+            <div class="col-md-6 col-sm-12 col-xs-12">
+                <div class="table-responsive">
+                    {% if session["user_role"] != "student" %}
+                        <button class="btn btn-info" type="button" onclick="location.href='assignment_add'">Add
+                            Assignment
+                        </button>
+                        <hr>
+                    {% endif %}
+                    <table class="table table-striped table-bordered table-hover ">
+                        <thead class="bg-info text-white">
+                        <tr>
+                            <th>#</th>
+                            <th>Assignment Name</th>
+                            <th>Due Date</th>
+                            <th>Max Points</th>
+                            {% if session["user_role"] != "student" %}
+                                <th>Edit</th>
+                                <th>Remove</th>
+                            {% endif %}
+                        </tr>
+                        </thead>
+                        {% for assignment in assignments %}
+                            <tr>
+                                <td class="col-md-1 ">{{ assignments.index(assignment) + 1 }}</td>
+                                <td class="col-md-4 ">{{ assignment.assignment_name }}</td>
+                                <td class="col-md-4 ">{{ assignment.due_date }}</td>
+                                <td class="col-md-4 ">{{ assignment.max_points }}
+                                    {% if session["user_role"] != "student" %}
+                                        <td class="col-md-1 col-sm-1 col-xs-1 text-center"><a
+                                                href="/assignment_edit/{{ assignment.ID_assignment }}"
+                                                class="button "><span
+                                                class="glyphicon glyphicon-pencil"></span></a></td>
+                                        <td class="col-md-1  text-center"><a
+                                                href="/assignment_remove/{{ assignment.ID_assignment }}"
+                                                class="button"><span class="glyphicon glyphicon-trash"></span></a></td>
+                                    {% endif %}
+                            </tr>
+                        {% endfor %}
+                    </table>
+                </div>
             </div>
         </div>
     </div>
-</div>
 {% endblock %}
 
