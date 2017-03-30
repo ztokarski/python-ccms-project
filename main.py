@@ -319,6 +319,8 @@ def team_list():
             for row in db_list:
                 teams.append(row)
             return render_template("team_list.html", teams=teams)
+        except KeyError:
+            return render_template("index.html")
 
 
 @app.route("/team_add")
@@ -329,6 +331,10 @@ def team_add():
 @app.route("/team_edit")
 def team_edit():
     return render_template("team_edit.html")
+
+@app.errorhandler(404)
+def these_are_not_sites_you_are_looking_for(e):
+    return render_template('404.html'), 404
 
 
 if __name__ == '__main__':
