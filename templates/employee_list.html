@@ -1,7 +1,7 @@
 {% extends "layout.html" %}
 {% block content %}
 <div class="container">
-    <div class="page-header">
+    <div class="header">
         <div class="col-md-2 col-sm-1 col-xs-1"></div>
         <h1>Employee List <span class="glyphicon glyphicon-list-alt"></span></h1>
         <br></div>
@@ -19,10 +19,10 @@
                         <th>#</th>
                         <th>First Name</th>
                         <th>Surname</th>
-            {% if session["user_role"] == "manager" %}
+                        {% if session["user_role"] == "manager" %}
                         <th>Edit</th>
                         <th>Remove</th>
-            {% endif %}
+                        {% endif %}
                     </tr>
                     </thead>
                     {% for employee in employees %}
@@ -30,13 +30,15 @@
                         <td class="col-md-1">{{ employees.index(employee)+1 }}</td>
                         <td class="col-md-4">{{ employee.name }}</td>
                         <td class="col-md-4">{{ employee.surname }}</td>
-                                    {% if session["user_role"] == "manager" %}
+                        {% if session["user_role"] == "manager" %}
 
-                        <td class="col-md-1 text-center"><a href="/employee_edit/{{ employee.id }}" class="button "><span
+                        <td class="col-md-1 text-center"><a href="/employee_edit/{{ employee.id }}"
+                                                            class="button "><span
                                 class="glyphicon glyphicon-pencil"></span></a></td>
-                        <td class="col-md-1 text-center"><a href="/employee_remove/{{ employee.id }}" class="button"><span
+                        <td class="col-md-1 text-center"><a href="/employee_remove/{{ employee.id }}"
+                                                            class="button"><span
                                 class="glyphicon glyphicon-trash"></span></a></td>
-                    {% endif %}
+                        {% endif %}
                     </tr>
                     {% endfor %}
                 </table>

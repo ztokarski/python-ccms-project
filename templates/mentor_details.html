@@ -1,85 +1,92 @@
 <!DOCTYPE html>
 
 <html>
-    <head>
-        <link rel="stylesheet" type="text/css" href="css/style.css">
-        <link rel="stylesheet" type="text/css" href="css/table.css">
-        <title>Mentor Details</title>
-        <meta charset="utf-8">
-    </head>
-    <body>
-        <header style="background-image: url(img/ccms-header.jpg)"></header>
-        <div class="sidebar">
-            <div class="profile">
-                <img id="profile_picture" src="http://bit.ly/2l7tkrK"/>
-                <p id="profile_name">Logged as: <strong>PRZEMEK</strong> <hr></p>
-                <button type="button" id="logout_button"
-                onclick="location.href='index'">logout</button>
-            </div>
-            <div class="navigation">
-                <nav>
-                    <ul class="navigation">
-                        <strong>LOGIN</strong>
-                            <li><a href="index.html">correct login</a> </li>
-                            <li><a href="login_error.html">incorrect login</a> </li><hr>
-                        <strong>STUDENT</strong>
-                            <li><a href="student_list">List</a></li>
-                            <li><a href="student_add">Add</a></li>
-                            <li><a href="student_details.html">Details</a></li><hr>
-                        <strong>MENTOR</strong>
-                            <li><a href="mentor_list">List</a></li>
-                            <li><a href="mentor_add">Add</a></li>
-                            <li><a href="mentor_details.html">Details</a></li><hr>
-                        <strong>EMPLOYEE</strong>
-                            <li><a href="employee_list">List</a></li>
-                            <li><a href="employee_add">Add</a></li><hr>
-                        <strong>ASSIGNMENTS</strong>
-                            <li><a href="assignment_list">List</a></li>
-                            <li><a href="assignment_add">Add</a></li>
-                    </ul>
-                </nav>
-            </div>
-        </div>
-            <article>
-            <div class="details">
-                <div class="details_header">
-                <h1>Przemysław Ciąćka</h2>
+<head>
+    <link rel="stylesheet" type="text/css" href="css/style.css">
+    <link rel="stylesheet" type="text/css" href="css/table.css">
+    <title>Mentor Details</title>
+    <meta charset="utf-8">
+</head>
+<body>
+<header style="background-image: url(img/ccms-header.jpg)"></header>
+<div class="sidebar">
+    <div class="profile">
+        <img id="profile_picture" src="http://bit.ly/2l7tkrK"/>
+        <p id="profile_name">Logged as: <strong>PRZEMEK</strong>
+        <hr>
+        </p>
+        <button type="button" id="logout_button"
+                onclick="location.href='index'">logout
+        </button>
+    </div>
+    <div class="navigation">
+        <nav>
+            <ul class="navigation">
+                <strong>LOGIN</strong>
+                <li><a href="index.html">correct login</a></li>
+                <li><a href="login_error.html">incorrect login</a></li>
+                <hr>
+                <strong>STUDENT</strong>
+                <li><a href="student_list">List</a></li>
+                <li><a href="student_add">Add</a></li>
+                <li><a href="student_details.html">Details</a></li>
+                <hr>
+                <strong>MENTOR</strong>
+                <li><a href="mentor_list">List</a></li>
+                <li><a href="mentor_add">Add</a></li>
+                <li><a href="mentor_details.html">Details</a></li>
+                <hr>
+                <strong>EMPLOYEE</strong>
+                <li><a href="employee_list">List</a></li>
+                <li><a href="employee_add">Add</a></li>
+                <hr>
+                <strong>ASSIGNMENTS</strong>
+                <li><a href="assignment_list">List</a></li>
+                <li><a href="assignment_add">Add</a></li>
+            </ul>
+        </nav>
+    </div>
+</div>
+<article>
+    <div class="details">
+        <div class="details_header">
+            <h1>Przemysław Ciąćka</h2>
                 <img id="details_img" src="http://bit.ly/2l7tkrK"/>
-            </div>
+        </div>
 
-                <section>
-                    <h3 class="details">Bio</h3>
-                    <div id="description"><p class="details">
-                        My name is Przemek and I like crossfit.</p></div>
-                    <ul class="details">
-                    <li><h3>Classes:</h3></li>
-                        <div>
-                            <table>
-                                <tr>
-                                    <th>Krk.2016.1</th>
-                                </tr>
-                            </table>
-                        </div>
-                    <li> <h3>Assignments created:</h3> </li>
-                        <div>
-                            <table>
-                                <tr>
-                                    <th>Task:</th>
-                                    <th>Max points:</th>
-                                    <th>Due: </th>
-                                </tr>
-                                <tr>
-                                    <td>Css ZEN Garden</td>
-                                    <td>100</td>
-                                    <td>23-02-2017</td>
-                                <tr>
-                                    <td>Geometry </td>
-                                    <td>100</td>
-                                    <td>19-03-2017</td>
-                                </tr>
-                            </table>
-                        </div>
-                </section>
-        </article>
-    </body>
+        <section>
+            <h3 class="details">Bio</h3>
+            <div id="description"><p class="details">
+                My name is Przemek and I like crossfit.</p></div>
+            <ul class="details">
+                <li><h3>Classes:</h3></li>
+                <div>
+                    <table>
+                        <tr>
+                            <th>Krk.2016.1</th>
+                        </tr>
+                    </table>
+                </div>
+                <li><h3>Assignments created:</h3></li>
+                <div>
+                    <table>
+                        <tr>
+                            <th>Task:</th>
+                            <th>Max points:</th>
+                            <th>Due:</th>
+                        </tr>
+                        <tr>
+                            <td>Css ZEN Garden</td>
+                            <td>100</td>
+                            <td>23-02-2017</td>
+                        <tr>
+                            <td>Geometry</td>
+                            <td>100</td>
+                            <td>19-03-2017</td>
+                        </tr>
+                    </table>
+                </div>
+        </section>
+</article>
+</body>
 </html>

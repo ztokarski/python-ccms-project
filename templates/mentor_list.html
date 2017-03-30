@@ -1,7 +1,7 @@
 {% extends "layout.html" %}
 {% block content %}
 <div class="container">
-    <div class="page-header">
+    <div class="header">
         <div class="col-md-2 col-sm-1 col-xs-1"></div>
         <h1>Mentor List <span class="glyphicon glyphicon-list-alt"></span></h1>
         <br></div>
@@ -9,11 +9,11 @@
         <div class="col-md-2 col-sm-1 col-xs-1"></div>
         <div class="col-md-6 col-sm-12 col-xs-12">
             <div class="table-responsive">
-            {% if session['user_role'] == 'manager' %}
+                {% if session['user_role'] == 'manager' %}
                 <button class="btn btn-info" type="button"
                         onclick="location.href='mentor_add'">Add mentor
                 </button>
-            {% endif %}
+                {% endif %}
                 <hr>
                 <table class="table table-striped table-bordered table-hover ">
                     <thead class="bg-info text-white">
@@ -37,7 +37,7 @@
                                 class="glyphicon glyphicon-pencil"></span></a></td>
                         <td class="col-md-1 text-center"><a href="/mentor_remove/{{ mentor.id }}" class="button"><span
                                 class="glyphicon glyphicon-trash"></span></a></td>
-                    {% endif %}
+                        {% endif %}
                     </tr>
                     {% endfor %}
                 </table>
