@@ -53,7 +53,7 @@ class User_model:
         users = database.execute("SELECT * FROM users WHERE ID_user = ?", (int(id),))
         for user in users:
             if user[6] == 1:
-                user_object = Student(user[1], [user[2]])
+                user_object = Student(user[1], user[2])
             elif user[6] == 2:
                 user_object = Mentor(user[1], user[2])
             elif user[6] == 3:
