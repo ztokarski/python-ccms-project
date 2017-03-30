@@ -175,7 +175,7 @@ def assignment_edit(ID_assignment):
     elif request.method == "POST":
         assignment_with_new_data = Assignment(request.form["assignment_name"], request.form["due_date"],
                                               request.form["max_points"])
-        # assignment_with_new_data.ID_assignment = request.form["ID_assignment"]
+        assignment_with_new_data.id = ID_assignment
         AssignmentModel.edit_assignment(assignment_with_new_data)
         return redirect(url_for("assignment_list"))
 
