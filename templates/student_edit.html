@@ -1,23 +1,33 @@
 {% extends "layout.html" %}
-{% block content  %}
-        <article>
-            <form action="{{ url_for('student_edit', student_id=student.id) }}" method="post">
+{% block content %}
+<div class="container">
+    <div class="row">
+        <div class="col-md-2 col-sm-1 col-xs-1"></div>
+        <div class="col-md-3 col-sm-12 col-xs-12">
+            <div class="page-header">
+                <h1>Student Edit <span class="glyphicon glyphicon-pencil"></span></h1>
+                <p><i>- edit a student</i></p>
+            </div>
             <div class="form">
-                <h2>Edit student menu</h2>
-                <p>Name</p><p><input name="name" value="{{ student.name }}" required>  </p>
-                <p>Surname</p><p><input name="surname" value="{{ student.surname }}" required></p>
-                <p>Login</p><p><input name="login" value="{{ student.login }}"></p>
-                <p>Password</p><p><input name="password" value="***"></p>
-                <h3>Assign to team</h3>
-                <p>
-                    <select name="team">
-                    <option value="team">Motylki</option>
-                    <option value="team">Biedronki</option>
-                    <option value="team">Muchomorki</option>
-                    <option value="team">Ślimaki</option>
-                    </select>
-                </p>
-                <p> <button class="button" type="submit" formaction="{{ url_for('student_edit', student_id=student.id) }}" formmethod="post">SAVE CHANGES</button> </p>
-            </div></form>
-        </article>
+                <form action="{{ url_for('student_edit', student_id=student.id) }}" method="post">
+                    <p>Name</p>
+                    <p><input name="name" class="form-control" value="{{ student.name }}" required></p>
+                    <p>Surname</p>
+                    <p><input name="surname" class="form-control" value="{{ student.surname }}" required></p>
+                    <p>Login</p>
+                    <p><input name="login" class="form-control" value="{{ student.login }}"></p>
+                    <p>Password</p>
+                    <p><input name="password" class="form-control" value="***"></p>
+                    <p>
+                        <button class="btn btn-info" type="submit"
+                                formaction="{{ url_for('student_edit', student_id=student.id) }}" formmethod="post">
+                            Save
+                        </button>
+                    </p>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
 {% endblock %}
