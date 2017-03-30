@@ -46,7 +46,7 @@ class AssignmentModel:
         """edit assignment in DB"""
         data = DB.get_connection()
         cursor = data.cursor()
-        cursor.execute("UPDATE assignments SET assignment_name = ?, due_date = ?, max_points = ? WHERE ID_assignment = ?", (assignment.assignment_name, assignment.due_date, assignment.max_points, assignment.ID_assignment))
+        cursor.execute("UPDATE assignments SET assignment_name = ?, due_date = ?, max_points = ? WHERE ID_assignment = ?", (assignment.name, assignment.due_date, assignment.max_points, assignment.id))
         data.commit()
         data.close()
 
