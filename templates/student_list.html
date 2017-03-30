@@ -1,39 +1,40 @@
 {% extends "layout.html" %}
-{% block content  %}
-            <div class="container">
-                <div class="page-header">
-                    <div class="col-md-2 col-sm-1 col-xs-1"></div>
-                    <h1>Student List <span class="glyphicon glyphicon-list-alt"></span></h1>
-                    <br></div>
-            <div class="row">
-                <div class="col-md-2 col-sm-1 col-xs-1"></div>
+{% block content %}
+    <div class="container">
+        <div class="page-header">
+            <div class="col-md-2 col-sm-1 col-xs-1"></div>
+            <h1>Student List <span class="glyphicon glyphicon-list-alt"></span></h1>
+            <br></div>
+        <div class="row">
+            <div class="col-md-2 col-sm-1 col-xs-1"></div>
             <div class="col-md-6 col-sm-12 col-xs-12">
                 <div class="table-responsive">
                     <button class="btn btn-info" type="button"
-                            onclick="location.href='student_add'">Add student</button><hr>
-                    <table class = "table table-striped table-bordered table-hover ">
+                             onclick="location.href='student_add'">Add student
+                    </button>
+                    <hr>
+                    <table class="table table-striped table-bordered table-hover ">
                         <thead class="bg-info text-white">
-                            <tr>
-                                <th>#</th>
-                                <th>First Name</th>
-                                <th>Surname</th>
-                                <th>Edit</th>
-                                <th>Remove</th>
-                            </tr>
+                        <tr>
+                            <th>#</th>
+                            <th>First Name</th>
+                            <th>Surname</th>
+                            <th>Edit</th>
+                            <th>Remove</th>
+                        </tr>
                         </thead>
-
-                            {% for student in students %}
-                             <tr>
-                                <td class="col-md-1 col-sm-1 col-xs-1">{{ students.index(student)+1 }}</td>
-                                <td class="col-md-4 col-sm-4 col-xs-4">{{ student.name }}</td>
-                                <td class="col-md-4 col-sm-4 col-xs-4">{{ student.surname }}</td>
-                                <td class="col-md-1 col-sm-1 col-xs-1 text-center"><a href="/student_edit/{{ student.id }}" class="button "><span class="glyphicon glyphicon-pencil"></span></a></td>
-                                <td class="col-md-1 col-sm-1 col-xs-1 text-center"><a href="/student_remove/{{ student.id }}" class="button"><span class="glyphicon glyphicon-trash"></span></a></td>
-                             </tr>
-                            {% endfor %}
-                  </table>
+                        {% for student in students %}
+                            <tr>
+                                <td class="col-md-1">{{ students.index(student) + 1 }}</td>
+                                <td class="col-md-4">{{ student.name }}</td>
+                                <td class="col-md-4">{{ student.surname }}</td>
+                                <td class="col-md-1 text-center"><a href="/student_edit/{{ student.id }}" class="button "><span class="glyphicon glyphicon-pencil"></span></a></td>
+                                <td class="col-md-1 text-center"><a href="/student_remove/{{ student.id }}" class="button"><span class="glyphicon glyphicon-trash"></span></a></td>
+                            </tr>
+                        {% endfor %}
+                    </table>
                 </div>
             </div>
-                <div class="col-md-3 col-sm-1 col-xs-1"></div>
-            </div></div></div>
+        </div>
+    </div>
 {% endblock %}
