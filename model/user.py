@@ -59,12 +59,12 @@ class Employee(User):
 
 
 class Assignment:
-    def __init__(self, assignment_name, due_date, max_points):
-        self.ID_assignment = 0
-        self.assignment_name = assignment_name
+    def __init__(self, name, due_date, max_points):
+        self.id = 0
+        self.name = name
         self.due_date = due_date
         self.max_points = max_points
-        self.ID_user = None
+        self.id_user = None
 
 
 

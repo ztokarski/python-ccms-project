@@ -32,7 +32,7 @@
                         {% for assignment in assignments %}
                             <tr>
                                 <td class="col-md-1 ">{{ assignments.index(assignment) + 1 }}</td>
-                                <td class="col-md-4 ">{{ assignment.assignment_name }}</td>
+                                <td class="col-md-4 ">{{ assignment.name }}</td>
                                 <td class="col-md-4 ">{{ assignment.due_date }}</td>
                                 <td class="col-md-4 ">{{ assignment.max_points }}
                                     {% if session["user_role"] != "student" %}

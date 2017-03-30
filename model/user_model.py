@@ -25,12 +25,13 @@ class User_model:
     @classmethod
     def get_all_assignment(cls):
         assignment_list = []
-        db_list = cls.conn.execute("SELECT * FROM assignments")
+        database = DB.get_connection()
+        db_list = database.execute("SELECT * FROM assignments")
         for assignment in db_list:
-            assignment_name = assignment[1]
+            name = assignment[1]
             due_date = assignment[2]
             max_points = assignment[3]
-            assignment_object = Assignment(assignment_name, due_date, max_points)
+            assignment_object = Assignment(name, due_date, max_points)
             assignment_object.ID_assignment = assignment[0]
             assignment_object.ID_user = assignment[4]
             assignment_list.append(assignment_object)
@@ -76,10 +77,10 @@ class User_model:
         assignments = conn.execute("SELECT * FROM assignments WHERE ID_assignment == %i" % (int(assignment_id)))
         assignment_object = None
         for assignment in assignments:
-            assignment_name = assignment[1]
+            name = assignment[1]
             due_date = assignment[2]
             max_points = assignment[3]
-            assignment_object = Assignment(assignment_name, due_date, max_points)
+            assignment_object = Assignment(name, due_date, max_points)
             assignment_object.ID_assignment = assignment[0]
             assignment_object.ID_user = assignment[4]
         conn.close()
