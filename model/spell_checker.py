@@ -13,7 +13,7 @@ class Spell_checker:
     def check_email(self):
         pattern = r"([^\s@]{1,64})@(([^\s@]+)\.)+([a-zA-z]{2,5})"
         checker = re.match(pattern, self.text)
-        if checker == None:
+        if not checker:
             return False
         else:
             return True
@@ -21,7 +21,23 @@ class Spell_checker:
     def check_if_empty(self):
         pattern = r"[^\s]"
         checker = re.match(pattern, self.text)
-        if checker == None:
+        if not checker:
+            return False
+        else:
+            return True
+
+    def check_if_date(self):
+        pattern = r"(\d{2}\.\d{2}\.\d{4}|\d{4}\-\d{2}\-\d{2})"
+        checker = re.match(pattern, self.text)
+        if not checker:
+            return False
+        else:
+            return True
+
+    def check_max_point(self):
+        pattern = r"[1-100]"
+        checker = re.match(pattern, self.text)
+        if not checker:
             return False
         else:
             return True

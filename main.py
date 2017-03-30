@@ -58,12 +58,12 @@ def login():
 
 @app.route("/main")
 def main():
-    if session["user_id"]:
-        try:
-            name = request.cookies.get("user_name")
-            return render_template("main.html", name=name)
-        except KeyError:
-            return render_template("index.html")
+    try:
+        if session["user_id"]:
+                name = request.cookies.get("user_name")
+                return render_template("main.html", name=name)
+    except KeyError:
+        return render_template("index.html")
 
 
 
@@ -74,81 +74,101 @@ def login_error():
 
 @app.route("/student_list", methods=["GET", "POST"])
 def student_list():
-
-    if session["user_id"]:
-        try:
-            students = StudentModel.get_all_students()
-            return render_template("student_list.html", students=students)
-        except KeyError:
-            render_template("index.html")
+    try:
+        if session["user_id"]:
+                students = StudentModel.get_all_students()
+                return render_template("student_list.html", students=students)
+    except KeyError:
+        render_template("index.html")
 
 
 @app.route("/student_add")
 def student_form():
-    if session["user_id"]:
-        try:
+    try:
+        if session["user_id"]:
             return render_template("student_add.html")
-        except KeyError:
-            return render_template("index.html")
+    except KeyError:
+        return render_template("index.html")
 
 @app.route("/student_add", methods=["POST"])
 def submit_student():
-    if session["user_id"]:
-        try:
-            name = request.form["name"]
-            surname = request.form["surname"]
-            login = request.form["login"]
-            my_student = Student(name, surname)
-            my_student.login = login
-            StudentModel.add_student(my_student)
-        except KeyError:
-            return render_template("index.html")
+    try:
+        if session["user_id"]:
 
-    return redirect(url_for("student_list"))
+            name_check = Spell_checker(request.form["name"])
+            if not name_check.check_if_empty():
+                return render_template("task_form.html", empty_space="Task has to have a name!")
+            else:
+
+                name = Spell_checker(request.form["name"]).The_Holy_Trinity_of_Regex()
+                surname = Spell_checker(request.form["surname"]).The_Holy_Trinity_of_Regex()
+                my_student = Student(name, surname)
+                my_student.login = request.form["login"]
+                StudentModel.add_student(my_student)
+
+                return redirect(url_for("student_list"))
+    except KeyError:
+        return render_template("index.html")
+
 
 
 @app.route("/student_edit/<int:student_id>", methods=["POST", "GET"])
 def student_edit(student_id):
-    if session["user_id"]:
-        try:
+    try:
+        if session["user_id"]:
             student_to_edit = User_model.get_object_by_id(student_id)
             if request.method == "GET":
                 return render_template("student_edit.html", student=student_to_edit)
             elif request.method == "POST":
-                student_with_new_data = Student(request.form["name"], request.form["surname"])
-                student_with_new_data.login = request.form["login"]
-                student_with_new_data.id = student_id
-                StudentModel.edit_student(student_with_new_data)
+                name_check = Spell_checker(request.form["name"])
+                if not name_check.check_if_empty():
+                    return render_template("student_edit.html", empty_space="Student has to have a name!")
+                else:
 
-                return redirect(url_for("student_list"))
-        except KeyError:
-            return render_template("index.html")
+                    name = Spell_checker(request.form["name"]).The_Holy_Trinity_of_Regex()
+                    surname = Spell_checker(request.form["surname"]).The_Holy_Trinity_of_Regex()
+                    student_with_new_data = Student(name, surname)
+                    student_with_new_data.login = request.form["login"]
+                    student_with_new_data.id = student_id
+                    StudentModel.edit_student(student_with_new_data)
+
+                    return redirect(url_for("student_list"))
+    except KeyError:
+        return render_template("index.html")
 
 
 @app.route("/student_remove/<int:student_id>", methods=["GET", "POST"])
 def remove_student(student_id):
-    if session["user_id"]:
-        try:
+    try:
+        if session["user_id"]:
             StudentModel.remove_student(student_id)
             return redirect(url_for("student_list"))
-        except KeyError:
-            return render_template("index.html")
+    except KeyError:
+        return render_template("index.html")
 
 @app.route("/mentor_edit/<int:mentor_id>", methods=["POST", "GET"])
 def mentor_edit(mentor_id):
-    if session["user_id"]:
-        try:
+    try:
+        if session["user_id"]:
+
             mentor_to_edit = User_model.get_object_by_id(mentor_id)
             if request.method == "GET":
                 return render_template("mentor_edit.html", mentor=mentor_to_edit)
             elif request.method == "POST":
-                mentor_with_new_data = Mentor(request.form["name"], request.form["surname"])
-                mentor_with_new_data.login = request.form["login"]
-                mentor_with_new_data.id = mentor_id
-                MentorModel.edit_mentor(mentor_with_new_data)
-                return redirect(url_for("mentor_list"))
-        except KeyError:
-            return render_template("index.html")
+                name_check = Spell_checker(request.form["name"])
+                if not name_check.check_if_empty():
+                    return render_template("task_form.html", empty_space="Task has to have a name!")
+                else:
+
+                    name = Spell_checker(request.form["name"]).The_Holy_Trinity_of_Regex()
+                    surname = Spell_checker(request.form["surname"]).The_Holy_Trinity_of_Regex()
+                    mentor_with_new_data = Mentor(name, surname)
+                    mentor_with_new_data.login = request.form["login"]
+                    mentor_with_new_data.id = mentor_id
+                    MentorModel.edit_mentor(mentor_with_new_data)
+                    return redirect(url_for("mentor_list"))
+    except KeyError:
+        return render_template("index.html")
 
 
 @app.route("/mentor_list")
@@ -183,17 +203,22 @@ def remove_mentor(mentor_id):
 
 @app.route("/mentor_add", methods=["POST"])
 def submit_mentor():
-    if session["user_id"]:
-        try:
-            name = request.form["name"]
-            surname = request.form["surname"]
-            login = request.form["login"]
-            my_mentor = Mentor(name, surname)
-            my_mentor.login = login
-            MentorModel.add_mentor(my_mentor)
-            return redirect(url_for("mentor_list"))
-        except KeyError:
-            return render_template("index.html")
+    try:
+        if session["user_id"]:
+            name_check = Spell_checker(request.form["name"])
+            if not name_check.check_if_empty():
+                return render_template("mentor_add.html", empty_space="Task has to have a name!")
+            else:
+
+                name = Spell_checker(request.form["name"]).The_Holy_Trinity_of_Regex()
+                surname = Spell_checker(request.form["surname"]).The_Holy_Trinity_of_Regex()
+                login = request.form["login"]
+                my_mentor = Mentor(name, surname)
+                my_mentor.login = login
+                MentorModel.add_mentor(my_mentor)
+                return redirect(url_for("mentor_list"))
+    except KeyError:
+        return render_template("index.html")
 
 
 @app.route("/assignment_list", methods=["GET", "POST"])
@@ -212,16 +237,27 @@ def assignment_form():
 
 @app.route("/assignment_add", methods=["POST"])
 def submit_assignment():
-    if session["user_id"]:
-        try:
-            assignment_name = request.form["assignment_name"]
-            due_date = request.form["due_date"]
-            max_points = request.form["max_points"]
-            my_assignment = Assignment(assignment_name, due_date, max_points)
-            AssignmentModel.add_assignment(my_assignment)
-            return redirect(url_for("assignment_list"))
-        except KeyError:
-            return render_template("index.html")
+    try:
+        if session["user_id"]:
+            assignment_name = Spell_checker(request.form["assignment_name"])
+            if not assignment_name.check_if_empty():
+                return render_template("assignment_add.html", message="Can't except empty input!")
+            else:
+
+                assignment_name = Spell_checker(request.form["assignment_name"]).The_Holy_Trinity_of_Regex()
+                due_date = Spell_checker(request.form["due_date"])
+                if not due_date.check_if_date():
+                    return render_template("assignment_add.html", message="Wrong date format.")
+                else:
+                    max_points = Spell_checker(request.form["max_points"])
+                    if not max_points.check_max_point():
+                        return render_template("assignment_add.html", message="Max point must be between 1 to 100.")
+                    else:
+                        my_assignment = Assignment(assignment_name, due_date, max_points)
+                        AssignmentModel.add_assignment(my_assignment)
+                        return redirect(url_for("assignment_list"))
+    except KeyError:
+        return render_template("index.html")
 
 @app.route("/assignment_edit/<int:ID_assignment>", methods=["POST", "GET"])
 def assignment_edit(ID_assignment):
@@ -231,11 +267,24 @@ def assignment_edit(ID_assignment):
             if request.method == "GET":
                 return render_template("assignment_edit.html", assignment=assignment_to_edit)
             elif request.method == "POST":
-                assignment_with_new_data = Assignment(request.form["assignment_name"], request.form["due_date"],
-                                                      request.form["max_points"])
-                assignment_with_new_data.ID_assignment = request.form["ID_assignment"]
-                StudentModel.edit_student(assignment_with_new_data)
-                return redirect(url_for("assignment_list"))
+                assignment_name = Spell_checker(request.form["assignment_name"])
+                if not assignment_name.check_if_empty():
+                    return render_template("assignment_add.html", message="Can't except empty input!")
+                else:
+
+                    assignment_name = Spell_checker(request.form["assignment_name"]).The_Holy_Trinity_of_Regex()
+                    due_date = Spell_checker(request.form["due_date"])
+                    if not due_date.check_if_date():
+                        return render_template("assignment_add.html", message="Wrong date format.")
+                    else:
+                        max_points = Spell_checker(request.form["max_points"])
+                        if not max_points.check_max_point():
+                            return render_template("assignment_add.html", message="Max point must be between 1 to 100.")
+                        else:
+                            assignment_with_new_data = Assignment(assignment_name, due_date, max_points)
+                            assignment_with_new_data.ID_assignment = request.form["ID_assignment"]
+                            AssignmentModel.add_assignment(assignment_with_new_data)
+                            return redirect(url_for("assignment_list"))
         except KeyError:
             return render_template("index.html")
 
@@ -269,35 +318,45 @@ def employee_form():
 
 @app.route("/employee_add", methods=["POST"])
 def submit_employee():
-    if session["user_id"]:
-        try:
-            name = request.form["name"]
-            surname = request.form["surname"]
-            login = request.form["login"]
-            my_employee = Employee(name, surname)
-            my_employee.login = login
-            EmployeeModel.add_employee(my_employee)
+    try:
+        if session["user_id"]:
 
-            return redirect(url_for("employee_list"))
-        except KeyError:
-            return render_template("index.html")
+            name_check = Spell_checker(request.form["name"]).check_if_empty()
+            if not name_check:
+                render_template("employee_add.html", message="Don't put empty inputs!")
+            else:
+                name = Spell_checker(request.form["name"]).The_Holy_Trinity_of_Regex()
+                surname = Spell_checker(request.form["surname"]).The_Holy_Trinity_of_Regex()
+                my_employee = Employee(name, surname)
+                my_employee.login = request.form["login"]
+                EmployeeModel.add_employee(my_employee)
+
+                return redirect(url_for("employee_list"))
+    except KeyError:
+        return render_template("index.html")
 
 @app.route("/employee_edit/<int:employee_id>", methods=["POST", "GET"])
 def employee_edit(employee_id):
-    if session["user_id"]:
-        try:
+    try:
+
+        if session["user_id"]:
             employee_to_edit = User_model.get_object_by_id(employee_id)
             if request.method == "GET":
                 return render_template("employee_edit.html", employee=employee_to_edit)
             elif request.method == "POST":
-                employee_with_new_data = Employee(request.form["name"], request.form["surname"])
-                employee_with_new_data.login = request.form["login"]
-                employee_with_new_data.id = employee_id
-                print(employee_with_new_data)
-                EmployeeModel.edit_employee(employee_with_new_data)
-                return redirect(url_for("employee_list"))
-        except KeyError:
-            return render_template('index.html')
+                name_check = Spell_checker(request.form["name"]).check_if_empty()
+                if not name_check:
+                    render_template("employee_edit.html.html", message="Don't put empty inputs!")
+                else:
+                    name = Spell_checker(request.form["name"]).The_Holy_Trinity_of_Regex()
+                    surname = Spell_checker(request.form["surname"]).The_Holy_Trinity_of_Regex()
+                    employee_with_new_data = Employee(name, surname)
+                    employee_with_new_data.login = request.form["login"]
+                    EmployeeModel.edit_employee(employee_with_new_data)
+
+                    return redirect(url_for("employee_list"))
+    except KeyError:
+        return render_template('index.html')
 
 @app.route("/employee_remove/<int:employee_id>", methods=["GET", "POST"])
 def remove_employee(employee_id):
