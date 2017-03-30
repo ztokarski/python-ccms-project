@@ -64,7 +64,7 @@ class Assignment:
         self.name = name
         self.due_date = due_date
         self.max_points = max_points
-        self.id_user = None
+        self.id_user = 0
 
 
 
