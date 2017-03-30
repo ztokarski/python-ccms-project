@@ -53,7 +53,7 @@
                                     src="http://blog.ramboll.com/fehmarnbelt/wp-content/themes/ramboll2/images/profile-img.jpg"/>
                             </li>
                             <li style="list-style: none"><p id="profile_name">Logged as: <strong>{{ session["user_name"]
-                                }}</strong></p>
+                                }} {{ session["user_surname"]}}</strong></p>
                             </li>
                             <li style="list-style: none">
                                 <button type="button" id="logout_button" onclick="location.href='/'">logout</button>
