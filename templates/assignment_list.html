@@ -8,21 +8,28 @@
             <th>Assignment Name</th>
             <th>Due Date</th>
             <th>Max Points</th>
+            {% if session["user_role"] != "student" %}
             <th>Actions</th>
+            {% endif %}
+            {% if session["user_role"] != "student" %}
             <th class="button_border"><button class="button" type="button"
                                           onclick="location.href='assignment_add'">add assignment</button></th>
             </tr>
+            {% endif %}
         {% for assignment in assignments %}
             <tr>
             <td>{{ assignments.index(assignment) + 1 }}</td>
             <td>{{ assignment.assignment_name }}</td>
             <td>{{ assignment.due_date }}</td>
             <td>{{ assignment.max_points }}</td>
+                            {% if session["user_role"] != "student" %}
+
             <td>
                 <ul>
                     <li><a href="/assignment_remove/{{ assignment.ID_assignment }}">[Remove]</a></li><br>
                 </ul>
             </td>
+            {% endif %}
             </tr>
         {% endfor %}
 </table></center>

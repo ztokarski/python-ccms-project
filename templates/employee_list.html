@@ -7,15 +7,18 @@
                         <th>#</th>
                         <th>First Name</th>
                         <th>Surname</th>
+                        {% if session["user_role"] == "manager" %}
                         <th>Actions</th>
                         <th class="button_border"><button class="button" type="button"
                             onclick="location.href='employee_add'">Add employee</button></th>
+                        {% endif %}
                     </tr>
                             {% for employee in employees %}
                                 <tr>
                                 <td>{{ employees.index(employee) + 1}}</td>
                                 <td>{{ employee.name }}</td>
                                 <td>{{ employee.surname }}</td>
+                                                {% if session["user_role"] == "manager" %}
 
                                 <td>
                                     <ul>
@@ -23,6 +26,7 @@
                                         <li><a href="/employee_remove/{{ employee.id }}">[Remove]</a></li><br>
                                     </ul>
                                 </td>
+                                {% endif %}
                                 </tr>
                             {% endfor %}
               </table></center>

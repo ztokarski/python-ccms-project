@@ -9,9 +9,11 @@
         <div class="col-md-2 col-sm-1 col-xs-1"></div>
         <div class="col-md-6 col-sm-12 col-xs-12">
             <div class="table-responsive">
+            {% if session['user_role'] == 'manager' %}
                 <button class="btn btn-info" type="button"
                         onclick="location.href='mentor_add'">Add mentor
                 </button>
+            {% endif %}
                 <hr>
                 <table class="table table-striped table-bordered table-hover ">
                     <thead class="bg-info text-white">
@@ -19,8 +21,10 @@
                         <th>#</th>
                         <th>First Name</th>
                         <th>Surname</th>
+                        {% if session["user_role"] == "manager" %}
                         <th>Edit</th>
                         <th>Remove</th>
+                        {% endif %}
                     </tr>
                     </thead>
                     {% for mentor in mentors %}
@@ -28,10 +32,12 @@
                         <td class="col-md-1">{{ mentors.index(mentor)+1 }}</td>
                         <td class="col-md-4">{{ mentor.name }}</td>
                         <td class="col-md-4">{{ mentor.surname }}</td>
+                        {% if session["user_role"] == "manager" %}
                         <td class="col-md-1 text-center"><a href="/mentor_edit/{{ mentor.id }}" class="button "><span
                                 class="glyphicon glyphicon-pencil"></span></a></td>
                         <td class="col-md-1 text-center"><a href="/mentor_remove/{{ mentor.id }}" class="button"><span
                                 class="glyphicon glyphicon-trash"></span></a></td>
+                    {% endif %}
                     </tr>
                     {% endfor %}
                 </table>

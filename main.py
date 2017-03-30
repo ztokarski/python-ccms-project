@@ -42,6 +42,7 @@ def login():
                 cookies_dict["user_role"] = "manager"
 
             session.update(cookies_dict)
+            print(session)
 
             return make_response(redirect("main"))
 
