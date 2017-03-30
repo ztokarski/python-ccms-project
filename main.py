@@ -14,7 +14,6 @@ app.secret_key = "npionWGOJPOJKWAFR1423508-';\/[;498yhdoiuajwfniol"
 @app.route("/")
 def index():
     session.clear()
-    print(session)
     return render_template("index.html")
 
 @app.route("/login", methods=["POST"])
@@ -25,7 +24,8 @@ def login():
         user_id = User_model.get_id_from_login(user_login)
         print(user_id)
         if user_id == "There's no such user!":
-            return redirect("/invalid")
+            print("theres no such user!")
+            return redirect("/login_error")
         else:
             user_object = User_model.get_object_by_id(user_id)
             cookies_dict = {"user_login": user_login, "user_name": user_object.name,
@@ -47,7 +47,7 @@ def login():
             return make_response(redirect("main"))
 
     else:
-        return render_template("index.html", message="Invalid login or password!")
+        return redirect(url_for("login_error"))
 
 
 @app.route("/main")
