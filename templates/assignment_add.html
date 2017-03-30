@@ -6,12 +6,12 @@
             <div class="col-md-4 col-sm-12 col-xs-12">
                 <div class="page-header">
                     <h1>Assignment Add <span class="glyphicon glyphicon-plus"></span></h1>
-                    <p>- add a new assignment</p>
+                    <p><i>- add a new assignment</i></p>
                 </div>
                 <div class="form">
                     <form action="{{ url_for('submit_assignment') }}" method="POST">
                         <p>Name</p>
-                        <p><input name="assignment_name" class="form-control" placeholder="Enter assignment name"></p>
+                        <p><input name="assignment_name" class="form-control" placeholder="Enter assignment name" required></p>
                         <p>Due Date</p>
                         <p><input name="due_date" class="form-control" placeholder="Enter assignment submit date"></p>
                         <p>Max points</p>

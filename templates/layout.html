@@ -41,9 +41,9 @@
 <div class="sidebar">
     <div class="container">
         <div class="row">
-            <div class="col-md-2 sidebar-brand">
+            <div class="col-md-2 sidebar-brand ">
                 <nav class="navbar navbar-default navbar-fixed-side">
-                    <div class="col-md-12 profile">
+                    <div class="col-md-12 profile bg-info">
                         <ul>
                             <li style="list-style: none"><img
                                     style="height: 70px; width: 80px; float: left; padding-left: 0px; padding-right: 28px; padding-top: 10px; "
@@ -62,7 +62,7 @@
                                 data-target="#login">LOGIN
                         </button>
                     </p>
-                    <div id="login" class="collapse">
+                    <div id="login" class="collapse text-center">
                         <p><a href="/">correct login</a></p>
                         <p><a href="login_error">incorrect login</a></p>
                     </div>
@@ -71,7 +71,7 @@
                                 data-target="#student">STUDENT
                         </button>
                     </p>
-                    <div id="student" class="collapse">
+                    <div id="student" class="collapse text-center">
                         <p><a href="{{ url_for('student_list') }}">List</a></p>
                         <p><a href="{{ url_for('student_form') }}">Add</a></p>
                     </div>
@@ -80,7 +80,7 @@
                                 data-target="#mentor">MENTOR
                         </button>
                     </p>
-                    <div id="mentor" class="collapse">
+                    <div id="mentor" class="collapse text-center">
                         <p><a href="{{ url_for('mentor_list') }}">List</a></p>
                         <p><a href="{{ url_for('mentor_form') }}">Add</a></p>
                     </div>
@@ -89,7 +89,7 @@
                                 data-target="#employee">EMPLOYEE
                         </button>
                     </p>
-                    <div id="employee" class="collapse">
+                    <div id="employee" class="collapse text-center">
                         <p><a href="{{ url_for('employee_list') }}">List</a></p>
                         <p><a href="{{ url_for('employee_form') }}">Add</a></p>
                     </div>
@@ -98,7 +98,7 @@
                                 data-target="#assignment">ASSIGNMENT
                         </button>
                     </p>
-                    <div id="assignment" class="collapse">
+                    <div id="assignment" class="collapse text-center">
                         <p><a href="{{ url_for('assignment_list') }}">List</a></p>
                         <p><a href="{{ url_for('assignment_form') }}">Add</a></p>
                     </div>
