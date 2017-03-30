@@ -1,21 +1,31 @@
 {% extends "layout.html" %}
-{% block content  %}
-            <!-- assignment form -->
-            <center>
-            <div class="form">
-                <form action="{{ url_for('submit_assignment') }}" method="POST">
-                <h2>Add assignment menu</h2>
-                <p><lable>Name</lable></p>
-                    <p><input name="assignment_name" placeholder="Enter assignment name"></p>
-                    <p><lable>Due Date</lable></p>
-                    <p><input name="due_date" placeholder="Enter assignment submit date"></p>
-                    <p><lable>Max points</lable></p>
-                    <input name="max_points" placeholder="Enter max points" ></p>
-                    <p><lable>Description</lable></p>
-                    <p><textarea rows="5" cols="30" name="comments" placeholder="Enter assignment description, please make it clear to help students understand easily :)"></textarea></p>
-                </p>
-                <p><button class="button" type="submit" formaction="/assignment_add">ADD ASSIGNMENT</button></p>
-                </form>
+{% block content %}
+    <div class="container">
+        <div class="row">
+            <div class="col-md-2 col-sm-1 col-xs-1"></div>
+            <div class="col-md-4 col-sm-12 col-xs-12">
+                <div class="page-header">
+                    <h1>Assignment Add <span class="glyphicon glyphicon-plus"></span></h1>
+                    <p><i>- add a new assignment</i></p>
+                </div>
+                <div class="form">
+                    <form action="{{ url_for('submit_assignment') }}" method="POST">
+                        <p>Name</p>
+                        <p><input name="assignment_name" class="form-control" placeholder="Enter assignment name" required></p>
+                        <p>Due Date</p>
+                        <p><input name="due_date" class="form-control" placeholder="Enter assignment submit date"></p>
+                        <p>Max points</p>
+                        <input name="max_points" class="form-control" placeholder="Enter max points"></p>
+                        <p>Description</p>
+                        <p><textarea rows="5" cols="42" name="comments"
+                                     placeholder="Enter assignment description, please make it clear to help students understand easily :)"></textarea>
+                        </p>
+                        <p>
+                            <button class="btn btn-info" type="submit" formaction="/assignment_add">Add</button>
+                        </p>
+                    </form>
+                </div>
             </div>
-            </center>
+        </div>
+    </div>
 {% endblock %}

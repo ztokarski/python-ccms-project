@@ -1,37 +1,48 @@
 <!DOCTYPE html>
 
 <html>
-    <head>
+<head>
+
     <title>Main Page</title>
-    <link rel="stylesheet" type="text/css" href="../static/style.css">
+
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
+
           integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css"
+
           integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
+
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"
+
             integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa"
+
             crossorigin="anonymous"></script>
+
     <meta charset="utf-8">
+
 </head>
 
-    <body>
-
-		<div class=" container page-header img-rounded">
+<body>
+<div class=" container page-header img-rounded">
+    {#      Carusel  #}
     <div id="myCarousel" class="carousel slide" data-ride="carousel" data-interval="5000" data-pause="hover">
         <div class="carousel-inner">
             <div class="item active">
-                <img src="http://bit.ly/2npR5t0" class="img-responsive">
+                <img src="http://bit.ly/2oA4huU" class="img-responsive">
                 <div class="carousel-caption">
                 </div>
             </div>
             <div class="item">
-                <img src="http://bit.ly/2o1f8kQ" class="img-responsive">
+
+                <img src="http://bit.ly/2ozQDI0" class="img-responsive">
                 <div class="carousel-caption">
                 </div>
             </div>
             <div class="item">
-                <img src="http://bit.ly/2nvgqDv" class="img-responsive">
+                <img src="http://bit.ly/2nkHvXz" class="img-responsive">
                 <div class="carousel-caption">
                 </div>
             </div>
@@ -39,45 +50,65 @@
     </div>
 </div>
 
-        <div class="sidebar">
+{#  Sidebar #}
+
+<div class="sidebar">
+
     <div class="container">
+
         <div class="row">
-            <div class="col-md-2 sidebar-brand">
+
+            <div class="col-md-2 sidebar-brand ">
+
                 <nav class="navbar navbar-default navbar-fixed-side">
-                    <div class="col-md-12 profile">
+
+                    <div class="col-md-12 profile bg-info">
+
                         <ul>
+
                             <li style="list-style: none"><img
+
                                     style="height: 70px; width: 80px; float: left; padding-left: 0px; padding-right: 28px; padding-top: 10px; "
-                                    src="http://blog.ramboll.com/fehmarnbelt/wp-content/themes/ramboll2/images/profile-img.jpg"/></>
+
+                                    src="http://blog.ramboll.com/fehmarnbelt/wp-content/themes/ramboll2/images/profile-img.jpg"/>
+
+                            </li>
+
                             <li style="list-style: none"><p id="profile_name"> Logged as: </p><strong>PRZEMEK</strong>
+
                             </li>
+
                             <li style="list-style: none">
+
                                 <button type="button" id="logout_button" onclick="location.href='/'">logout</button>
+
                             </li>
+
                             <hr>
+
                         </ul>
+
                     </div>
+                        {% if session["user_role"] == "student" %}
+                            <p><button type="button" class="btn btn btn-success btn-block btn-info" data-toggle="collapse" text-center{ data-target="#student">STUDENT</button></p>
 
-{% if session["user_role"] == "student" %}
-                            <p><button type="button" class="btn btn btn-success btn-block btn-info" data-toggle="collapse" data-target="#student">STUDENT</button></p>
-
-                              <div id="student" class="collapse">
+                              <div id="student" class="collapse" text-center{>
 
                                   <p><a href="{{ url_for('student_list') }}">List</a></p>
 
 
                               </div>
-                        <p><button type="button" class="btn btn-success btn-block btn-info" data-toggle="collapse" data-target="#assignment">ASSIGNMENT</button></p>
+                        <p><button type="button" class="btn btn-success btn-block btn-info" data-toggle="collapse" text-center{ data-target="#assignment">ASSIGNMENT</button></p>
 
-                              <div id="assignment" class="collapse">
+                              <div id="assignment" class="collapse" text-center{>
 
                                   <p><a href="{{ url_for('assignment_list') }}">List</a></p></div>
 
                         {% elif session["user_role"] == "mentor"%}
 
-                        <p><button type="button" class="btn btn btn-success btn-block btn-info" data-toggle="collapse" data-target="#student">STUDENT</button></p>
+                        <p><button type="button" class="btn btn btn-success btn-block btn-info" data-toggle="collapse" text-center{ data-target="#student">STUDENT</button></p>
 
-                          <div id="student" class="collapse">
+                          <div id="student" class="collapse" text-center{>
 
                                   <p><a href="{{ url_for('student_list') }}">List</a></p>
 
@@ -85,15 +116,15 @@
 
                               </div>
 
-                            <p><button type="button" class="btn btn btn-success btn-block btn-info" data-toggle="collapse" data-target="#mentor">MENTOR</button></p>
+                            <p><button type="button" class="btn btn btn-success btn-block btn-info" data-toggle="collapse" text-center{ data-target="#mentor">MENTOR</button></p>
 
-                              <div id="mentor" class="collapse">
+                              <div id="mentor" class="collapse" text-center{>
 
                                   <p><a href="{{ url_for('mentor_list') }}">List</a></p> </div>
 
-    <p><button type="button" class="btn btn-success btn-block btn-info" data-toggle="collapse" data-target="#assignment">ASSIGNMENT</button></p>
+    <p><button type="button" class="btn btn-success btn-block btn-info" data-toggle="collapse" text-center{ data-target="#assignment">ASSIGNMENT</button></p>
 
-                              <div id="assignment" class="collapse">
+                              <div id="assignment" class="collapse" text-center{>
 
                                   <p><a href="{{ url_for('assignment_list') }}">List</a></p>
 
@@ -102,9 +133,9 @@
                               </div>
 
                         {% elif session["user_role"] == "manager" %}
-                        <p><button type="button" class="btn btn btn-success btn-block btn-info" data-toggle="collapse" data-target="#student">STUDENT</button></p>
+                        <p><button type="button" class="btn btn btn-success btn-block btn-info" data-toggle="collapse" text-center{ data-target="#student">STUDENT</button></p>
 
-                          <div id="student" class="collapse">
+                          <div id="student" class="collapse" text-center{>
 
                                   <p><a href="{{ url_for('student_list') }}">List</a></p>
 
@@ -114,9 +145,9 @@
 
 
 
-                        <p><button type="button" class="btn btn btn-success btn-block btn-info" data-toggle="collapse" data-target="#mentor">MENTOR</button></p>
+                        <p><button type="button" class="btn btn btn-success btn-block btn-info" data-toggle="collapse" text-center{ data-target="#mentor">MENTOR</button></p>
 
-                              <div id="mentor" class="collapse">
+                              <div id="mentor" class="collapse" text-center{>
 
                                   <p><a href="{{ url_for('mentor_list') }}">List</a></p>
 
@@ -124,9 +155,9 @@
 
                               </div>
 
-                            <p><button type="button" class="btn btn-success btn-block btn-info" data-toggle="collapse" data-target="#employee">EMPLOYEE</button></p>
+                            <p><button type="button" class="btn btn-success btn-block btn-info" data-toggle="collapse" text-center{ data-target="#employee">EMPLOYEE</button></p>
 
-                              <div id="employee" class="collapse">
+                              <div id="employee" class="collapse" text-center{>
 
                                   <p><a href="{{ url_for('employee_list') }}">List</a></p>
 
@@ -134,25 +165,25 @@
 
                               </div>
 {% else %}
-<p><button type="button" class="btn btn btn-success btn-block btn-info" data-toggle="collapse" data-target="#student">STUDENT</button></p>
+<p><button type="button" class="btn btn btn-success btn-block btn-info" data-toggle="collapse" text-center{ data-target="#student">STUDENT</button></p>
 
-                          <div id="student" class="collapse">
+                          <div id="student" class="collapse" text-center{>
 
                                   <p><a href="{{ url_for('student_list') }}">List</a></p>
                           </div>
-    <p><button type="button" class="btn btn btn-success btn-block btn-info" data-toggle="collapse" data-target="#mentor">MENTOR</button></p>
+    <p><button type="button" class="btn btn btn-success btn-block btn-info" data-toggle="collapse" text-center{ data-target="#mentor">MENTOR</button></p>
 
-                              <div id="mentor" class="collapse">
+                              <div id="mentor" class="collapse" text-center{>
 
                                   <p><a href="{{ url_for('mentor_list') }}">List</a></p>
                               </div>
-    <p><button type="button" class="btn btn-success btn-block btn-info" data-toggle="collapse" data-target="#employee">EMPLOYEE</button></p>
+    <p><button type="button" class="btn btn-success btn-block btn-info" data-toggle="collapse" text-center{ data-target="#employee">EMPLOYEE</button></p>
 
-                              <div id="employee" class="collapse">
+                              <div id="employee" class="collapse" text-center{>
 
                                   <p><a href="{{ url_for('employee_list') }}">List</a></p>
                               </div>
-{% endif %}
+                    {% endif %}
                     </nav>
 
                 </div>

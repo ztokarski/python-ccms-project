@@ -6,7 +6,7 @@
                     <form action="{{ url_for('assignment_edit', ID_assignment=ID_assignment) }}" method="post">
                         <h2>Edit assignment menu</h2>
                         <p><lable>Name</lable></p>
-                            <p><input name="assignment_name" value="{{ assignment.assignment_name }}"></p>
+                            <p><input name="assignment_name" value="{{ assignment.assignment_name }}"  required></p>
                             <p><lable>Due Date</lable></p>
                             <p><input name="due_date" value="{{ assignment.due_date }}"></p>
                             <p><lable>Max points</lable></p>
