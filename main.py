@@ -41,7 +41,6 @@ def login():
                 cookies_dict["user_role"] = "manager"
 
             session.update(cookies_dict)
-            print(session)
 
             return make_response(redirect("main"))
 
@@ -71,6 +70,7 @@ def submit_student():
     my_student = Student(name, surname)
     my_student.login = login
     StudentModel.add_student(my_student)
+
     return redirect(url_for("student_list"))
 
 
