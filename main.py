@@ -21,39 +21,39 @@ def index():
 @app.route("/invalid", methods=["GET"])
 def login():
 
-        if request.method == "POST":
-            user_login = request.form["login"]
-            check_login = Spell_checker(user_login).check_if_empty()
-            if not check_login:
-                return redirect(url_for("login_error"))
-            else:
-                user_id = User_model.get_id_from_login(user_login)
-                print(user_id)
-                if user_id == "There's no such user!":
-                    print("theres no such user!")
-                    return redirect("/login_error")
-                else:
-                    user_object = User_model.get_object_by_id(user_id)
-                    cookies_dict = {"user_login": user_login, "user_name": user_object.name,
-                                    "user_surname": user_object.surname,
-                                    "user_id": user_object.id}
-                    if isinstance(user_object, Student):
-                        cookies_dict["user_role"] = "student"
-                    elif isinstance(user_object, Mentor):
-                        cookies_dict["user_role"] = "mentor"
-
-                    if isinstance(user_object, Employee):
-                        cookies_dict["user_role"] = "employee"
-                    if isinstance(user_object, Manager):
-                        cookies_dict["user_role"] = "manager"
-
-                    session.update(cookies_dict)
-                    print(session)
-
-                    return make_response(redirect("main"))
-
+    if request.method == "POST":
+        user_login = request.form["login"]
+        check_login = Spell_checker(user_login).check_if_empty()
+        if not check_login:
+            return render_template("index.html", message="Don't input empty strings!")
         else:
-            return redirect(url_for("login_error"))
+            user_id = User_model.get_id_from_login(user_login)
+            print(user_id)
+            if user_id == "There's no such user!":
+                print("theres no such user!")
+                return redirect("/login_error")
+            else:
+                user_object = User_model.get_object_by_id(user_id)
+                cookies_dict = {"user_login": user_login, "user_name": user_object.name,
+                                "user_surname": user_object.surname,
+                                "user_id": user_object.id}
+                if isinstance(user_object, Student):
+                    cookies_dict["user_role"] = "student"
+                elif isinstance(user_object, Mentor):
+                    cookies_dict["user_role"] = "mentor"
+
+                if isinstance(user_object, Employee):
+                    cookies_dict["user_role"] = "employee"
+                if isinstance(user_object, Manager):
+                    cookies_dict["user_role"] = "manager"
+
+                session.update(cookies_dict)
+                print(session)
+
+                return make_response(redirect("main"))
+
+    else:
+        return redirect(url_for("login_error"))
 
 
 @app.route("/main")
