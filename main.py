@@ -49,6 +49,7 @@ def login():
     else:
         return render_template("index.html", message="Invalid login or password!")
 
+
 @app.route("/main")
 def main():
     name = request.cookies.get("user_name")
