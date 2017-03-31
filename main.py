@@ -17,15 +17,19 @@ def index():
     session.clear()
     return render_template("index.html")
 
+
+"""Login checks user name and password. 
+    Also, if input is empty"""
+
+
 @app.route("/login", methods=["POST"])
 @app.route("/invalid", methods=["GET"])
 def login():
-
     if request.method == "POST":
         user_login = request.form["login"]
         check_login = Spell_checker(user_login).check_if_empty()
         if not check_login:
-            return render_template("index.html", message="Don't input empty strings!")
+            return render_template("index.html", message="Don't input empty strings! And stop meddling with HTML!")
         else:
             user_id = User_model.get_id_from_login(user_login)
             if user_id == "There's no such user!":
@@ -39,37 +43,42 @@ def login():
                     return redirect("/login_error")
                 else:
 
-                        user_object = User_model.get_object_by_id(user_id)
-                        cookies_dict = {"user_login": user_login, "user_name": user_object.name,
-                                        "user_surname": user_object.surname,
-                                        "user_id": user_object.id}
-                        if isinstance(user_object, Student):
-                            cookies_dict["user_role"] = "student"
-                        elif isinstance(user_object, Mentor):
-                            cookies_dict["user_role"] = "mentor"
+                    user_object = User_model.get_object_by_id(user_id)
+                    cookies_dict = {"user_login": user_login, "user_name": user_object.name,
+                                    "user_surname": user_object.surname,
+                                    "user_id": user_object.id}
+                    if isinstance(user_object, Student):
+                        cookies_dict["user_role"] = "student"
+                    elif isinstance(user_object, Mentor):
+                        cookies_dict["user_role"] = "mentor"
 
-                        if isinstance(user_object, Employee):
-                            cookies_dict["user_role"] = "employee"
-                        if isinstance(user_object, Manager):
-                            cookies_dict["user_role"] = "manager"
+                    if isinstance(user_object, Employee):
+                        cookies_dict["user_role"] = "employee"
+                    if isinstance(user_object, Manager):
+                        cookies_dict["user_role"] = "manager"
 
-                        session.update(cookies_dict)
+                    session.update(cookies_dict)
 
-                        return make_response(redirect("main"))
+                    return make_response(redirect("main"))
 
     else:
         return redirect(url_for("login_error"))
+
+
+"""Main page"""
 
 
 @app.route("/main")
 def main():
     try:
         if session["user_id"]:
-                name = request.cookies.get("user_name")
-                return render_template("main.html", name=name)
+            name = request.cookies.get("user_name")
+            return render_template("main.html", name=name)
     except KeyError:
         return render_template("index.html")
 
+
+""" Shows if login or password are wrong"""
 
 
 @app.route("/login_error")
@@ -81,8 +90,8 @@ def login_error():
 def student_list():
     try:
         if session["user_id"]:
-                students = StudentModel.get_all_students()
-                return render_template("student_list.html", students=students)
+            students = StudentModel.get_all_students()
+            return render_template("student_list.html", students=students)
     except KeyError:
         render_template("index.html")
 
@@ -94,6 +103,10 @@ def student_form():
             return render_template("student_add.html")
     except KeyError:
         return render_template("index.html")
+
+
+"""Submit student adds student to db, and use regex to filter out unplesantnes"""
+
 
 @app.route("/student_add", methods=["POST"])
 def submit_student():
@@ -117,6 +130,8 @@ def submit_student():
     except KeyError:
         return render_template("index.html")
 
+
+""" Every submit and add function has the same functionality (regex) as student add"""
 
 
 @app.route("/student_edit/<int:student_id>", methods=["POST", "GET"])
@@ -154,6 +169,7 @@ def remove_student(student_id):
             return redirect(url_for("student_list"))
     except KeyError:
         return render_template("index.html")
+
 
 @app.route("/mentor_edit/<int:mentor_id>", methods=["POST", "GET"])
 def mentor_edit(mentor_id):
@@ -201,8 +217,6 @@ def mentor_form():
             return render_template("index.html")
 
 
-
-
 @app.route("/mentor_remove/<int:mentor_id>", methods=["GET", "POST"])
 def remove_mentor(mentor_id):
     if session["user_id"]:
@@ -211,6 +225,7 @@ def remove_mentor(mentor_id):
             return redirect(url_for("mentor_list"))
         except KeyError:
             return render_template("index.html")
+
 
 @app.route("/mentor_add", methods=["POST"])
 def submit_mentor():
@@ -243,6 +258,7 @@ def assignment_list():
         except KeyError:
             return render_template("index.html")
 
+
 @app.route("/assignment_add")
 def assignment_form():
     return render_template("assignment_add.html")
@@ -271,6 +287,7 @@ def submit_assignment():
                         return redirect(url_for("assignment_list"))
     except KeyError:
         return render_template("index.html")
+
 
 @app.route("/assignment_edit/<int:ID_assignment>", methods=["POST", "GET"])
 def assignment_edit(ID_assignment):
@@ -321,6 +338,7 @@ def employee_list():
         except KeyError:
             return render_template("index.html")
 
+
 @app.route("/employee_add")
 def employee_form():
     if session["user_id"]:
@@ -328,6 +346,7 @@ def employee_form():
             return render_template("employee_add.html")
         except KeyError:
             return render_template("index.html")
+
 
 @app.route("/employee_add", methods=["POST"])
 def submit_employee():
@@ -351,6 +370,7 @@ def submit_employee():
                 return redirect(url_for("employee_list"))
     except KeyError:
         return render_template("index.html")
+
 
 @app.route("/employee_edit/<int:employee_id>", methods=["POST", "GET"])
 def employee_edit(employee_id):
@@ -377,6 +397,7 @@ def employee_edit(employee_id):
     except KeyError:
         return render_template('index.html')
 
+
 @app.route("/employee_remove/<int:employee_id>", methods=["GET", "POST"])
 def remove_employee(employee_id):
     if session["user_id"]:
@@ -385,6 +406,7 @@ def remove_employee(employee_id):
             return redirect(url_for("employee_list"))
         except KeyError:
             return render_template("index.html")
+
 
 @app.route("/team_list.html")
 def team_list():
@@ -408,4 +430,3 @@ def these_are_not_sites_you_are_looking_for(e):
 
 if __name__ == '__main__':
     app.run(debug=True)
-
