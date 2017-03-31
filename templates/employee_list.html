@@ -31,7 +31,6 @@
                         <td class="col-md-4">{{ employee.name }}</td>
                         <td class="col-md-4">{{ employee.surname }}</td>
                         {% if session["user_role"] == "manager" %}
-
                         <td class="col-md-1 text-center"><a href="/employee_edit/{{ employee.id }}"
                                                             class="button "><span
                                 class="glyphicon glyphicon-pencil"></span></a></td>
