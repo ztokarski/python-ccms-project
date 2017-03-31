@@ -169,7 +169,7 @@ def submit_assignment():
 
 @app.route("/assignment_edit/<int:ID_assignment>", methods=["POST", "GET"])
 def assignment_edit(ID_assignment):
-    assignment_to_edit = User_model.get_assignment_by_id(ID_assignment)
+    assignment_to_edit = AssignmentModel.get_object_id(ID_assignment)
     if request.method == "GET":
         return render_template("assignment_edit.html", assignment=assignment_to_edit)
     elif request.method == "POST":
