@@ -10,6 +10,7 @@
                 <p><i>- add a new mentor</i></p>
             </div>
             <div class="form">
+                <h5 style="color:red;text-align: center; ">{{ message }}</h5>
                 <form action="{{ url_for('submit_mentor') }}" method="POST">
                     <p>Name</p>
 

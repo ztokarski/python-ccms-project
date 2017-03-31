@@ -46,6 +46,15 @@ class User_model:
         except TypeError:
             return "There's no such user!"
 
+    @classmethod
+    def check_password(self, password):
+        database = DB.get_connection()
+        check_password = database.execute("SELECT password FROM users WHERE password = ?", (password,))
+        checked_password = check_password.fetchone()
+        try:
+            return checked_password[0]
+        except TypeError:
+            return "Wrong password!"
 
     @classmethod
     def get_object_by_id(cls, id):

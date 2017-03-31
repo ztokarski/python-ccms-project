@@ -25,7 +25,7 @@ class StudentModel(User_model):
     def add_student(self, student):
         data = DB.get_connection()
         cursor = data.cursor()
-        cursor.execute("INSERT INTO users(name = ?,surname = ?,login = ?) ;", (student.name, student.surname, student.login))
+        cursor.execute("INSERT INTO 'users'('name','surname','login', 'ID_role') VALUES ('{}','{}','{}','{}');".format(student.name, student.surname, student.login, 1))
         data.commit()
         data.close()
 

@@ -9,6 +9,7 @@
                 <p><i>- add a new employee</i></p>
             </div>
             <div class="form">
+                <h5 style="color:red;text-align: center; ">{{ message }}</h5>
                 <form action="{{ url_for('submit_employee') }}" method="POST">
                     <p>Name</p>
                     <p><input name="name" class="form-control" placeholder="Enter employee name" required></p>

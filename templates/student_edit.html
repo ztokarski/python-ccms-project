@@ -9,6 +9,7 @@
                 <p><i>- edit a student</i></p>
             </div>
             <div class="form">
+                <h5 style="color:red;text-align: center; ">{{ message }}</h5>
                 <form action="{{ url_for('student_edit', student_id=student.id) }}" method="post">
                     <p>Name</p>
                     <p><input name="name" class="form-control" value="{{ student.name }}" required></p>

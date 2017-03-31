@@ -28,29 +28,34 @@ def login():
             return render_template("index.html", message="Don't input empty strings!")
         else:
             user_id = User_model.get_id_from_login(user_login)
-            print(user_id)
             if user_id == "There's no such user!":
-                print("theres no such user!")
+
                 return redirect("/login_error")
             else:
-                user_object = User_model.get_object_by_id(user_id)
-                cookies_dict = {"user_login": user_login, "user_name": user_object.name,
-                                "user_surname": user_object.surname,
-                                "user_id": user_object.id}
-                if isinstance(user_object, Student):
-                    cookies_dict["user_role"] = "student"
-                elif isinstance(user_object, Mentor):
-                    cookies_dict["user_role"] = "mentor"
 
-                if isinstance(user_object, Employee):
-                    cookies_dict["user_role"] = "employee"
-                if isinstance(user_object, Manager):
-                    cookies_dict["user_role"] = "manager"
+                check_password = User_model.check_password(request.form["password"])
+                if check_password == "Wrong password!":
 
-                session.update(cookies_dict)
-                print(session)
+                    return redirect("/login_error")
+                else:
 
-                return make_response(redirect("main"))
+                        user_object = User_model.get_object_by_id(user_id)
+                        cookies_dict = {"user_login": user_login, "user_name": user_object.name,
+                                        "user_surname": user_object.surname,
+                                        "user_id": user_object.id}
+                        if isinstance(user_object, Student):
+                            cookies_dict["user_role"] = "student"
+                        elif isinstance(user_object, Mentor):
+                            cookies_dict["user_role"] = "mentor"
+
+                        if isinstance(user_object, Employee):
+                            cookies_dict["user_role"] = "employee"
+                        if isinstance(user_object, Manager):
+                            cookies_dict["user_role"] = "manager"
+
+                        session.update(cookies_dict)
+
+                        return make_response(redirect("main"))
 
     else:
         return redirect(url_for("login_error"))
@@ -96,8 +101,10 @@ def submit_student():
         if session["user_id"]:
 
             name_check = Spell_checker(request.form["name"])
-            if not name_check.check_if_empty():
-                return render_template("task_form.html", empty_space="Task has to have a name!")
+            password_check = Spell_checker(request.form["password"])
+            login_check = Spell_checker(request.form["login"])
+            if not name_check.check_if_empty() and not password_check.check_if_empty() and not login_check.check_if_empty():
+                return render_template("student_add.html", messasge="I don't accept empty input!")
             else:
 
                 name = Spell_checker(request.form["name"]).The_Holy_Trinity_of_Regex()
@@ -121,8 +128,10 @@ def student_edit(student_id):
                 return render_template("student_edit.html", student=student_to_edit)
             elif request.method == "POST":
                 name_check = Spell_checker(request.form["name"])
-                if not name_check.check_if_empty():
-                    return render_template("student_edit.html", empty_space="Student has to have a name!")
+                password_check = Spell_checker(request.form["password"])
+                login_check = Spell_checker(request.form["login"])
+                if not name_check.check_if_empty() and not password_check.check_if_empty() and not login_check.check_if_empty():
+                    return render_template("student_edit.html", message="I don't accept empty input!")
                 else:
 
                     name = Spell_checker(request.form["name"]).The_Holy_Trinity_of_Regex()
@@ -156,8 +165,10 @@ def mentor_edit(mentor_id):
                 return render_template("mentor_edit.html", mentor=mentor_to_edit)
             elif request.method == "POST":
                 name_check = Spell_checker(request.form["name"])
-                if not name_check.check_if_empty():
-                    return render_template("task_form.html", empty_space="Task has to have a name!")
+                password_check = Spell_checker(request.form["password"])
+                login_check = Spell_checker(request.form["login"])
+                if not name_check.check_if_empty() and not password_check.check_if_empty() and not login_check.check_if_empty():
+                    return render_template("mentor_edit.html", message="I don't accept empty input!")
                 else:
 
                     name = Spell_checker(request.form["name"]).The_Holy_Trinity_of_Regex()
@@ -206,8 +217,10 @@ def submit_mentor():
     try:
         if session["user_id"]:
             name_check = Spell_checker(request.form["name"])
-            if not name_check.check_if_empty():
-                return render_template("mentor_add.html", empty_space="Task has to have a name!")
+            password_check = Spell_checker(request.form["password"])
+            login_check = Spell_checker(request.form["login"])
+            if not name_check.check_if_empty() and not password_check.check_if_empty() and not login_check.check_if_empty():
+                return render_template("mentor_add.html", message="I don't accept empty input!")
             else:
 
                 name = Spell_checker(request.form["name"]).The_Holy_Trinity_of_Regex()
@@ -241,7 +254,7 @@ def submit_assignment():
         if session["user_id"]:
             assignment_name = Spell_checker(request.form["assignment_name"])
             if not assignment_name.check_if_empty():
-                return render_template("assignment_add.html", message="Can't except empty input!")
+                return render_template("assignment_add.html", message="I don't accept empty input!")
             else:
 
                 assignment_name = Spell_checker(request.form["assignment_name"]).The_Holy_Trinity_of_Regex()
@@ -269,7 +282,7 @@ def assignment_edit(ID_assignment):
             elif request.method == "POST":
                 assignment_name = Spell_checker(request.form["assignment_name"])
                 if not assignment_name.check_if_empty():
-                    return render_template("assignment_add.html", message="Can't except empty input!")
+                    return render_template("assignment_add.html", message="I don't accept empty input!")
                 else:
 
                     assignment_name = Spell_checker(request.form["assignment_name"]).The_Holy_Trinity_of_Regex()
@@ -322,8 +335,12 @@ def submit_employee():
         if session["user_id"]:
 
             name_check = Spell_checker(request.form["name"]).check_if_empty()
-            if not name_check:
-                render_template("employee_add.html", message="Don't put empty inputs!")
+            password_check = Spell_checker(request.form["password"])
+            login_check = Spell_checker(request.form["login"])
+            password_check = Spell_checker(request.form["password"])
+            login_check = Spell_checker(request.form["login"])
+            if not name_check.check_if_empty() and not password_check.check_if_empty() and not login_check.check_if_empty():
+                return render_template("employee_add.html", message="I don't accept empty input!")
             else:
                 name = Spell_checker(request.form["name"]).The_Holy_Trinity_of_Regex()
                 surname = Spell_checker(request.form["surname"]).The_Holy_Trinity_of_Regex()
@@ -345,8 +362,10 @@ def employee_edit(employee_id):
                 return render_template("employee_edit.html", employee=employee_to_edit)
             elif request.method == "POST":
                 name_check = Spell_checker(request.form["name"]).check_if_empty()
-                if not name_check:
-                    render_template("employee_edit.html.html", message="Don't put empty inputs!")
+                password_check = Spell_checker(request.form["password"])
+                login_check = Spell_checker(request.form["login"])
+                if not name_check.check_if_empty() and not password_check.check_if_empty() and not login_check.check_if_empty():
+                    return render_template("employee_edit.html", message="I don't accept empty input!")
                 else:
                     name = Spell_checker(request.form["name"]).The_Holy_Trinity_of_Regex()
                     surname = Spell_checker(request.form["surname"]).The_Holy_Trinity_of_Regex()
@@ -381,15 +400,6 @@ def team_list():
         except KeyError:
             return render_template("index.html")
 
-
-@app.route("/team_add")
-def team_add():
-    return render_template("team_add.html")
-
-
-@app.route("/team_edit")
-def team_edit():
-    return render_template("team_edit.html")
 
 @app.errorhandler(404)
 def these_are_not_sites_you_are_looking_for(e):
