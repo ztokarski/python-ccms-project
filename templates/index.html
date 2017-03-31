@@ -17,101 +17,111 @@
     <meta charset="utf-8">
 </head>
 <body class="mmin">
-<center><div class="container" style="background-color: #DFE4E8;">
-    <div class="wrapper span4">
-        <form action="/login" method="post" name="Login_Form" class="form-signin">
-            <img src="../static/img/programadores.png" class="img-responsive">
-            {% block error_message %}{% endblock %}
-            <hr class="colorgraph">
-            <br>
-            <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
-            <input type="text" class="form-control" name="login" placeholder="Login" required="" autofocus="" />
-            <span class="input-group-addon"><i class="glyphicon glyphicon-lock"></i></span>
-            <input type="password" class="form-control" name="password" placeholder="Password" required=""/>
-            <button class="btn btn-lg btn-primary btn-block" name="Submit" value="Login" type="submit">Login</button>
-        </form>
+<center>
+    <div class="container" style="background-color: #DFE4E8;">
+        <div class="wrapper span4">
+            <form action="/login" method="post" name="Login_Form" class="form-signin">
+                <img src="../static/img/programadores.png" class="img-responsive">
+                {% block error_message %}{% endblock %}
+                <hr class="colorgraph">
+                <br>
+                <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
+                <input type="text" class="form-control" name="login" placeholder="Login" required="" autofocus=""/>
+                <span class="input-group-addon"><i class="glyphicon glyphicon-lock"></i></span>
+                <input type="password" class="form-control" name="password" placeholder="Password" required=""/>
+                <button class="btn btn-lg btn-primary btn-block" name="Submit" value="Login" type="submit">Login
+                </button>
+            </form>
+        </div>
     </div>
-</div>
-<div class="footer">
-  <center><div class="container">
-          <a href='#'><i class="fa fa-facebook fa-3x fa-fw"></i></a>
-          <a href='#'><i class="fa fa-twitter fa-3x fa-fw"></i></a>
-          <a href='#'><i class="fa fa-rss fa-3x fa-fw"></i></a>
-          <a href='#'><i class="fa fa-flickr fa-3x fa-fw"></i></a>
-          <a href='#'><i class="fa fa-linkedin fa-3x fa-fw"></i></a>
-        </span>
-  </div></center>
-</div>
-<br/>
-<br/>
-<div class="our-team">
+    <div class="footer">
+        <center>
+            <div class="container">
+                <a href='#'><i class="fa fa-facebook fa-3x fa-fw"></i></a>
+                <a href='#'><i class="fa fa-twitter fa-3x fa-fw"></i></a>
+                <a href='#'><i class="fa fa-rss fa-3x fa-fw"></i></a>
+                <a href='#'><i class="fa fa-flickr fa-3x fa-fw"></i></a>
+                <a href='#'><i class="fa fa-linkedin fa-3x fa-fw"></i></a>
+                </span>
+            </div>
+        </center>
+    </div>
+    <br/>
+    <br/>
+    <div class="our-team">
 
-<div class="page-header" style="background-color: #DFE4E8;" >
-  <h3 class="text-center">Our team</h3>
-</div>
-<div class="col-sm-6 col-md-3">
-  <div style="background-color: #DFE4E8;">
-    <img src="https://ca.slack-edge.com/T2H36UEKA-U2K3CU20K-e32aa0bbd19e-512" alt="Sample image" class="img-circle"/>
-    <div class="caption" style="background-color:">
-      <h3>Zbigniew Tokarski</h3>
-      <p>Student</p>
-      <p>
-        <a role="button" class="btn btn-default" href="https://www.facebook.com/zbig.tokarski?fref=ts"><i class="fa fa-facebook"></i></a>
-        <a role="button" class="btn btn-default" href="#"><i class="fa fa-slack"></i></a>
-        <a role="button" class="btn btn-default" href="https://github.com/ztokarski"><i class="fa fa-github"></i></a>
-      </p>
+        <div class="page-header" style="background-color: #DFE4E8;">
+            <h3 class="text-center">Our team</h3>
+        </div>
+        <div class="col-sm-6 col-md-3">
+            <div style="background-color: #DFE4E8;">
+                <img src="https://ca.slack-edge.com/T2H36UEKA-U2K3CU20K-e32aa0bbd19e-512" alt="Sample image"
+                     class="img-circle"/>
+                <div class="caption" style="background-color:">
+                    <h3>Zbigniew Tokarski</h3>
+                    <p>Student</p>
+                    <p>
+                        <a role="button" class="btn btn-default"
+                           href="https://www.facebook.com/zbig.tokarski?fref=ts"><i class="fa fa-facebook"></i></a>
+                        <a role="button" class="btn btn-default" href="#"><i class="fa fa-slack"></i></a>
+                        <a role="button" class="btn btn-default" href="https://github.com/ztokarski"><i
+                                class="fa fa-github"></i></a>
+                    </p>
+                </div>
+            </div>
+        </div>
+        <div class="col-sm-6 col-md-3">
+            <div style="background-color: #DFE4E8;">
+                <img src="https://avatars.slack-edge.com/2016-10-04/87275414593_12cff15509efc0a8586c_192.jpg"
+                     alt="Sample image" class="img-circle"/>
+                <div class="caption">
+                    <h3>Jakub Krzciuk</h3>
+                    <p>Student</p>
+                    <p>
+                        <a role="button" class="btn btn-default" href="https://www.facebook.com/ciuku.ciuk"><i
+                                class="fa fa-facebook"></i></a>
+                        <a role="button" class="btn btn-default" href="#"><i class="fa fa-slack"></i></a>
+                        <a role="button" class="btn btn-default" href="https://github.com/jakubkrzciuk"><i
+                                class="fa fa-github"></i></a>
+                    </p>
+                </div>
+            </div>
+        </div>
+        <div class="col-sm-6 col-md-3">
+            <div style="background-color: #DFE4E8;">
+                <img src="http://s1.fotowrzut.pl/6LVLPCSR4U/1.jpg" alt="Sample image" class="img-circle"/>
+                <div class="caption">
+                    <h3>Sebastian Znaj</h3>
+                    <p>Student</p>
+                    <p>
+                        <a role="button" class="btn btn-default"
+                           href="https://www.facebook.com/profile.php?id=100001612574432&fref=ts"><i
+                                class="fa fa-facebook"></i></a>
+                        <a role="button" class="btn btn-default" href="#"><i class="fa fa-slack"></i></a>
+                        <a role="button" class="btn btn-default" href="https://github.com/SebastianZnaj"><i
+                                class="fa fa-github"></i></a>
+                    </p>
+                </div>
+            </div>
+        </div>
+        <div class="col-sm-6 col-md-3" style="background-color: #DFE4E8;">
+            <div style="background-color: #DFE4E8;">
+                <img src="http://s1.fotowrzut.pl/V465YKIGFG/1.jpg" alt="Sample image" class="img-circle"/>
+                <div class="caption">
+                    <h3>Łukasz Bielenin</h3>
+                    <p>Student</p>
+                    <p>
+                        <a role="button" class="btn btn-default" href="https://www.facebook.com/l.bielenin?fref=ts"><i
+                                class="fa fa-facebook"></i></a>
+                        <a role="button" class="btn btn-default" href="#"><i class="fa fa-slack"></i></a>
+                        <a role="button" class="btn btn-default" href="https://github.com/Mercutio217"><i
+                                class="fa fa-github"></i></a>
+                    </p>
+                </div>
+            </div>
+        </div>
     </div>
-  </div>
-</div>
-
-<div class="col-sm-6 col-md-3">
-  <div style="background-color: #DFE4E8;">
-    <img src="https://avatars.slack-edge.com/2016-10-04/87275414593_12cff15509efc0a8586c_192.jpg" alt="Sample image" class="img-circle"/>
-    <div class="caption">
-      <h3>Jakub Krzciuk</h3>
-      <p>Student</p>
-      <p>
-        <a role="button" class="btn btn-default" href="https://www.facebook.com/ciuku.ciuk"><i class="fa fa-facebook"></i></a>
-        <a role="button" class="btn btn-default" href="#"><i class="fa fa-slack"></i></a>
-        <a role="button" class="btn btn-default" href="https://github.com/jakubkrzciuk"><i class="fa fa-github"></i></a>
-      </p>
-    </div>
-  </div>
-</div>
-
-<div class="col-sm-6 col-md-3">
-  <div style="background-color: #DFE4E8;">
-    <img src="http://s1.fotowrzut.pl/6LVLPCSR4U/1.jpg" alt="Sample image" class="img-circle"/>
-    <div class="caption">
-      <h3>Sebastian Znaj</h3>
-      <p>Student</p>
-      <p>
-        <a role="button" class="btn btn-default" href="https://www.facebook.com/profile.php?id=100001612574432&fref=ts"><i class="fa fa-facebook"></i></a>
-        <a role="button" class="btn btn-default" href="#"><i class="fa fa-slack"></i></a>
-        <a role="button" class="btn btn-default" href="https://github.com/SebastianZnaj"><i class="fa fa-github"></i></a>
-      </p>
-    </div>
-  </div>
-</div>
-
-<div class="col-sm-6 col-md-3" style="background-color: #DFE4E8;" >
-  <div style="background-color: #DFE4E8;">
-    <img src="http://s1.fotowrzut.pl/V465YKIGFG/1.jpg" alt="Sample image" class="img-circle" />
-    <div class="caption">
-      <h3>Łukasz Bielenin</h3>
-      <p>Student</p>
-      <p>
-        <a role="button" class="btn btn-default" href="https://www.facebook.com/l.bielenin?fref=ts"><i class="fa fa-facebook"></i></a>
-        <a role="button" class="btn btn-default" href="#"><i class="fa fa-slack"></i></a>
-        <a role="button" class="btn btn-default" href="https://github.com/Mercutio217"><i class="fa fa-github"></i></a>
-      </p>
-    </div>
-  </div>
-</div>
-</div></center>
+</center>
 </body>
 </html>
-<!-- src="https://scontent.fwaw5-1.fna.fbcdn.net/v/t1.0-9/400394_126878427433180_1198804810_n.jpg?oh=4fafe075a06bb845f3e6deba73ff2eae&oe=595E1E94"
-src="https://scontent.fwaw5-1.fna.fbcdn.net/v/t1.0-9/10502528_721114134618999_2803571187023492064_n.jpg?oh=fd5326146644493b803355790ca6956f&oe=59955D86"
-src="https://scontent.fwaw5-1.fna.fbcdn.net/v/t1.0-9/14980650_1330972653603025_8015488517501573099_n.jpg?oh=cfc535702fde633b84ac3dfdd778dc32&oe=59617281"
-src="https://scontent.fwaw5-1.fna.fbcdn.net/v/t1.0-9/13620362_1065314986850001_1268354042856437179_n.jpg?oh=fddf775bf4b2ee4c7ba3dbf3b8a92be0&oe=59578C51" -->
+
